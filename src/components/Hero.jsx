@@ -137,7 +137,7 @@ export default function Hero() {
             <span
               className="text-[32px] font-black uppercase tracking-[0.12em] drop-shadow-[0_2px_6px_rgba(4,30,66,0.35)]"
               style={{
-                background: 'linear-gradient(180deg, #041E42 0%, #0D3B6E 30%, #5A9BC7 50%, #69b9eeff 70%, #5A9BC7 80%, #0D3B6E 100%)',
+                background: 'linear-gradient(180deg, #041E42 0%, #0D3B6E 35%, #D96A1A 70%, #FF5A00 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
