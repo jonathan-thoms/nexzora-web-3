@@ -94,11 +94,11 @@ export default function Header() {
             {NAV_ITEMS.map((item, index) => (
               <div
                 key={item.label}
-                className="relative"
+                className="relative group"
                 onMouseEnter={() => handleMouseEnter(index)}
               >
                 <button
-                  className={`relative px-4 py-2 text-[13.5px] font-medium tracking-wide transition-colors duration-200 ${
+                  className={`relative px-4 py-2.5 text-[15px] font-medium tracking-wide transition-colors duration-200 ${
                     activeMenu === index
                       ? 'text-navy-900'
                       : 'text-text-secondary hover:text-navy-900'
@@ -106,12 +106,17 @@ export default function Header() {
                   id={`nav-${item.label.toLowerCase()}`}
                 >
                   {item.label}
+                  {/* Active underline */}
                   {activeMenu === index && (
                     <motion.div
                       layoutId="nav-underline"
                       className="absolute bottom-0 left-4 right-4 h-[2px] bg-zenith"
                       transition={{ type: 'spring', stiffness: 500, damping: 35 }}
                     />
+                  )}
+                  {/* Hover underline — always rendered, scales in on hover */}
+                  {activeMenu !== index && (
+                    <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-zenith/70 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
                   )}
                 </button>
               </div>

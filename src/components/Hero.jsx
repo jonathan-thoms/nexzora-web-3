@@ -1,6 +1,15 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import HeroNetwork from './HeroNetwork';
+// import HeroNetwork from './HeroNetwork';
+
+/* ============================================
+   HERO_MODE toggle:
+   - 'image'     → Static hero background image
+   - 'animation' → Interactive circuit network
+   To swap back, change to 'animation' and
+   uncomment the HeroNetwork import above.
+   ============================================ */
+const HERO_MODE = 'image';
 
 /* ============================================
    Hero Section
@@ -51,7 +60,7 @@ function AnimatedHeadline({ text }) {
       variants={textVariants}
       initial="hidden"
       animate="visible"
-      className="font-display text-[clamp(2.25rem,4.5vw,3.75rem)] font-bold leading-[1.1] tracking-display text-navy-950"
+      className="font-display text-[clamp(1.75rem,3.2vw,2.75rem)] font-bold leading-[1.15] tracking-display text-navy-950"
     >
       {words.map((word, i) => (
         <motion.span
@@ -72,34 +81,50 @@ export default function Hero() {
 
   return (
     <section
-      className="relative min-h-[75vh] flex items-center pt-[72px] overflow-hidden"
+      className="relative min-h-[55vh] flex items-center pt-[72px] overflow-hidden"
       id="hero"
     >
-      {/* ── Background Animation Layer ──
-          Covers the FULL hero so spotlight works everywhere.
-          Gradient mask fades it visually on the left side. */}
+      {/* ── Background Visual Layer ── */}
       <div className="absolute inset-0">
-        {/* Network container — full coverage, bleeds right */}
-        <div
-          className="absolute top-0 bottom-0"
-          style={{ left: '0%', right: '-5%' }}
-        >
-          <HeroNetwork />
-        </div>
-
-        {/* Left fade gradient — visual only, no pointer blocking */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: 'linear-gradient(to right, var(--color-surface) 0%, var(--color-surface) 20%, rgba(250,250,248,0.85) 35%, rgba(250,250,248,0.4) 48%, transparent 62%)',
-          }}
-        />
+        {HERO_MODE === 'image' ? (
+          /* Static hero image — place at /public/hero-bg.png */
+          <>
+            {/* Image covers the right 80% of the hero */}
+            <div className="absolute top-0 bottom-0 right-0" style={{ left: '20%' }}>
+              <img
+                src="/hero-bg.png"
+                alt=""
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </div>
+            {/* Gradient fades image into the surface on the left */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: 'linear-gradient(to right, var(--color-surface) 0%, var(--color-surface) 35%, rgba(250,250,248,0.92) 45%, rgba(250,250,248,0.6) 55%, rgba(250,250,248,0.15) 70%, transparent 85%)',
+              }}
+            />
+          </>
+        ) : (
+          /* Interactive circuit network — swap HERO_MODE to 'animation' */
+          <>
+            {/* <div className="absolute top-0 bottom-0" style={{ left: '0%', right: '-5%' }}>
+              <HeroNetwork />
+            </div> */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: 'linear-gradient(to right, var(--color-surface) 0%, var(--color-surface) 20%, rgba(250,250,248,0.85) 35%, rgba(250,250,248,0.4) 48%, transparent 62%)',
+              }}
+            />
+          </>
+        )}
       </div>
 
       {/* ── Content Layer ──
           pointer-events-none on the container so the spotlight
           works through the text. Interactive elements opt back in. */}
-      <div className="relative z-[2] pointer-events-none mx-auto max-w-[1320px] w-full px-6 lg:px-10 py-16 lg:py-24">
+      <div className="relative z-[2] pointer-events-none mx-auto max-w-[1320px] w-full px-6 lg:px-10 py-12 lg:py-16">
         <div className="max-w-[600px]">
           {/* Pre-heading */}
           <motion.div
@@ -109,8 +134,7 @@ export default function Hero() {
             custom={0}
             className="mb-6"
           >
-            <span className="inline-flex items-center gap-2 text-[11.5px] font-semibold uppercase tracking-label text-zenith">
-              <span className="w-8 h-[1.5px] bg-zenith rounded-full" />
+            <span className="text-[14px] font-bold uppercase tracking-[0.15em] text-zenith">
               NEXZORA TECHNOLOGIES
             </span>
           </motion.div>

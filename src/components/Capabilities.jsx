@@ -142,31 +142,49 @@ export default function Capabilities() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <section className="relative py-24 lg:py-32 bg-surface-alt" id="capabilities">
+    <section className="relative py-12 lg:py-16 bg-surface-alt" id="capabilities">
       <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
         {/* Section Header */}
-        <div className="max-w-[560px] mb-16 lg:mb-20">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ type: 'spring', stiffness: 120, damping: 20 }}
-            className="inline-flex items-center gap-2 text-[11.5px] font-semibold uppercase tracking-label text-zenith mb-4"
-          >
-            <span className="w-8 h-[1.5px] bg-zenith rounded-full" />
-            Engineering Capabilities
-          </motion.span>
+        <div className="max-w-[560px] mb-10 lg:mb-12">
+          {/* Per-character staggered reveal */}
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-80px' }}
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.03, delayChildren: 0.1 } },
+            }}
+            className="font-display text-[clamp(1.75rem,3.5vw,3rem)] font-bold tracking-display text-navy-950 leading-tight mb-3"
+          >
+            {'Engineering Capabilities'.split('').map((char, i) => (
+              <motion.span
+                key={i}
+                variants={{
+                  hidden: { opacity: 0, y: 40, filter: 'blur(8px)' },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    filter: 'blur(0px)',
+                    transition: { type: 'spring', stiffness: 120, damping: 16 },
+                  },
+                }}
+                className="inline-block"
+                style={{ minWidth: char === ' ' ? '0.3em' : undefined }}
+              >
+                {char === ' ' ? '\u00A0' : char}
+              </motion.span>
+            ))}
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
-            transition={{ type: 'spring', stiffness: 100, damping: 18, delay: 0.1 }}
-            className="font-display text-[clamp(1.75rem,3vw,2.75rem)] font-bold tracking-display text-navy-950 leading-tight"
+            transition={{ type: 'spring', stiffness: 100, damping: 18, delay: 0.8 }}
+            className="text-[16px] text-text-secondary leading-relaxed"
           >
-            Deep expertise across the
-            <br />
-            technology spectrum
-          </motion.h2>
+            Deep expertise across the technology spectrum
+          </motion.p>
         </div>
 
         {/* Unified Tabbed Component */}
