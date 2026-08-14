@@ -60,7 +60,7 @@ function AnimatedHeadline({ text }) {
       variants={textVariants}
       initial="hidden"
       animate="visible"
-      className="font-display text-[clamp(1.75rem,3.2vw,2.75rem)] font-bold leading-[1.15] tracking-display text-navy-950"
+      className="font-display text-[clamp(1.2rem,2.2vw,1.9rem)] font-bold leading-[1.15] tracking-display text-navy-950"
     >
       {words.map((word, i) => (
         <motion.span
@@ -81,7 +81,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative min-h-[55vh] flex items-center pt-[72px] overflow-hidden"
+      className="relative min-h-[40vh] flex items-center pt-[72px] overflow-hidden"
       id="hero"
     >
       {/* ── Background Visual Layer ── */}
@@ -124,7 +124,7 @@ export default function Hero() {
       {/* ── Content Layer ──
           pointer-events-none on the container so the spotlight
           works through the text. Interactive elements opt back in. */}
-      <div className="relative z-[2] pointer-events-none mx-auto max-w-[1320px] w-full px-6 lg:px-10 py-12 lg:py-16">
+      <div className="relative z-[2] pointer-events-none mx-auto max-w-[1320px] w-full px-6 lg:px-10 py-8 lg:py-10">
         <div className="max-w-[600px]">
           {/* Pre-heading */}
           <motion.div
@@ -132,16 +132,24 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             custom={0}
-            className="mb-6"
+            className="mb-4"
           >
-            <span className="text-[14px] font-bold uppercase tracking-[0.15em] text-zenith">
+            <span
+              className="text-[32px] font-black uppercase tracking-[0.12em] drop-shadow-[0_2px_6px_rgba(4,30,66,0.35)]"
+              style={{
+                background: 'linear-gradient(180deg, #041E42 0%, #0D3B6E 30%, #5A9BC7 50%, #69b9eeff 70%, #5A9BC7 80%, #0D3B6E 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
               NEXZORA TECHNOLOGIES
             </span>
           </motion.div>
 
           {/* Headline */}
           {mounted && (
-            <AnimatedHeadline text="The Next Zenith of Innovation — Engineering a New Era of Technology" />
+            <AnimatedHeadline text="The Next Zenith of Innovation" />
           )}
 
           {/* Sub-copy */}
@@ -152,7 +160,7 @@ export default function Hero() {
             custom={0.6}
             className="mt-6 text-[16.5px] leading-relaxed text-text-secondary max-w-[480px]"
           >
-            Precision-engineered solutions across embedded systems, semiconductor design, AI, and next-generation mobility platforms.
+            Engineering a New Era of Technology across embedded systems, semiconductor design, AI, and next-generation mobility platforms.
           </motion.p>
 
           {/* CTAs — pointer-events-auto so buttons stay clickable */}

@@ -45,12 +45,17 @@ const Icons = {
       <path d="M9 12l2 2 4-4" />
     </svg>
   ),
-  consulting: (
+  'ai-systems': (
     <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M2 3h20v14H2z" />
-      <path d="M8 21h8M12 17v4" />
-      <path d="M7 8h4M7 11h6" />
-      <circle cx="16.5" cy="9.5" r="2.5" />
+      <path d="M12 2a7 7 0 0 1 7 7c0 2.5-1.5 4.5-3 5.5V16a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-1.5C6.5 13.5 5 11.5 5 9a7 7 0 0 1 7-7Z" />
+      <path d="M9 21h6M10 18v3M14 18v3" />
+      <path d="M10 9h.01M14 9h.01M10 12a2 2 0 0 0 4 0" />
+    </svg>
+  ),
+  'cloud-digital': (
+    <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M6.5 19a4.5 4.5 0 0 1-.42-8.98A7 7 0 0 1 19.5 11a4.5 4.5 0 0 1-1 8.98" />
+      <path d="M12 13v6M9 17l3 3 3-3" />
     </svg>
   ),
 };
@@ -82,11 +87,19 @@ const CAPABILITIES = [
   },
   {
     id: 'ai-robotics',
-    label: 'AI & Robotics',
-    tabLabel: 'AI &\nRobotics',
+    label: 'Robotics & Connected Technologies',
+    tabLabel: 'Robotics &\nConnected Tech',
     description:
-      'Intelligent systems powered by machine learning, computer vision, and advanced robotics. We build perception pipelines, decision engines, and autonomous control systems for real-world deployment.',
+      'End-to-end robotics engineering — from industrial automation and autonomous mobile robots to IoT-enabled connected systems. We design perception pipelines, motion control architectures, and edge-to-cloud connectivity for real-world deployment at scale.',
     image: '/capabilities/ai-robotics.jpg',
+  },
+  {
+    id: 'ai-systems',
+    label: 'AI & Intelligent Systems',
+    tabLabel: 'AI & Intelligent\nSystems',
+    description:
+      'Enterprise AI solutions powered by machine learning, deep learning, and generative AI. We build intelligent decision engines, computer vision systems, NLP pipelines, and predictive analytics platforms that drive measurable business outcomes.',
+    image: '/capabilities/ai-systems.jpg',
   },
   {
     id: 'cybersecurity',
@@ -97,12 +110,12 @@ const CAPABILITIES = [
     image: '/capabilities/cybersecurity.jpg',
   },
   {
-    id: 'consulting',
-    label: 'Engineering Consulting',
-    tabLabel: 'Engineering\nConsulting',
+    id: 'cloud-digital',
+    label: 'Cloud & Digital Engineering',
+    tabLabel: 'Cloud & Digital\nEngineering',
     description:
-      'Strategic engineering advisory services that bridge technical depth with business outcomes. We help organizations architect technology transformations, optimize engineering operations, and scale innovation programs.',
-    image: '/capabilities/consulting.jpg',
+      'Full-spectrum cloud and digital transformation services — from cloud-native application development and DevOps automation to data platform engineering and microservices architecture. We help enterprises modernize their technology stack and accelerate digital innovation.',
+    image: '/capabilities/cloud-digital.jpg',
   },
 ];
 
@@ -142,10 +155,10 @@ export default function Capabilities() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <section className="relative py-12 lg:py-16 bg-surface-alt" id="capabilities">
+    <section className="relative py-8 lg:py-10 bg-surface-alt" id="capabilities">
       <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
         {/* Section Header */}
-        <div className="max-w-[560px] mb-10 lg:mb-12">
+        <div className="mb-6 lg:mb-8">
           {/* Per-character staggered reveal */}
           <motion.h2
             initial="hidden"
@@ -155,7 +168,7 @@ export default function Capabilities() {
               hidden: {},
               visible: { transition: { staggerChildren: 0.03, delayChildren: 0.1 } },
             }}
-            className="font-display text-[clamp(1.75rem,3.5vw,3rem)] font-bold tracking-display text-navy-950 leading-tight mb-3"
+            className="font-display text-[clamp(1.35rem,2.5vw,2rem)] font-bold tracking-display text-navy-950 leading-tight"
           >
             {'Engineering Capabilities'.split('').map((char, i) => (
               <motion.span
@@ -176,15 +189,6 @@ export default function Capabilities() {
               </motion.span>
             ))}
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ type: 'spring', stiffness: 100, damping: 18, delay: 0.8 }}
-            className="text-[16px] text-text-secondary leading-relaxed"
-          >
-            Deep expertise across the technology spectrum
-          </motion.p>
         </div>
 
         {/* Unified Tabbed Component */}
