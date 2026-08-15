@@ -71,10 +71,8 @@ export default function Header() {
   return (
     <header
       ref={headerRef}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-[#fafaf8]/95 backdrop-blur-md shadow-[0_1px_3px_rgba(6,27,46,0.06)]'
-          : 'bg-[#fafaf8]'
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-[#fafaf8] ${
+        scrolled ? 'shadow-[0_1px_3px_rgba(6,27,46,0.06)]' : ''
       }`}
       onMouseLeave={handleMouseLeave}
     >

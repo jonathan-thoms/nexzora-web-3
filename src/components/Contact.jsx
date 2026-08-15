@@ -20,7 +20,21 @@ export default function Contact() {
 
   return (
     <section className="relative py-24 lg:py-32 bg-navy-950 overflow-hidden" id="contact">
-      {/* Subtle geometric background accents */}
+      {/* Background image + dark overlay */}
+      <div className="absolute inset-0">
+        <img
+          src="/hero-bg.png"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(to right, rgba(4,30,66,0.92) 0%, rgba(4,30,66,0.85) 40%, rgba(4,30,66,0.75) 70%, rgba(4,30,66,0.65) 100%)',
+          }}
+        />
+      </div>
+      {/* Subtle geometric accents */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-navy-700/40 to-transparent" />
         <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-zenith/[0.04] blur-[100px]" />

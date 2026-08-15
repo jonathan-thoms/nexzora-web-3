@@ -53,55 +53,30 @@ const fadeUp = {
   }),
 };
 
-function AnimatedHeadline({ text }) {
-  const words = text.split(' ');
-  return (
-    <motion.h1
-      variants={textVariants}
-      initial="hidden"
-      animate="visible"
-      className="font-display text-[clamp(1.2rem,2.2vw,1.9rem)] font-bold leading-[1.15] tracking-display text-navy-950"
-    >
-      {words.map((word, i) => (
-        <motion.span
-          key={i}
-          variants={wordVariant}
-          className="inline-block mr-[0.3em]"
-        >
-          {word}
-        </motion.span>
-      ))}
-    </motion.h1>
-  );
-}
-
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
   return (
     <section
-      className="relative min-h-[40vh] flex items-center pt-[72px] overflow-hidden"
+      className="relative min-h-[40vh] flex items-center pt-[72px] overflow-hidden bg-navy-950"
       id="hero"
     >
       {/* ── Background Visual Layer ── */}
       <div className="absolute inset-0">
         {HERO_MODE === 'image' ? (
-          /* Static hero image — place at /public/hero-bg.png */
+          /* Static hero image */
           <>
-            {/* Image covers the right 80% of the hero */}
-            <div className="absolute top-0 bottom-0 right-0" style={{ left: '20%' }}>
-              <img
-                src="/hero-bg.png"
-                alt=""
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            </div>
-            {/* Gradient fades image into the surface on the left */}
+            <img
+              src="/hero-bg.png"
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            {/* Dark gradient overlay — solid dark left, fading right */}
             <div
               className="absolute inset-0 pointer-events-none"
               style={{
-                background: 'linear-gradient(to right, var(--color-surface) 0%, var(--color-surface) 35%, rgba(250,250,248,0.92) 45%, rgba(250,250,248,0.6) 55%, rgba(250,250,248,0.15) 70%, transparent 85%)',
+                background: 'linear-gradient(to right, rgba(4,30,66,0.97) 0%, rgba(4,30,66,0.92) 30%, rgba(4,30,66,0.75) 50%, rgba(4,30,66,0.4) 70%, rgba(4,30,66,0.15) 90%)',
               }}
             />
           </>
@@ -114,42 +89,57 @@ export default function Hero() {
             <div
               className="absolute inset-0 pointer-events-none"
               style={{
-                background: 'linear-gradient(to right, var(--color-surface) 0%, var(--color-surface) 20%, rgba(250,250,248,0.85) 35%, rgba(250,250,248,0.4) 48%, transparent 62%)',
+                background: 'linear-gradient(to right, rgba(4,30,66,0.97) 0%, rgba(4,30,66,0.85) 40%, transparent 70%)',
               }}
             />
           </>
         )}
       </div>
 
-      {/* ── Content Layer ──
-          pointer-events-none on the container so the spotlight
-          works through the text. Interactive elements opt back in. */}
-      <div className="relative z-[2] pointer-events-none mx-auto max-w-[1320px] w-full px-6 lg:px-10 py-8 lg:py-10">
-        <div className="max-w-[600px]">
-          {/* Pre-heading */}
+      {/* ── Content Layer ── */}
+      <div className="relative z-[2] pointer-events-none mx-auto max-w-[1320px] w-full px-6 lg:px-10 py-10 lg:py-14">
+        <div className="max-w-[620px]">
+          {/* Pre-heading — NEXZORA TECHNOLOGIES */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
             animate="visible"
             custom={0}
-            className="mb-4"
+            className="mb-5"
           >
-            <span
-              className="text-[32px] font-black uppercase tracking-[0.12em] drop-shadow-[0_2px_6px_rgba(4,30,66,0.35)]"
-              style={{
-                background: 'linear-gradient(180deg, #041E42 0%, #0D3B6E 35%, #D96A1A 70%, #FF5A00 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-              }}
-            >
+            <span className="text-[13px] font-semibold uppercase tracking-[0.25em] text-white/70">
               NEXZORA TECHNOLOGIES
             </span>
           </motion.div>
 
-          {/* Headline */}
+          {/* Headline — split color: white + orange */}
           {mounted && (
-            <AnimatedHeadline text="The Next Zenith of Innovation" />
+            <motion.h1
+              variants={textVariants}
+              initial="hidden"
+              animate="visible"
+              className="font-display text-[clamp(1.75rem,3.5vw,2.85rem)] font-bold leading-[1.12] tracking-display"
+            >
+              {['Engineering', 'Intelligence.'].map((word, i) => (
+                <motion.span
+                  key={i}
+                  variants={wordVariant}
+                  className="inline-block mr-[0.3em] text-white"
+                >
+                  {word}
+                </motion.span>
+              ))}
+              <br />
+              {['Powering', 'Mobility.'].map((word, i) => (
+                <motion.span
+                  key={`o-${i}`}
+                  variants={wordVariant}
+                  className="inline-block mr-[0.3em] text-zenith"
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </motion.h1>
           )}
 
           {/* Sub-copy */}
@@ -158,25 +148,25 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             custom={0.6}
-            className="mt-6 text-[16.5px] leading-relaxed text-text-secondary max-w-[480px]"
+            className="mt-5 text-[15.5px] leading-relaxed text-white/65 max-w-[500px]"
           >
-            Engineering a New Era of Technology across embedded systems, semiconductor design, AI, and next-generation mobility platforms.
+            NEXZORA develops advanced engineering solutions across embedded systems, automotive technologies, semiconductors, AI, cybersecurity, and connected mobility—from concept to production.
           </motion.p>
 
-          {/* CTAs — pointer-events-auto so buttons stay clickable */}
+          {/* CTAs */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
             animate="visible"
             custom={0.8}
-            className="mt-10 flex flex-wrap gap-4 pointer-events-auto"
+            className="mt-8 flex flex-wrap gap-4 pointer-events-auto"
           >
             <a
               href="#capabilities"
-              className="group inline-flex items-center gap-2 px-7 py-3.5 bg-zenith text-white text-[14px] font-semibold rounded-[6px] transition-all duration-200 hover:bg-zenith-600 hover:shadow-[0_8px_24px_rgba(217,106,26,0.2)] active:scale-[0.98]"
+              className="group inline-flex items-center gap-2 px-7 py-3.5 bg-zenith text-white text-[14px] font-semibold rounded-[6px] transition-all duration-200 hover:bg-zenith-600 hover:shadow-[0_8px_24px_rgba(255,90,0,0.3)] active:scale-[0.98]"
               id="cta-explore"
             >
-              Explore Our Solutions
+              Explore Our Capabilities
               <svg
                 className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5"
                 fill="none"
@@ -189,7 +179,7 @@ export default function Hero() {
             </a>
             <a
               href="#"
-              className="inline-flex items-center px-7 py-3.5 border-[1.5px] border-navy-200 text-navy-900 text-[14px] font-semibold rounded-[6px] transition-all duration-200 hover:border-navy-400 hover:bg-navy-50 active:scale-[0.98]"
+              className="inline-flex items-center px-7 py-3.5 border-[1.5px] border-white/30 text-white text-[14px] font-semibold rounded-[6px] transition-all duration-200 hover:border-white/60 hover:bg-white/5 active:scale-[0.98]"
               id="cta-discover"
             >
               Discover NEXZORA
@@ -198,8 +188,8 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Bottom edge accent line */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-navy-200/60 to-transparent z-[3]" />
+      {/* Bottom edge accent */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent z-[3]" />
     </section>
   );
 }

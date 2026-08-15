@@ -158,7 +158,17 @@ export default function Capabilities() {
     <section className="relative py-8 lg:py-10 bg-surface-alt" id="capabilities">
       <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
         {/* Section Header */}
-        <div className="mb-6 lg:mb-8">
+        <div className="mb-6 lg:mb-8 text-center">
+          {/* Pre-label */}
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ type: 'spring', stiffness: 120, damping: 20 }}
+            className="inline-block text-[12px] font-semibold uppercase tracking-[0.2em] text-zenith mb-3"
+          >
+            What we do
+          </motion.span>
           {/* Per-character staggered reveal */}
           <motion.h2
             initial="hidden"
