@@ -59,7 +59,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative min-h-[80vh] sm:min-h-[70vh] lg:min-h-[45vh] flex items-center pt-[76px] sm:pt-[84px] lg:pt-[72px] pb-12 sm:pb-16 lg:pb-14 overflow-hidden bg-navy-950"
+      className="relative min-h-[85vh] sm:min-h-[75vh] lg:min-h-[55vh] flex items-center pt-[72px] overflow-hidden bg-navy-950"
       id="hero"
     >
       {/* ── Background Visual Layer ── */}
@@ -101,7 +101,7 @@ export default function Hero() {
       </div>
 
       {/* ── Content Layer ── */}
-      <div className="relative z-[2] pointer-events-none mx-auto max-w-[1320px] w-full px-5 sm:px-6 lg:px-10">
+      <div className="relative z-[2] pointer-events-none mx-auto max-w-[1320px] w-full px-5 sm:px-6 lg:px-10 py-14 sm:py-16 lg:py-20 xl:py-24">
         <div className="max-w-[620px]">
           {/* Pre-heading — NEXZORA TECHNOLOGIES */}
           <motion.div
