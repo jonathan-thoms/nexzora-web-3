@@ -80,16 +80,16 @@ function IndustryCard({ industry, index }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
       transition={{ type: 'spring', stiffness: 100, damping: 18, delay: 0.1 + index * 0.08 }}
-      className={`relative flex flex-col items-center text-center group cursor-pointer py-6 sm:py-8 px-3 sm:px-4 rounded-lg transition-colors duration-200 ${
+      className={`relative flex flex-col items-center text-center group cursor-pointer py-6 sm:py-8 px-3 sm:px-4 rounded-lg transition-colors duration-200 min-h-[160px] md:min-h-[225px] justify-start ${
         isActive ? 'bg-navy-900/40' : 'hover:bg-navy-900/20'
       } ${index < INDUSTRIES.length - 1 ? 'md:border-r md:border-white/10' : ''}`}
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
       onClick={() => setIsActive(!isActive)}
     >
-      {/* Icon + Title wrapper */}
+      {/* Icon + Title wrapper — shifts up on hover */}
       <motion.div
-        animate={{ y: isActive ? -4 : 0 }}
+        animate={{ y: isActive ? -8 : 0 }}
         transition={{ type: 'spring', stiffness: 200, damping: 20 }}
         className="flex flex-col items-center"
       >
@@ -121,15 +121,15 @@ function IndustryCard({ industry, index }) {
         </span>
       </motion.div>
 
-      {/* Description */}
+      {/* Description — out of document flow on desktop to prevent layout jerking */}
       <AnimatePresence>
         {isActive && (
           <motion.p
-            initial={{ opacity: 0, height: 0, y: 4 }}
-            animate={{ opacity: 1, height: 'auto', y: 0 }}
-            exit={{ opacity: 0, height: 0, y: 4 }}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 6 }}
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-3 text-[12px] sm:text-[12.5px] leading-relaxed text-navy-200 text-center max-w-[200px]"
+            className="mt-3 md:mt-0 md:absolute md:left-2 md:right-2 md:top-[160px] text-[12px] sm:text-[12.5px] leading-relaxed text-navy-200 text-center"
           >
             {industry.description}
           </motion.p>
