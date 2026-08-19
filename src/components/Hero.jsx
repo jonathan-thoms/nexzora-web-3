@@ -59,7 +59,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative min-h-[40vh] flex items-center pt-[72px] overflow-hidden bg-navy-950"
+      className="relative min-h-[80vh] sm:min-h-[70vh] lg:min-h-[45vh] flex items-center pt-[76px] sm:pt-[84px] lg:pt-[72px] pb-12 sm:pb-16 lg:pb-14 overflow-hidden bg-navy-950"
       id="hero"
     >
       {/* ── Background Visual Layer ── */}
@@ -70,22 +70,26 @@ export default function Hero() {
             <img
               src="/hero-bg.png"
               alt=""
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover object-center lg:object-right"
             />
-            {/* Dark gradient overlay — solid dark left, fading right */}
+            {/* Desktop gradient overlay */}
             <div
-              className="absolute inset-0 pointer-events-none"
+              className="hidden lg:block absolute inset-0 pointer-events-none"
               style={{
                 background: 'linear-gradient(to right, rgba(4,30,66,0.97) 0%, rgba(4,30,66,0.92) 30%, rgba(4,30,66,0.75) 50%, rgba(4,30,66,0.4) 70%, rgba(4,30,66,0.15) 90%)',
+              }}
+            />
+            {/* Mobile & Tablet gradient overlay — dark with full coverage */}
+            <div
+              className="block lg:hidden absolute inset-0 pointer-events-none"
+              style={{
+                background: 'linear-gradient(to bottom, rgba(4,30,66,0.96) 0%, rgba(4,30,66,0.90) 45%, rgba(4,30,66,0.97) 100%)',
               }}
             />
           </>
         ) : (
           /* Interactive circuit network — swap HERO_MODE to 'animation' */
           <>
-            {/* <div className="absolute top-0 bottom-0" style={{ left: '0%', right: '-5%' }}>
-              <HeroNetwork />
-            </div> */}
             <div
               className="absolute inset-0 pointer-events-none"
               style={{
@@ -97,7 +101,7 @@ export default function Hero() {
       </div>
 
       {/* ── Content Layer ── */}
-      <div className="relative z-[2] pointer-events-none mx-auto max-w-[1320px] w-full px-6 lg:px-10 py-10 lg:py-14">
+      <div className="relative z-[2] pointer-events-none mx-auto max-w-[1320px] w-full px-5 sm:px-6 lg:px-10">
         <div className="max-w-[620px]">
           {/* Pre-heading — NEXZORA TECHNOLOGIES */}
           <motion.div
@@ -105,9 +109,9 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             custom={0}
-            className="mb-5"
+            className="mb-4 sm:mb-5"
           >
-            <span className="text-[13px] font-semibold uppercase tracking-[0.25em] text-white/70">
+            <span className="text-[11.5px] sm:text-[13px] font-semibold uppercase tracking-[0.2em] sm:tracking-[0.25em] text-white/75">
               NEXZORA TECHNOLOGIES
             </span>
           </motion.div>
@@ -118,13 +122,13 @@ export default function Hero() {
               variants={textVariants}
               initial="hidden"
               animate="visible"
-              className="font-display text-[clamp(1.75rem,3.5vw,2.85rem)] font-bold leading-[1.12] tracking-display"
+              className="font-display text-[clamp(1.95rem,6.5vw,2.85rem)] font-bold leading-[1.12] tracking-display"
             >
               {['Engineering', 'Intelligence.'].map((word, i) => (
                 <motion.span
                   key={i}
                   variants={wordVariant}
-                  className="inline-block mr-[0.3em] text-white"
+                  className="inline-block mr-[0.25em] text-white"
                 >
                   {word}
                 </motion.span>
@@ -134,7 +138,7 @@ export default function Hero() {
                 <motion.span
                   key={`o-${i}`}
                   variants={wordVariant}
-                  className="inline-block mr-[0.3em] text-zenith"
+                  className="inline-block mr-[0.25em] text-zenith"
                 >
                   {word}
                 </motion.span>
@@ -148,7 +152,7 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             custom={0.6}
-            className="mt-5 text-[15.5px] leading-relaxed text-white/65 max-w-[500px]"
+            className="mt-4 sm:mt-5 text-[14.5px] sm:text-[15.5px] leading-relaxed text-white/70 max-w-[500px]"
           >
             NEXZORA develops advanced engineering solutions across embedded systems, automotive technologies, semiconductors, AI, cybersecurity, and connected mobility—from concept to production.
           </motion.p>
@@ -159,16 +163,16 @@ export default function Hero() {
             initial="hidden"
             animate="visible"
             custom={0.8}
-            className="mt-8 flex flex-wrap gap-4 pointer-events-auto"
+            className="mt-7 sm:mt-8 flex flex-col sm:flex-row gap-3.5 sm:gap-4 pointer-events-auto"
           >
             <a
               href="#capabilities"
-              className="group inline-flex items-center gap-2 px-7 py-3.5 bg-zenith text-white text-[14px] font-semibold rounded-[6px] transition-all duration-200 hover:bg-zenith-600 hover:shadow-[0_8px_24px_rgba(255,90,0,0.3)] active:scale-[0.98]"
+              className="group inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 bg-zenith text-white text-[14px] font-semibold rounded-[6px] transition-all duration-200 hover:bg-zenith-600 hover:shadow-[0_8px_24px_rgba(255,90,0,0.3)] active:scale-[0.98] text-center"
               id="cta-explore"
             >
-              Explore Our Capabilities
+              <span>Explore Our Capabilities</span>
               <svg
-                className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5"
+                className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 shrink-0"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -178,8 +182,8 @@ export default function Hero() {
               </svg>
             </a>
             <a
-              href="#"
-              className="inline-flex items-center px-7 py-3.5 border-[1.5px] border-white/30 text-white text-[14px] font-semibold rounded-[6px] transition-all duration-200 hover:border-white/60 hover:bg-white/5 active:scale-[0.98]"
+              href="#why-nexzora"
+              className="inline-flex items-center justify-center px-6 sm:px-7 py-3.5 border-[1.5px] border-white/30 text-white text-[14px] font-semibold rounded-[6px] transition-all duration-200 hover:border-white/60 hover:bg-white/5 active:scale-[0.98] text-center"
               id="cta-discover"
             >
               Discover NEXZORA

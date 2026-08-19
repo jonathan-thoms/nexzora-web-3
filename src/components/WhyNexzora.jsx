@@ -79,17 +79,17 @@ export default function WhyNexzora() {
       {/* Top orange accent line */}
       <div className="h-[2px] bg-gradient-to-r from-zenith/0 via-zenith to-zenith/0" />
 
-      <div className="mx-auto max-w-[1320px] px-6 lg:px-10 py-14 lg:py-18">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
+      <div className="mx-auto max-w-[1320px] px-5 sm:px-6 lg:px-10 py-12 sm:py-14 lg:py-18">
+        <div className="flex flex-col lg:flex-row gap-10 sm:gap-12 lg:gap-20">
 
           {/* Left — Copy */}
-          <div className="lg:max-w-[280px] shrink-0">
+          <div className="lg:max-w-[280px] shrink-0 text-center lg:text-left mx-auto lg:mx-0 max-w-[500px]">
             <motion.span
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ type: 'spring', stiffness: 120, damping: 20 }}
-              className="inline-block text-[12px] font-semibold uppercase tracking-[0.2em] text-zenith mb-4"
+              className="inline-block text-[11.5px] sm:text-[12px] font-semibold uppercase tracking-[0.2em] text-zenith mb-3 sm:mb-4"
             >
               Why Nexzora
             </motion.span>
@@ -100,14 +100,14 @@ export default function WhyNexzora() {
               whileInView="visible"
               viewport={{ once: true, margin: '-60px' }}
               custom={0.05}
-              className="font-display text-[clamp(1.4rem,2.8vw,2rem)] font-bold tracking-display text-white leading-tight"
+              className="font-display text-[clamp(1.45rem,3vw,2rem)] font-bold tracking-display text-white leading-tight"
             >
               Engineering Beyond the Expected
             </motion.h2>
           </div>
 
           {/* Right — Pillars */}
-          <div className="flex-1 grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+          <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-7 sm:gap-8 lg:gap-6">
             {PILLARS.map((pillar, i) => (
               <motion.div
                 key={pillar.title}
@@ -115,31 +115,31 @@ export default function WhyNexzora() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ type: 'spring', stiffness: 100, damping: 18, delay: 0.1 + i * 0.08 }}
-                className="flex flex-col items-center text-center"
+                className="flex flex-col items-center text-center p-4 rounded-lg bg-navy-900/20 sm:bg-transparent"
               >
                 {/* Icon */}
-                <div className="mb-4 scale-[1.35]">
+                <div className="mb-4 scale-[1.2] sm:scale-[1.35]">
                   {pillar.iconType === 'img' ? (
                     <img
                       src={pillar.iconSrc}
                       alt={pillar.title}
                       className="w-12 h-12"
-                      style={{ filter: 'brightness(0) invert(1) opacity(0.5)' }}
+                      style={{ filter: 'brightness(0) invert(1) opacity(0.55)' }}
                     />
                   ) : (
-                    <div className="text-white/50">
+                    <div className="text-white/55">
                       {pillar.icon}
                     </div>
                   )}
                 </div>
 
                 {/* Title with underline */}
-                <h3 className="text-[15px] font-semibold text-zenith mb-2 pb-1 border-b border-zenith/40">
+                <h3 className="text-[14.5px] sm:text-[15px] font-semibold text-zenith mb-2 pb-1 border-b border-zenith/40">
                   {pillar.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-[13px] leading-relaxed text-white/45">
+                <p className="text-[13px] leading-relaxed text-white/55 max-w-[260px]">
                   {pillar.description}
                 </p>
               </motion.div>

@@ -33,7 +33,7 @@ function useCountUp(target, duration = 2000, start = false) {
 
 function StatItem({ value, suffix, label, delay }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-50px' });
+  const isInView = useInView(ref, { once: true, margin: '-30px' });
   const count = useCountUp(value, 2200, isInView);
 
   return (
@@ -41,15 +41,15 @@ function StatItem({ value, suffix, label, delay }) {
       ref={ref}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
+      viewport={{ once: true, margin: '-30px' }}
       transition={{ type: 'spring', stiffness: 100, damping: 20, delay }}
-      className="flex flex-col items-center text-center px-4"
+      className="flex flex-col items-center text-center px-2 sm:px-4"
     >
-      <span className="font-display text-[clamp(2rem,4vw,3.25rem)] font-bold tracking-tight text-navy-950 leading-none">
+      <span className="font-display text-[clamp(1.9rem,5.5vw,3.25rem)] font-bold tracking-tight text-navy-950 leading-none">
         {count}
         <span className="text-zenith">{suffix}</span>
       </span>
-      <span className="mt-2 text-[14px] font-medium text-text-secondary tracking-wide">
+      <span className="mt-2 text-[12.5px] sm:text-[14px] font-medium text-text-secondary tracking-wide">
         {label}
       </span>
     </motion.div>
@@ -58,12 +58,12 @@ function StatItem({ value, suffix, label, delay }) {
 
 export default function Stats() {
   return (
-    <section className="relative py-14 lg:py-20 bg-surface" id="stats">
+    <section className="relative py-10 sm:py-14 lg:py-20 bg-surface" id="stats">
       {/* Top accent line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-navy-200/50 to-transparent" />
 
-      <div className="mx-auto max-w-[1100px] px-6 lg:px-10">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4">
+      <div className="mx-auto max-w-[1100px] px-5 sm:px-6 lg:px-10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-4">
           {STATS.map((stat, i) => (
             <StatItem
               key={stat.label}

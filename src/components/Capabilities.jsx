@@ -1,38 +1,34 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 /* ============================================
    Engineering Capabilities — Tabbed Interface
-   ============================================
-   Tall stacked tabs (icon → title) flush against
-   a dark cinematic detail panel with left copy
-   and right image, matching reference design.
    ============================================ */
 
 /* Inline SVG icons — sized for the larger tabs */
 const Icons = {
   embedded: (
-    <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+    <svg className="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
       <rect x="4" y="4" width="16" height="16" rx="2" />
       <path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3" />
       <rect x="9" y="9" width="6" height="6" rx="1" />
     </svg>
   ),
   automotive: (
-    <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+    <svg className="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
       <path d="M5 17h14M5 17a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1l2-3h8l2 3h1a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2M5 17a2 2 0 0 0-2 2v1h4v-1a2 2 0 0 0-2-2ZM19 17a2 2 0 0 0-2 2v1h4v-1a2 2 0 0 0-2-2Z" />
       <circle cx="12" cy="12" r="2" />
     </svg>
   ),
   semiconductor: (
-    <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+    <svg className="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
       <path d="M6 18L18 6M6 6l12 12" />
       <rect x="3" y="3" width="18" height="18" rx="2" />
       <circle cx="12" cy="12" r="3" />
     </svg>
   ),
   'ai-robotics': (
-    <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+    <svg className="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
       <rect x="3" y="4" width="18" height="12" rx="2" />
       <path d="M8 20h8M12 16v4" />
       <circle cx="9" cy="10" r="1.5" fill="currentColor" stroke="none" />
@@ -40,20 +36,20 @@ const Icons = {
     </svg>
   ),
   cybersecurity: (
-    <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+    <svg className="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
       <path d="M12 2l8 4v5c0 5.25-3.5 9.74-8 11-4.5-1.26-8-5.75-8-11V6l8-4Z" />
       <path d="M9 12l2 2 4-4" />
     </svg>
   ),
   'ai-systems': (
-    <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+    <svg className="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
       <path d="M12 2a7 7 0 0 1 7 7c0 2.5-1.5 4.5-3 5.5V16a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-1.5C6.5 13.5 5 11.5 5 9a7 7 0 0 1 7-7Z" />
       <path d="M9 21h6M10 18v3M14 18v3" />
       <path d="M10 9h.01M14 9h.01M10 12a2 2 0 0 0 4 0" />
     </svg>
   ),
   'cloud-digital': (
-    <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+    <svg className="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
       <path d="M6.5 19a4.5 4.5 0 0 1-.42-8.98A7 7 0 0 1 19.5 11a4.5 4.5 0 0 1-1 8.98" />
       <path d="M12 13v6M9 17l3 3 3-3" />
     </svg>
@@ -153,10 +149,23 @@ const imageReveal = {
 
 export default function Capabilities() {
   const [activeTab, setActiveTab] = useState(0);
+  const tabRefs = useRef([]);
+  const tabsContainerRef = useRef(null);
+
+  const handleSelectTab = (index) => {
+    setActiveTab(index);
+    if (tabRefs.current[index]) {
+      tabRefs.current[index].scrollIntoView({
+        behavior: 'smooth',
+        inline: 'center',
+        block: 'nearest',
+      });
+    }
+  };
 
   return (
-    <section className="relative py-8 lg:py-10 bg-surface-alt" id="capabilities">
-      <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
+    <section className="relative py-12 lg:py-16 bg-surface-alt" id="capabilities">
+      <div className="mx-auto max-w-[1320px] px-5 sm:px-6 lg:px-10">
         {/* Section Header */}
         <div className="mb-6 lg:mb-8 text-center">
           {/* Pre-label */}
@@ -165,11 +174,11 @@ export default function Capabilities() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ type: 'spring', stiffness: 120, damping: 20 }}
-            className="inline-block text-[12px] font-semibold uppercase tracking-[0.2em] text-zenith mb-3"
+            className="inline-block text-[11.5px] sm:text-[12px] font-semibold uppercase tracking-[0.2em] text-zenith mb-2 sm:mb-3"
           >
             What we do
           </motion.span>
-          {/* Per-character staggered reveal */}
+          {/* Headline */}
           <motion.h2
             initial="hidden"
             whileInView="visible"
@@ -178,7 +187,7 @@ export default function Capabilities() {
               hidden: {},
               visible: { transition: { staggerChildren: 0.03, delayChildren: 0.1 } },
             }}
-            className="font-display text-[clamp(1.35rem,2.5vw,2rem)] font-bold tracking-display text-navy-950 leading-tight"
+            className="font-display text-[clamp(1.45rem,3.5vw,2.25rem)] font-bold tracking-display text-navy-950 leading-tight"
           >
             {'Engineering Capabilities'.split('').map((char, i) => (
               <motion.span
@@ -207,20 +216,24 @@ export default function Capabilities() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ type: 'spring', stiffness: 100, damping: 20, delay: 0.2 }}
-          className="rounded-xl overflow-hidden shadow-[0_8px_40px_rgba(10,37,64,0.08)]"
+          className="rounded-xl overflow-hidden shadow-[0_8px_40px_rgba(10,37,64,0.08)] border border-navy-800/20"
         >
-          {/* Tab Row — tall stacked tabs */}
-          <div className="flex overflow-x-auto scrollbar-hide bg-navy-950">
+          {/* Tab Row — touch swipeable with active centering */}
+          <div
+            ref={tabsContainerRef}
+            className="flex overflow-x-auto scrollbar-hide no-scrollbar bg-navy-950 scroll-smooth touch-pan-x"
+          >
             {CAPABILITIES.map((cap, index) => {
               const isActive = activeTab === index;
               return (
                 <button
                   key={cap.id}
-                  onClick={() => setActiveTab(index)}
-                  className={`group relative flex-1 min-w-[120px] flex flex-col items-center justify-center gap-3 px-3 py-6 lg:py-7 transition-colors duration-200 cursor-pointer border-r border-navy-800/40 last:border-r-0 ${
+                  ref={(el) => (tabRefs.current[index] = el)}
+                  onClick={() => handleSelectTab(index)}
+                  className={`group relative flex-1 min-w-[105px] sm:min-w-[125px] flex flex-col items-center justify-center gap-2 sm:gap-3 px-2.5 sm:px-3 py-4 sm:py-6 lg:py-7 transition-colors duration-200 cursor-pointer border-r border-navy-800/40 last:border-r-0 select-none ${
                     isActive
                       ? 'bg-[#fafaf8] text-navy-950'
-                      : 'text-navy-300 hover:text-white hover:bg-navy-900/60'
+                      : 'text-navy-300 hover:text-white hover:bg-navy-900/60 active:bg-navy-900'
                   }`}
                   id={`tab-${cap.id}`}
                 >
@@ -229,7 +242,7 @@ export default function Capabilities() {
                     {Icons[cap.id]}
                   </span>
                   {/* Label — multi-line */}
-                  <span className="text-[12.5px] lg:text-[13.5px] font-semibold leading-tight text-center whitespace-pre-line">
+                  <span className="text-[11px] sm:text-[12.5px] lg:text-[13.5px] font-semibold leading-tight text-center whitespace-pre-line">
                     {cap.tabLabel}
                   </span>
                   {/* Active indicator at the seam */}
@@ -245,8 +258,8 @@ export default function Capabilities() {
             })}
           </div>
 
-          {/* Detail Panel — full-width bg image with dark left gradient */}
-          <div className="relative bg-navy-950 min-h-[340px] lg:min-h-[400px] overflow-hidden">
+          {/* Detail Panel — full-width bg image with responsive gradient overlay */}
+          <div className="relative bg-navy-950 min-h-[420px] sm:min-h-[360px] lg:min-h-[400px] overflow-hidden flex">
             <AnimatePresence mode="wait">
               <motion.div
                 key={CAPABILITIES[activeTab].id}
@@ -254,7 +267,7 @@ export default function Capabilities() {
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                className="absolute inset-0"
+                className="absolute inset-0 flex flex-col justify-center"
               >
                 {/* Background image — full width */}
                 <motion.img
@@ -264,14 +277,20 @@ export default function Capabilities() {
                   exit="exit"
                   src={CAPABILITIES[activeTab].image}
                   alt={CAPABILITIES[activeTab].label}
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-cover object-center"
                 />
 
-                {/* Dark gradient overlay — strong on the left for readability */}
+                {/* Dark gradient overlay — desktop: left-to-right, mobile: bottom/top coverage */}
                 <div
-                  className="absolute inset-0 z-[1]"
+                  className="hidden lg:block absolute inset-0 z-[1]"
                   style={{
-                    background: 'linear-gradient(to right, rgba(6,27,46,0.95) 0%, rgba(6,27,46,0.85) 30%, rgba(6,27,46,0.45) 55%, rgba(6,27,46,0.1) 75%, transparent 100%)',
+                    background: 'linear-gradient(to right, rgba(6,27,46,0.96) 0%, rgba(6,27,46,0.88) 35%, rgba(6,27,46,0.5) 60%, rgba(6,27,46,0.15) 85%, transparent 100%)',
+                  }}
+                />
+                <div
+                  className="block lg:hidden absolute inset-0 z-[1]"
+                  style={{
+                    background: 'linear-gradient(to bottom, rgba(6,27,46,0.96) 0%, rgba(6,27,46,0.92) 55%, rgba(6,27,46,0.97) 100%)',
                   }}
                 />
 
@@ -281,22 +300,22 @@ export default function Capabilities() {
                   initial="hidden"
                   animate="visible"
                   exit="exit"
-                  className="relative z-[2] flex flex-col justify-center p-8 lg:p-12 xl:p-16 h-full"
+                  className="relative z-[2] flex flex-col justify-center p-6 sm:p-8 lg:p-12 xl:p-16 h-full overflow-y-auto"
                 >
-                  <h3 className="font-display text-[24px] lg:text-[32px] xl:text-[36px] font-bold tracking-display text-white leading-[1.15] mb-5">
+                  <h3 className="font-display text-[20px] sm:text-[24px] lg:text-[32px] xl:text-[36px] font-bold tracking-display text-white leading-[1.18] mb-3 sm:mb-5">
                     {CAPABILITIES[activeTab].label}
                   </h3>
-                  <p className="text-[15px] lg:text-[16px] leading-relaxed text-navy-200 max-w-[480px] mb-8">
+                  <p className="text-[14px] sm:text-[15px] lg:text-[16px] leading-relaxed text-navy-200 max-w-[500px] mb-6 sm:mb-8">
                     {CAPABILITIES[activeTab].description}
                   </p>
                   <div>
                     <a
                       href="#contact"
-                      className="group inline-flex items-center gap-2.5 px-6 py-3 bg-zenith text-white text-[14px] font-semibold rounded-[6px] transition-all duration-200 hover:bg-zenith-600 hover:shadow-[0_8px_24px_rgba(255,90,0,0.3)] active:scale-[0.98]"
+                      className="group inline-flex items-center justify-center gap-2.5 px-6 py-3 bg-zenith text-white text-[14px] font-semibold rounded-[6px] transition-all duration-200 hover:bg-zenith-600 hover:shadow-[0_8px_24px_rgba(255,90,0,0.3)] active:scale-[0.98] w-full sm:w-auto text-center"
                     >
-                      Get in touch
+                      <span>Get in touch</span>
                       <svg
-                        className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5"
+                        className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 shrink-0"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"

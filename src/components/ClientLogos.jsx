@@ -24,15 +24,15 @@ const CLIENTS = [
 /* Single logo tile — renders image if provided, otherwise text placeholder */
 function LogoTile({ client }) {
   return (
-    <div className="flex-shrink-0 flex items-center justify-center h-12 px-8 lg:px-10 select-none">
+    <div className="flex-shrink-0 flex items-center justify-center h-12 px-5 sm:px-8 lg:px-10 select-none">
       {client.logo ? (
         <img
           src={client.logo}
           alt={client.name}
-          className="h-8 w-auto object-contain opacity-40 grayscale hover:opacity-70 hover:grayscale-0 transition-all duration-300"
+          className="h-7 sm:h-8 w-auto object-contain opacity-40 grayscale hover:opacity-70 hover:grayscale-0 transition-all duration-300"
         />
       ) : (
-        <span className="text-[15px] font-semibold tracking-wide text-navy-950/25 whitespace-nowrap">
+        <span className="text-[13.5px] sm:text-[15px] font-semibold tracking-wide text-navy-950/30 whitespace-nowrap">
           {client.name}
         </span>
       )}
@@ -45,10 +45,10 @@ export default function ClientLogos() {
   const doubled = [...CLIENTS, ...CLIENTS];
 
   return (
-    <section className="relative py-10 lg:py-14 bg-surface overflow-hidden" id="clients">
+    <section className="relative py-8 sm:py-10 lg:py-14 bg-surface overflow-hidden" id="clients">
       {/* Section label */}
-      <div className="mx-auto max-w-[1320px] px-6 lg:px-10 mb-6">
-        <p className="text-[13px] font-semibold uppercase tracking-[0.15em] text-text-secondary/50 text-center">
+      <div className="mx-auto max-w-[1320px] px-5 sm:px-6 lg:px-10 mb-4 sm:mb-6">
+        <p className="text-[12px] sm:text-[13px] font-semibold uppercase tracking-[0.15em] text-text-secondary/60 text-center">
           Trusted by industry leaders
         </p>
       </div>
@@ -56,17 +56,17 @@ export default function ClientLogos() {
       {/* Marquee container */}
       <div className="relative">
         {/* Left fade */}
-        <div className="absolute left-0 top-0 bottom-0 w-24 lg:w-40 z-10 bg-gradient-to-r from-surface to-transparent pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-16 lg:w-36 z-10 bg-gradient-to-r from-surface to-transparent pointer-events-none" />
         {/* Right fade */}
-        <div className="absolute right-0 top-0 bottom-0 w-24 lg:w-40 z-10 bg-gradient-to-l from-surface to-transparent pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-16 lg:w-36 z-10 bg-gradient-to-l from-surface to-transparent pointer-events-none" />
 
         {/* Sliding track */}
         <motion.div
-          className="flex items-center gap-2"
+          className="flex items-center gap-2 will-change-transform"
           animate={{ x: ['0%', '-50%'] }}
           transition={{
             x: {
-              duration: 30,
+              duration: 25,
               repeat: Infinity,
               ease: 'linear',
             },

@@ -19,7 +19,7 @@ const INDUSTRIES = [
     description: 'RTL design, verification, physical design, and post-silicon validation across leading-edge nodes.',
     iconType: 'inline',
     icon: (
-      <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth={1.2} strokeLinecap="round" strokeLinejoin="round">
+      <svg className="w-12 h-12 sm:w-16 sm:h-16" viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth={1.2} strokeLinecap="round" strokeLinejoin="round">
         <rect x="16" y="16" width="32" height="32" rx="2" />
         <rect x="24" y="24" width="16" height="16" rx="1.5" />
         <path d="M28 28l3 3M36 28l-3 3M28 36l3-3M36 36l-3-3" strokeWidth={1} />
@@ -44,7 +44,7 @@ const INDUSTRIES = [
     description: 'Cloud-native platforms, DevOps, microservices, and digital transformation solutions.',
     iconType: 'inline',
     icon: (
-      <svg className="w-16 h-16" viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth={1.2} strokeLinecap="round" strokeLinejoin="round">
+      <svg className="w-12 h-12 sm:w-16 sm:h-16" viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth={1.2} strokeLinecap="round" strokeLinejoin="round">
         <rect x="8" y="10" width="48" height="32" rx="3" />
         <rect x="12" y="14" width="40" height="24" rx="1" />
         <path d="M24 22l-5 5 5 5" strokeWidth={1.8} />
@@ -72,7 +72,7 @@ const fadeUp = {
 };
 
 function IndustryCard({ industry, index }) {
-  const [hovered, setHovered] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
   return (
     <motion.div
@@ -80,55 +80,56 @@ function IndustryCard({ industry, index }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
       transition={{ type: 'spring', stiffness: 100, damping: 18, delay: 0.1 + index * 0.08 }}
-      className={`relative flex flex-col items-center text-center group cursor-pointer py-6 px-4 ${
-        index < INDUSTRIES.length - 1 ? 'md:border-r md:border-white/10' : ''
-      }`}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      className={`relative flex flex-col items-center text-center group cursor-pointer py-6 sm:py-8 px-3 sm:px-4 rounded-lg transition-colors duration-200 ${
+        isActive ? 'bg-navy-900/40' : 'hover:bg-navy-900/20'
+      } ${index < INDUSTRIES.length - 1 ? 'md:border-r md:border-white/10' : ''}`}
+      onMouseEnter={() => setIsActive(true)}
+      onMouseLeave={() => setIsActive(false)}
+      onClick={() => setIsActive(!isActive)}
     >
-      {/* Icon + Title wrapper — shifts up on hover */}
+      {/* Icon + Title wrapper */}
       <motion.div
-        animate={{ y: hovered ? -8 : 0 }}
+        animate={{ y: isActive ? -4 : 0 }}
         transition={{ type: 'spring', stiffness: 200, damping: 20 }}
         className="flex flex-col items-center"
       >
         {/* Icon */}
-        <div className="mb-4">
+        <div className="mb-3 sm:mb-4">
           {industry.iconType === 'img' ? (
             <img
               src={industry.iconSrc}
               alt={industry.label}
-              className="w-16 h-16 transition-all duration-300"
+              className="w-12 h-12 sm:w-16 sm:h-16 transition-all duration-300"
               style={{
-                filter: hovered
+                filter: isActive
                   ? 'brightness(0) saturate(100%) invert(44%) sepia(98%) saturate(2000%) hue-rotate(360deg) brightness(102%) contrast(101%)'
-                  : 'brightness(0) invert(1) opacity(0.45)',
+                  : 'brightness(0) invert(1) opacity(0.55)',
               }}
             />
           ) : (
-            <div className={`transition-colors duration-300 ${hovered ? 'text-zenith' : 'text-white/45'}`}>
+            <div className={`transition-colors duration-300 ${isActive ? 'text-zenith' : 'text-white/55'}`}>
               {industry.icon}
             </div>
           )}
         </div>
 
         {/* Label */}
-        <span className={`text-[14px] font-medium leading-snug whitespace-pre-line transition-colors duration-300 ${
-          hovered ? 'text-white' : 'text-white/70'
+        <span className={`text-[13px] sm:text-[14px] font-medium leading-snug whitespace-pre-line transition-colors duration-300 ${
+          isActive ? 'text-white' : 'text-white/80'
         }`}>
           {industry.label}
         </span>
       </motion.div>
 
-      {/* Description — absolutely positioned so it doesn't affect layout */}
+      {/* Description */}
       <AnimatePresence>
-        {hovered && (
+        {isActive && (
           <motion.p
-            initial={{ opacity: 0, y: 4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 4 }}
+            initial={{ opacity: 0, height: 0, y: 4 }}
+            animate={{ opacity: 1, height: 'auto', y: 0 }}
+            exit={{ opacity: 0, height: 0, y: 4 }}
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute left-2 right-2 top-full -mt-4 text-[12.5px] leading-relaxed text-white/50 text-center"
+            className="mt-3 text-[12px] sm:text-[12.5px] leading-relaxed text-navy-200 text-center max-w-[200px]"
           >
             {industry.description}
           </motion.p>
@@ -140,24 +141,24 @@ function IndustryCard({ industry, index }) {
 
 export default function Industries() {
   return (
-    <section className="relative py-16 lg:py-20 bg-navy-950 overflow-hidden" id="industries">
-      <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
-        <div className="flex flex-col lg:flex-row lg:items-center gap-12 lg:gap-16">
+    <section className="relative py-14 sm:py-16 lg:py-20 bg-navy-950 overflow-hidden" id="industries">
+      <div className="mx-auto max-w-[1320px] px-5 sm:px-6 lg:px-10">
+        <div className="flex flex-col lg:flex-row lg:items-center gap-10 lg:gap-16">
 
           {/* Left — Copy */}
-          <div className="lg:max-w-[340px] shrink-0">
+          <div className="lg:max-w-[340px] shrink-0 text-center lg:text-left">
             {/* Label with line */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ type: 'spring', stiffness: 120, damping: 20 }}
-              className="flex items-center gap-3 mb-6"
+              className="flex items-center justify-center lg:justify-start gap-3 mb-4 sm:mb-6"
             >
-              <span className="text-[12px] font-semibold uppercase tracking-[0.2em] text-zenith">
+              <span className="text-[11.5px] sm:text-[12px] font-semibold uppercase tracking-[0.2em] text-zenith">
                 Industries We Serve
               </span>
-              <span className="flex-1 h-[1.5px] bg-zenith/40 rounded-full" />
+              <span className="w-12 lg:flex-1 h-[1.5px] bg-zenith/40 rounded-full" />
             </motion.div>
 
             <motion.h2
@@ -166,7 +167,7 @@ export default function Industries() {
               whileInView="visible"
               viewport={{ once: true, margin: '-60px' }}
               custom={0.05}
-              className="font-display text-[clamp(1.5rem,3vw,2.25rem)] font-bold tracking-display text-white leading-tight mb-4"
+              className="font-display text-[clamp(1.5rem,3.2vw,2.25rem)] font-bold tracking-display text-white leading-tight mb-3 sm:mb-4"
             >
               Engineering Solutions Across Industries
             </motion.h2>
@@ -177,7 +178,7 @@ export default function Industries() {
               whileInView="visible"
               viewport={{ once: true, margin: '-60px' }}
               custom={0.15}
-              className="text-[15px] leading-relaxed text-white/55 mb-8"
+              className="text-[14.5px] sm:text-[15px] leading-relaxed text-white/65 mb-6 sm:mb-8 max-w-[500px] mx-auto lg:mx-0"
             >
               We partner with forward-thinking companies across industries to build intelligent, safe, and reliable products that shape the future.
             </motion.p>
@@ -190,12 +191,12 @@ export default function Industries() {
               custom={0.25}
             >
               <a
-                href="#"
-                className="group inline-flex items-center gap-2 px-6 py-3 border-[1.5px] border-zenith text-zenith text-[14px] font-semibold rounded-[6px] transition-all duration-200 hover:bg-zenith hover:text-white active:scale-[0.98]"
+                href="#contact"
+                className="group inline-flex items-center justify-center gap-2 px-6 py-3 border-[1.5px] border-zenith text-zenith text-[14px] font-semibold rounded-[6px] transition-all duration-200 hover:bg-zenith hover:text-white active:scale-[0.98] w-full sm:w-auto text-center"
               >
-                View All Industries
+                <span>View All Industries</span>
                 <svg
-                  className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5"
+                  className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 shrink-0"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -208,7 +209,7 @@ export default function Industries() {
           </div>
 
           {/* Right — Industry Cards */}
-          <div className="flex-1 grid grid-cols-2 md:grid-cols-4">
+          <div className="flex-1 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-0">
             {INDUSTRIES.map((industry, i) => (
               <IndustryCard key={industry.id} industry={industry} index={i} />
             ))}
