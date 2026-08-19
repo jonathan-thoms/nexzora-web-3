@@ -401,32 +401,32 @@ export default function Capabilities() {
                       transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className="relative border-t border-navy-800/80">
-                        {/* Background Image with Dark Contrast Scrim */}
-                        <div className="absolute inset-0 z-0">
-                          <img
-                            src={cap.image}
-                            alt={cap.label}
-                            className="w-full h-full object-cover object-center"
-                          />
-                          <div
-                            className="absolute inset-0"
-                            style={{
-                              background: 'linear-gradient(to bottom, rgba(6,27,46,0.94) 0%, rgba(6,27,46,0.92) 50%, rgba(6,27,46,0.97) 100%)',
-                            }}
-                          />
-                        </div>
+                      <div className="relative min-h-[380px] sm:min-h-[420px] flex flex-col justify-end border-t border-navy-800/80">
+                        {/* Background Image with top visibility */}
+                        <img
+                          src={cap.image}
+                          alt={cap.label}
+                          className="absolute inset-0 w-full h-full object-cover object-center"
+                        />
 
-                        {/* Content */}
-                        <div className="relative z-10 p-5 sm:p-6 space-y-5">
-                          <p className="text-[14px] sm:text-[14.5px] leading-relaxed text-navy-200">
+                        {/* Gradient overlay: starting solid dark at bottom, going transparent towards top */}
+                        <div
+                          className="absolute inset-0 pointer-events-none"
+                          style={{
+                            background: 'linear-gradient(to top, rgba(6,27,46,0.98) 0%, rgba(6,27,46,0.90) 45%, rgba(6,27,46,0.4) 70%, transparent 100%)',
+                          }}
+                        />
+
+                        {/* Content positioned towards the lower side of the box */}
+                        <div className="relative z-10 p-5 sm:p-6 pt-24 space-y-4">
+                          <p className="text-[14px] sm:text-[14.5px] leading-relaxed text-navy-100 drop-shadow-sm">
                             {cap.description}
                           </p>
 
                           <div>
                             <a
                               href="#contact"
-                              className="group inline-flex items-center justify-center gap-2 px-5 py-3 bg-zenith text-white text-[13.5px] font-semibold rounded-lg transition-all duration-200 hover:bg-zenith-600 active:scale-[0.98] w-full text-center shadow-[0_4px_16px_rgba(217,106,26,0.25)]"
+                              className="group inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-zenith text-white text-[14px] font-semibold rounded-lg transition-all duration-200 hover:bg-zenith-600 active:scale-[0.98] w-full text-center shadow-[0_4px_16px_rgba(217,106,26,0.3)]"
                             >
                               <span>Get in touch</span>
                               <svg
