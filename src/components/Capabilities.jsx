@@ -149,6 +149,7 @@ const imageReveal = {
 
 export default function Capabilities() {
   const [activeTab, setActiveTab] = useState(0);
+  const [activeMobileAccordion, setActiveMobileAccordion] = useState(0);
   const tabRefs = useRef([]);
   const tabsContainerRef = useRef(null);
 
@@ -163,11 +164,15 @@ export default function Capabilities() {
     }
   };
 
+  const toggleMobileAccordion = (index) => {
+    setActiveMobileAccordion((prev) => (prev === index ? null : index));
+  };
+
   return (
     <section className="relative py-12 lg:py-16 bg-surface-alt" id="capabilities">
       <div className="mx-auto max-w-[1320px] px-5 sm:px-6 lg:px-10">
         {/* Section Header */}
-        <div className="mb-6 lg:mb-8 text-center">
+        <div className="mb-8 lg:mb-8 text-center">
           {/* Pre-label */}
           <motion.span
             initial={{ opacity: 0, y: 10 }}
@@ -210,126 +215,240 @@ export default function Capabilities() {
           </motion.h2>
         </div>
 
-        {/* Unified Tabbed Component */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ type: 'spring', stiffness: 100, damping: 20, delay: 0.2 }}
-          className="rounded-xl overflow-hidden shadow-[0_8px_40px_rgba(10,37,64,0.08)] border border-navy-800/20"
-        >
-          {/* Tab Row — touch swipeable with active centering */}
-          <div
-            ref={tabsContainerRef}
-            className="flex overflow-x-auto scrollbar-hide no-scrollbar bg-navy-950 scroll-smooth touch-pan-x"
+        {/* ── DESKTOP VIEW: Unified Tabbed Component (Unchanged) ── */}
+        <div className="hidden lg:block">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ type: 'spring', stiffness: 100, damping: 20, delay: 0.2 }}
+            className="rounded-xl overflow-hidden shadow-[0_8px_40px_rgba(10,37,64,0.08)] border border-navy-800/20"
           >
-            {CAPABILITIES.map((cap, index) => {
-              const isActive = activeTab === index;
-              return (
-                <button
-                  key={cap.id}
-                  ref={(el) => (tabRefs.current[index] = el)}
-                  onClick={() => handleSelectTab(index)}
-                  className={`group relative flex-1 min-w-[105px] sm:min-w-[125px] flex flex-col items-center justify-center gap-2 sm:gap-3 px-2.5 sm:px-3 py-4 sm:py-6 lg:py-7 transition-colors duration-200 cursor-pointer border-r border-navy-800/40 last:border-r-0 select-none ${
-                    isActive
-                      ? 'bg-[#fafaf8] text-navy-950'
-                      : 'text-navy-300 hover:text-white hover:bg-navy-900/60 active:bg-navy-900'
-                  }`}
-                  id={`tab-${cap.id}`}
-                >
-                  {/* Icon */}
-                  <span className={`shrink-0 transition-colors duration-200 ${isActive ? 'text-zenith' : 'text-navy-400 group-hover:text-navy-200'}`}>
-                    {Icons[cap.id]}
-                  </span>
-                  {/* Label — multi-line */}
-                  <span className="text-[11px] sm:text-[12.5px] lg:text-[13.5px] font-semibold leading-tight text-center whitespace-pre-line">
-                    {cap.tabLabel}
-                  </span>
-                  {/* Active indicator at the seam */}
-                  {isActive && (
-                    <motion.div
-                      layoutId="active-tab-indicator"
-                      className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-zenith"
-                      transition={{ type: 'spring', stiffness: 500, damping: 35 }}
-                    />
-                  )}
-                </button>
-              );
-            })}
-          </div>
+            {/* Tab Row — tall stacked tabs */}
+            <div
+              ref={tabsContainerRef}
+              className="flex overflow-x-auto scrollbar-hide no-scrollbar bg-navy-950 scroll-smooth"
+            >
+              {CAPABILITIES.map((cap, index) => {
+                const isActive = activeTab === index;
+                return (
+                  <button
+                    key={cap.id}
+                    ref={(el) => (tabRefs.current[index] = el)}
+                    onClick={() => handleSelectTab(index)}
+                    className={`group relative flex-1 min-w-[120px] flex flex-col items-center justify-center gap-3 px-3 py-6 lg:py-7 transition-colors duration-200 cursor-pointer border-r border-navy-800/40 last:border-r-0 select-none ${
+                      isActive
+                        ? 'bg-[#fafaf8] text-navy-950'
+                        : 'text-navy-300 hover:text-white hover:bg-navy-900/60'
+                    }`}
+                    id={`tab-${cap.id}`}
+                  >
+                    {/* Icon */}
+                    <span className={`shrink-0 transition-colors duration-200 ${isActive ? 'text-zenith' : 'text-navy-400 group-hover:text-navy-200'}`}>
+                      {Icons[cap.id]}
+                    </span>
+                    {/* Label — multi-line */}
+                    <span className="text-[12.5px] lg:text-[13.5px] font-semibold leading-tight text-center whitespace-pre-line">
+                      {cap.tabLabel}
+                    </span>
+                    {/* Active indicator at the seam */}
+                    {isActive && (
+                      <motion.div
+                        layoutId="active-tab-indicator"
+                        className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-zenith"
+                        transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                      />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
 
-          {/* Detail Panel — full-width bg image with responsive gradient overlay */}
-          <div className="relative bg-navy-950 min-h-[420px] sm:min-h-[360px] lg:min-h-[400px] overflow-hidden flex">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={CAPABILITIES[activeTab].id}
-                variants={contentVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                className="absolute inset-0 flex flex-col justify-center"
-              >
-                {/* Background image — full width */}
-                <motion.img
-                  variants={imageReveal}
-                  initial="hidden"
-                  animate="visible"
-                  exit="exit"
-                  src={CAPABILITIES[activeTab].image}
-                  alt={CAPABILITIES[activeTab].label}
-                  className="absolute inset-0 w-full h-full object-cover object-center"
-                />
-
-                {/* Dark gradient overlay — desktop: left-to-right, mobile: bottom/top coverage */}
-                <div
-                  className="hidden lg:block absolute inset-0 z-[1]"
-                  style={{
-                    background: 'linear-gradient(to right, rgba(6,27,46,0.96) 0%, rgba(6,27,46,0.88) 35%, rgba(6,27,46,0.5) 60%, rgba(6,27,46,0.15) 85%, transparent 100%)',
-                  }}
-                />
-                <div
-                  className="block lg:hidden absolute inset-0 z-[1]"
-                  style={{
-                    background: 'linear-gradient(to bottom, rgba(6,27,46,0.96) 0%, rgba(6,27,46,0.92) 55%, rgba(6,27,46,0.97) 100%)',
-                  }}
-                />
-
-                {/* Text content — on top of the gradient */}
+            {/* Detail Panel — full-width bg image with dark left gradient */}
+            <div className="relative bg-navy-950 min-h-[400px] overflow-hidden flex">
+              <AnimatePresence mode="wait">
                 <motion.div
-                  variants={textSlide}
+                  key={CAPABILITIES[activeTab].id}
+                  variants={contentVariants}
                   initial="hidden"
                   animate="visible"
                   exit="exit"
-                  className="relative z-[2] flex flex-col justify-center p-6 sm:p-8 lg:p-12 xl:p-16 h-full overflow-y-auto"
+                  className="absolute inset-0 flex flex-col justify-center"
                 >
-                  <h3 className="font-display text-[20px] sm:text-[24px] lg:text-[32px] xl:text-[36px] font-bold tracking-display text-white leading-[1.18] mb-3 sm:mb-5">
-                    {CAPABILITIES[activeTab].label}
-                  </h3>
-                  <p className="text-[14px] sm:text-[15px] lg:text-[16px] leading-relaxed text-navy-200 max-w-[500px] mb-6 sm:mb-8">
-                    {CAPABILITIES[activeTab].description}
-                  </p>
-                  <div>
-                    <a
-                      href="#contact"
-                      className="group inline-flex items-center justify-center gap-2.5 px-6 py-3 bg-zenith text-white text-[14px] font-semibold rounded-[6px] transition-all duration-200 hover:bg-zenith-600 hover:shadow-[0_8px_24px_rgba(255,90,0,0.3)] active:scale-[0.98] w-full sm:w-auto text-center"
-                    >
-                      <span>Get in touch</span>
-                      <svg
-                        className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 shrink-0"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        strokeWidth={2.5}
+                  {/* Background image */}
+                  <motion.img
+                    variants={imageReveal}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    src={CAPABILITIES[activeTab].image}
+                    alt={CAPABILITIES[activeTab].label}
+                    className="absolute inset-0 w-full h-full object-cover object-center"
+                  />
+
+                  {/* Dark gradient overlay */}
+                  <div
+                    className="absolute inset-0 z-[1]"
+                    style={{
+                      background: 'linear-gradient(to right, rgba(6,27,46,0.96) 0%, rgba(6,27,46,0.88) 35%, rgba(6,27,46,0.5) 60%, rgba(6,27,46,0.15) 85%, transparent 100%)',
+                    }}
+                  />
+
+                  {/* Text content */}
+                  <motion.div
+                    variants={textSlide}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    className="relative z-[2] flex flex-col justify-center p-12 xl:p-16 h-full overflow-y-auto"
+                  >
+                    <h3 className="font-display text-[32px] xl:text-[36px] font-bold tracking-display text-white leading-[1.18] mb-5">
+                      {CAPABILITIES[activeTab].label}
+                    </h3>
+                    <p className="text-[15px] lg:text-[16px] leading-relaxed text-navy-200 max-w-[500px] mb-8">
+                      {CAPABILITIES[activeTab].description}
+                    </p>
+                    <div>
+                      <a
+                        href="#contact"
+                        className="group inline-flex items-center justify-center gap-2.5 px-6 py-3 bg-zenith text-white text-[14px] font-semibold rounded-[6px] transition-all duration-200 hover:bg-zenith-600 hover:shadow-[0_8px_24px_rgba(255,90,0,0.3)] active:scale-[0.98]"
                       >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                      </svg>
-                    </a>
-                  </div>
+                        <span>Get in touch</span>
+                        <svg
+                          className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 shrink-0"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={2.5}
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                        </svg>
+                      </a>
+                    </div>
+                  </motion.div>
                 </motion.div>
+              </AnimatePresence>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* ── MOBILE / TABLET VIEW: Expanding Accordion Strips (All 7 Visible) ── */}
+        <div className="block lg:hidden space-y-3" id="capabilities-mobile-accordion">
+          {CAPABILITIES.map((cap, index) => {
+            const isOpen = activeMobileAccordion === index;
+            const numStr = `0${index + 1}`;
+
+            return (
+              <motion.div
+                key={cap.id}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-30px' }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                className={`rounded-xl overflow-hidden transition-all duration-300 border ${
+                  isOpen
+                    ? 'bg-navy-950 border-zenith/40 shadow-[0_8px_30px_rgba(6,27,46,0.18)]'
+                    : 'bg-navy-950/95 border-navy-800/60 shadow-[0_2px_10px_rgba(6,27,46,0.06)]'
+                }`}
+              >
+                {/* Accordion Strip Header Button */}
+                <button
+                  onClick={() => toggleMobileAccordion(index)}
+                  className="w-full flex items-center justify-between p-4 sm:p-5 text-left transition-colors cursor-pointer select-none"
+                  aria-expanded={isOpen}
+                >
+                  <div className="flex items-center gap-3.5 sm:gap-4 pr-2">
+                    {/* Number Badge */}
+                    <span className="text-[12px] font-bold tracking-wider text-zenith/80 font-display shrink-0">
+                      {numStr}
+                    </span>
+
+                    {/* Mini Icon */}
+                    <span className={`shrink-0 transition-colors ${isOpen ? 'text-zenith' : 'text-navy-300'}`}>
+                      {Icons[cap.id]}
+                    </span>
+
+                    {/* Capability Title */}
+                    <span className={`text-[14.5px] sm:text-[16px] font-semibold leading-snug transition-colors ${
+                      isOpen ? 'text-white' : 'text-navy-100'
+                    }`}>
+                      {cap.label}
+                    </span>
+                  </div>
+
+                  {/* Animated Chevron Indicator */}
+                  <motion.div
+                    animate={{ rotate: isOpen ? 180 : 0 }}
+                    transition={{ duration: 0.25, ease: 'easeInOut' }}
+                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-colors ${
+                      isOpen ? 'bg-zenith/20 text-zenith' : 'bg-navy-900 text-navy-400'
+                    }`}
+                  >
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                    </svg>
+                  </motion.div>
+                </button>
+
+                {/* Expanding Content Panel */}
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      key={`content-${cap.id}`}
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <div className="relative border-t border-navy-800/80">
+                        {/* Background Image with Dark Contrast Scrim */}
+                        <div className="absolute inset-0 z-0">
+                          <img
+                            src={cap.image}
+                            alt={cap.label}
+                            className="w-full h-full object-cover object-center"
+                          />
+                          <div
+                            className="absolute inset-0"
+                            style={{
+                              background: 'linear-gradient(to bottom, rgba(6,27,46,0.94) 0%, rgba(6,27,46,0.92) 50%, rgba(6,27,46,0.97) 100%)',
+                            }}
+                          />
+                        </div>
+
+                        {/* Content */}
+                        <div className="relative z-10 p-5 sm:p-6 space-y-5">
+                          <p className="text-[14px] sm:text-[14.5px] leading-relaxed text-navy-200">
+                            {cap.description}
+                          </p>
+
+                          <div>
+                            <a
+                              href="#contact"
+                              className="group inline-flex items-center justify-center gap-2 px-5 py-3 bg-zenith text-white text-[13.5px] font-semibold rounded-lg transition-all duration-200 hover:bg-zenith-600 active:scale-[0.98] w-full text-center shadow-[0_4px_16px_rgba(217,106,26,0.25)]"
+                            >
+                              <span>Get in touch</span>
+                              <svg
+                                className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 shrink-0"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth={2.5}
+                              >
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                              </svg>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
-            </AnimatePresence>
-          </div>
-        </motion.div>
+            );
+          })}
+        </div>
       </div>
 
       {/* Section bottom accent */}
