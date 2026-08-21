@@ -336,7 +336,6 @@ export default function Capabilities() {
         <div className="block lg:hidden space-y-3" id="capabilities-mobile-accordion">
           {CAPABILITIES.map((cap, index) => {
             const isOpen = activeMobileAccordion === index;
-            const numStr = `0${index + 1}`;
 
             return (
               <motion.div
@@ -358,11 +357,6 @@ export default function Capabilities() {
                   aria-expanded={isOpen}
                 >
                   <div className="flex items-center gap-3.5 sm:gap-4 pr-2">
-                    {/* Number Badge */}
-                    <span className="text-[12px] font-bold tracking-wider text-zenith/80 font-display shrink-0">
-                      {numStr}
-                    </span>
-
                     {/* Mini Icon */}
                     <span className={`shrink-0 transition-colors ${isOpen ? 'text-zenith' : 'text-navy-300'}`}>
                       {Icons[cap.id]}
