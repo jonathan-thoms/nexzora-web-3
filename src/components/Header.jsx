@@ -1,44 +1,78 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const NAV_ITEMS = [
   {
     label: 'Products',
+    href: '/#capabilities',
     megaMenu: {
       columns: [
-        { heading: 'Platforms', items: ['Embedded OS Suite', 'AutoDrive SDK', 'CyberShield Pro'] },
-        { heading: 'Tools', items: ['ChipForge IDE', 'RoboSim Studio', 'SecureNet Analyzer'] },
+        { heading: 'Platforms', items: [
+          { label: 'Embedded OS Suite', href: '/#capabilities' },
+          { label: 'AutoDrive SDK', href: '/#capabilities' },
+          { label: 'CyberShield Pro', href: '/#capabilities' },
+        ]},
+        { heading: 'Tools', items: [
+          { label: 'ChipForge IDE', href: '/#capabilities' },
+          { label: 'RoboSim Studio', href: '/#capabilities' },
+          { label: 'SecureNet Analyzer', href: '/#capabilities' },
+        ]},
       ],
     },
   },
   {
     label: 'Services',
+    href: '/services',
     megaMenu: {
       columns: [
-        { heading: 'Engineering', items: ['System Design', 'VLSI Development', 'Firmware Engineering'] },
-        { heading: 'Consulting', items: ['Architecture Review', 'Compliance Audits', 'Digital Transformation'] },
+        { heading: 'Engineering', items: [
+          { label: 'System Design', href: '/services#engineering' },
+          { label: 'VLSI Development', href: '/services#engineering' },
+          { label: 'Firmware Engineering', href: '/services#engineering' },
+        ]},
+        { heading: 'Consulting', items: [
+          { label: 'Architecture Review', href: '/services#consulting' },
+          { label: 'Compliance Audits', href: '/services#consulting' },
+          { label: 'Digital Transformation', href: '/services#consulting' },
+        ]},
       ],
     },
   },
   {
     label: 'Industries',
+    href: '/industries',
     megaMenu: {
       columns: [
-        { heading: 'Sectors', items: ['Automotive & Mobility', 'Aerospace & Defense', 'Industrial IoT', 'Healthcare Tech'] },
+        { heading: 'Sectors', items: [
+          { label: 'Automotive & Mobility', href: '/industries#automotive' },
+          { label: 'Semiconductor', href: '/industries#semiconductor' },
+          { label: 'Industrial & Robotics', href: '/industries#robotics' },
+          { label: 'Technology', href: '/industries#technology' },
+        ]},
       ],
     },
   },
   {
     label: 'Innovation',
+    href: '/innovation',
     megaMenu: {
       columns: [
-        { heading: 'R&D', items: ['Research Labs', 'Patent Portfolio', 'Open Source'] },
-        { heading: 'Insights', items: ['Whitepapers', 'Case Studies', 'Tech Blog'] },
+        { heading: 'R&D', items: [
+          { label: 'Research Labs', href: '/innovation#research' },
+          { label: 'Patent Portfolio', href: '/innovation#patents' },
+          { label: 'Open Source', href: '/innovation#opensource' },
+        ]},
+        { heading: 'Insights', items: [
+          { label: 'Whitepapers', href: '/innovation#insights' },
+          { label: 'Case Studies', href: '/innovation#insights' },
+          { label: 'Tech Blog', href: '/innovation#insights' },
+        ]},
       ],
     },
   },
-  { label: 'Company' },
-  { label: 'Careers' },
+  { label: 'Company', href: '/company' },
+  { label: 'Careers', href: '/careers' },
 ];
 
 export default function Header() {
@@ -125,8 +159,8 @@ export default function Header() {
       <div className="mx-auto max-w-[1320px] px-5 sm:px-6 lg:px-10">
         <div className="flex items-center justify-between h-[68px] sm:h-[72px]">
           {/* Logo */}
-          <a
-            href="/"
+          <Link
+            to="/"
             onClick={closeMobileMenu}
             className="flex items-center gap-3 shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-zenith rounded-md"
             id="header-logo"
@@ -136,7 +170,7 @@ export default function Header() {
               alt="NEXZORA Technologies"
               className="h-8 sm:h-9 w-auto object-contain"
             />
-          </a>
+          </Link>
 
           {/* Desktop Center Navigation */}
           <nav className="hidden lg:flex items-center gap-1" id="header-nav">
@@ -146,40 +180,51 @@ export default function Header() {
                 className="relative group"
                 onMouseEnter={() => handleMouseEnter(index)}
               >
-                <button
-                  className={`relative px-4 py-2.5 text-[15px] font-medium tracking-wide transition-colors duration-200 cursor-pointer ${
-                    activeMenu === index
-                      ? 'text-navy-900'
-                      : 'text-text-secondary hover:text-navy-900'
-                  }`}
-                  id={`nav-${item.label.toLowerCase()}`}
-                >
-                  {item.label}
-                  {/* Active underline */}
-                  {activeMenu === index && (
-                    <motion.div
-                      layoutId="nav-underline"
-                      className="absolute bottom-0 left-4 right-4 h-[2px] bg-zenith"
-                      transition={{ type: 'spring', stiffness: 500, damping: 35 }}
-                    />
-                  )}
-                  {/* Hover underline — always rendered, scales in on hover */}
-                  {activeMenu !== index && (
+                {item.megaMenu ? (
+                  <Link
+                    to={item.href || '#'}
+                    className={`relative px-4 py-2.5 text-[15px] font-medium tracking-wide transition-colors duration-200 cursor-pointer ${
+                      activeMenu === index
+                        ? 'text-navy-900'
+                        : 'text-text-secondary hover:text-navy-900'
+                    }`}
+                    id={`nav-${item.label.toLowerCase()}`}
+                    onClick={() => setActiveMenu(null)}
+                  >
+                    {item.label}
+                    {activeMenu === index && (
+                      <motion.div
+                        layoutId="nav-underline"
+                        className="absolute bottom-0 left-4 right-4 h-[2px] bg-zenith"
+                        transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                      />
+                    )}
+                    {activeMenu !== index && (
+                      <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-zenith/70 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+                    )}
+                  </Link>
+                ) : (
+                  <Link
+                    to={item.href || '#'}
+                    className="relative px-4 py-2.5 text-[15px] font-medium tracking-wide transition-colors duration-200 text-text-secondary hover:text-navy-900"
+                    id={`nav-${item.label.toLowerCase()}`}
+                  >
+                    {item.label}
                     <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-zenith/70 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
-                  )}
-                </button>
+                  </Link>
+                )}
               </div>
             ))}
           </nav>
 
           {/* Desktop CTA */}
-          <a
-            href="#contact"
+          <Link
+            to="/company#contact"
             className="hidden lg:inline-flex items-center px-6 py-2.5 bg-navy-900 text-white text-[13.5px] font-semibold tracking-wide rounded-[6px] transition-all duration-200 hover:bg-navy-800 hover:shadow-[0_4px_16px_rgba(10,37,64,0.2)] active:scale-[0.98]"
             id="header-cta"
           >
             Contact Us
-          </a>
+          </Link>
 
           {/* Mobile menu toggle button (Animated Hamburger to X) */}
           <button
@@ -230,14 +275,15 @@ export default function Header() {
                       {col.heading}
                     </h4>
                     <ul className="space-y-2.5">
-                      {col.items.map((item) => (
-                        <li key={item}>
-                          <a
-                            href="#"
+                      {col.items.map((menuItem) => (
+                        <li key={menuItem.label}>
+                          <Link
+                            to={menuItem.href}
+                            onClick={() => setActiveMenu(null)}
                             className="text-[14px] font-medium text-navy-800 hover:text-zenith transition-colors duration-150"
                           >
-                            {item}
-                          </a>
+                            {menuItem.label}
+                          </Link>
                         </li>
                       ))}
                     </ul>
@@ -323,14 +369,14 @@ export default function Header() {
                                   </span>
                                   <ul className="space-y-2">
                                     {col.items.map((subItem) => (
-                                      <li key={subItem}>
-                                        <a
-                                          href="#"
+                                      <li key={subItem.label}>
+                                        <Link
+                                          to={subItem.href}
                                           onClick={closeMobileMenu}
                                           className="block py-1 text-[14px] text-navy-800 hover:text-zenith active:text-zenith transition-colors"
                                         >
-                                          {subItem}
-                                        </a>
+                                          {subItem.label}
+                                        </Link>
                                       </li>
                                     ))}
                                   </ul>
@@ -341,13 +387,13 @@ export default function Header() {
                         </AnimatePresence>
                       </div>
                     ) : (
-                      <a
-                        href="#"
+                      <Link
+                        to={item.href || '#'}
                         onClick={closeMobileMenu}
                         className="block py-3.5 text-[16px] font-semibold text-navy-950 hover:text-zenith active:text-zenith transition-colors"
                       >
                         {item.label}
-                      </a>
+                      </Link>
                     )}
                   </div>
                 );
@@ -356,13 +402,13 @@ export default function Header() {
 
             {/* Mobile Drawer Bottom Actions */}
             <div className="p-5 bg-surface-alt border-t border-navy-100 space-y-4 safe-bottom">
-              <a
-                href="#contact"
+              <Link
+                to="/company#contact"
                 onClick={closeMobileMenu}
                 className="w-full flex items-center justify-center py-3.5 px-6 bg-zenith text-white text-[15px] font-semibold rounded-lg shadow-[0_4px_16px_rgba(217,106,26,0.25)] hover:bg-zenith-600 active:scale-[0.99] transition-all"
               >
                 Contact Us
-              </a>
+              </Link>
 
               <div className="pt-2 flex flex-col gap-2 text-center text-[13px] text-text-secondary">
                 <a href="mailto:contact@nexzora.com" className="hover:text-zenith transition-colors">
