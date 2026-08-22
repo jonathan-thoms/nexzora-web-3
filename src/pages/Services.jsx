@@ -163,58 +163,50 @@ const LIFECYCLE_STEPS = [
 const ENGAGEMENT_MODELS = [
   {
     id: 'dedicated',
-    badge: 'Most Popular',
+    badge: 'Autonomous Squads',
     title: 'Dedicated Engineering Squads',
-    tagline: 'Autonomous, cross-functional squads integrated into your roadmap.',
-    idealFor: 'Complex multi-year product development and continuous scaling.',
-    timeline: 'Ramped up in < 2 weeks',
-    features: [
-      'Dedicated Tech Lead, RTL, Firmware, and QA Engineers',
-      'Direct integration into your Jira, Slack, and Git repositories',
-      'Flexible sprint allocation with transparent velocity metrics',
-      'IP ownership 100% transferred to client',
+    tagline: 'Fully managed, cross-functional squads embedded directly into your product roadmap.',
+    timeline: '< 2 Wks Ramp-up',
+    highlights: [
+      'Dedicated Tech Lead, RTL, Firmware & QA',
+      'Direct integration into your toolchains & repos',
+      '100% IP ownership & complete transfer',
     ],
   },
   {
     id: 'project',
     badge: 'Fixed Scope',
     title: 'Turnkey Project Delivery',
-    tagline: 'Milestone-based delivery with guaranteed timeline & deliverables.',
-    idealFor: 'Well-defined IP blocks, driver development, or tape-out sprints.',
-    timeline: 'Milestone-based schedule',
-    features: [
-      'Fixed-scope contract with defined acceptance criteria',
-      'End-to-end management by Nexzora senior architects',
-      'Comprehensive documentation and testbench sign-off',
-      'Post-delivery warranty and ongoing maintenance support',
+    tagline: 'Milestone-based delivery with defined deliverables, timelines, and sign-offs.',
+    timeline: 'Milestone Schedule',
+    highlights: [
+      'Guaranteed scope & acceptance criteria',
+      'Managed by Nexzora senior architects',
+      'Comprehensive sign-off & warranty support',
     ],
   },
   {
     id: 'staff-aug',
-    badge: 'High Flexibility',
+    badge: 'Flexible Scale',
     title: 'Specialized Staff Augmentation',
-    tagline: 'Elite domain engineers to bridge immediate capability gaps.',
-    idealFor: 'Surge capacity during critical tape-outs or tight deadlines.',
-    timeline: 'Rapid onboarding (3–7 days)',
-    features: [
-      'Top senior verification, physical design, and embedded talent',
-      'Seamless collaboration with your internal engineering leads',
-      'No overhead — full flexibility to scale up or down',
-      'Direct timesheet and contribution transparency',
+    tagline: 'Senior domain engineers integrated into your team to accelerate delivery.',
+    timeline: '3–7 Days Onboarding',
+    highlights: [
+      'Top senior verification & embedded talent',
+      'Seamless collaboration with internal leads',
+      'On-demand scale up or down without overhead',
     ],
   },
   {
     id: 'advisory',
-    badge: 'Strategic',
+    badge: 'Executive Advisory',
     title: 'Architecture & Safety Advisory',
-    tagline: 'High-level guidance from seasoned industry fellows.',
-    idealFor: 'Pre-silicon architecture review, ISO 26262 audits, & technology strategy.',
-    timeline: 'Retainer or 2–6 week audit',
-    features: [
-      'Independent technical risk assessment and bottleneck analysis',
-      'ISO 26262 ASIL D / DO-178C compliance readiness roadmaps',
-      'Vendor and foundry selection advisory (TSMC, Intel, Samsung)',
-      'Executive engineering council presentations',
+    tagline: 'Strategic guidance from seasoned industry architects and safety fellows.',
+    timeline: 'Retainer or 2–6 Wks',
+    highlights: [
+      'System bottleneck & risk assessments',
+      'ISO 26262 ASIL D / DO-178C roadmaps',
+      'Foundry & vendor selection guidance',
     ],
   },
 ];
@@ -556,45 +548,35 @@ export default function Services() {
             {ENGAGEMENT_MODELS.map((model, i) => (
               <motion.div
                 key={model.id}
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ type: 'spring', stiffness: 100, damping: 18, delay: i * 0.06 }}
-                className="flex flex-col justify-between p-6 rounded-xl border border-navy-200/70 bg-white hover:border-zenith/50 hover:shadow-[0_8px_30px_rgba(6,27,46,0.06)] transition-all duration-300"
+                viewport={{ once: true, margin: '-30px' }}
+                transition={{ duration: 0.35, delay: i * 0.05 }}
+                className="p-6 rounded-2xl border border-navy-100 bg-white hover:border-zenith/40 hover:shadow-[0_8px_30px_rgba(6,27,46,0.06)] transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-[10.5px] font-mono font-semibold uppercase px-2 py-0.5 rounded bg-zenith-50 text-zenith border border-zenith-200">
+                  {/* Clean Top Tag */}
+                  <div className="flex items-center justify-between gap-2 mb-4">
+                    <span className="text-[11px] font-semibold tracking-wide uppercase px-2.5 py-1 rounded bg-navy-50 text-navy-800 border border-navy-100">
                       {model.badge}
                     </span>
-                    <span className="text-[11px] font-medium text-navy-400">
+                    <span className="text-[11px] font-mono text-zenith font-medium whitespace-nowrap">
                       {model.timeline}
                     </span>
                   </div>
 
-                  <h3 className="text-[16px] font-bold text-navy-950 mb-2">
+                  <h3 className="text-[16.5px] font-bold text-navy-950 mb-2.5 leading-snug">
                     {model.title}
                   </h3>
-                  <p className="text-[13px] text-text-secondary leading-relaxed mb-4">
+                  <p className="text-[13px] text-text-secondary leading-relaxed mb-6">
                     {model.tagline}
                   </p>
 
-                  <div className="p-3 rounded-lg bg-surface-alt border border-navy-100/80 mb-5">
-                    <span className="text-[10.5px] font-bold uppercase tracking-wider text-navy-900 block mb-1">
-                      Ideal For
-                    </span>
-                    <p className="text-[12px] text-navy-700 leading-snug">
-                      {model.idealFor}
-                    </p>
-                  </div>
-
-                  <div className="space-y-2">
-                    {model.features.map((feature) => (
-                      <div key={feature} className="text-[12px] text-text-secondary flex items-start gap-2 leading-relaxed">
-                        <svg className="w-4 h-4 text-zenith shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                        <span>{feature}</span>
+                  <div className="pt-4 border-t border-navy-50 space-y-2.5">
+                    {model.highlights.map((item) => (
+                      <div key={item} className="text-[12.5px] text-navy-800 flex items-start gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-zenith mt-1.5 shrink-0" />
+                        <span>{item}</span>
                       </div>
                     ))}
                   </div>
