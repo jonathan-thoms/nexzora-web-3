@@ -411,11 +411,11 @@ export default function Header() {
               </Link>
 
               <div className="pt-2 flex flex-col gap-2 text-center text-[13px] text-text-secondary">
-                <a href="mailto:contact@nexzora.com" className="hover:text-zenith transition-colors">
-                  contact@nexzora.com
+                <a href="mailto:info@nexzora.com" className="hover:text-zenith transition-colors">
+                  info@nexzora.com
                 </a>
-                <a href="tel:+1234567890" className="hover:text-zenith transition-colors">
-                  +1 (234) 567-890
+                <a href="tel:4692644242" className="hover:text-zenith transition-colors">
+                  469-264-4242
                 </a>
               </div>
             </div>

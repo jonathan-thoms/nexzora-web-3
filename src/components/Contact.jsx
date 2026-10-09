@@ -98,8 +98,8 @@ export default function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-[12px] sm:text-[13px] font-semibold text-navy-400 uppercase tracking-label mb-0.5 sm:mb-1">Office</p>
-                  <p className="text-[14px] sm:text-[15px] text-navy-200">Nexzora Technologies HQ</p>
+                  <p className="text-[12px] sm:text-[13px] font-semibold text-navy-400 uppercase tracking-label mb-0.5 sm:mb-1">Location</p>
+                  <p className="text-[14px] sm:text-[15px] text-navy-200">Dallas, Texas</p>
                 </div>
               </div>
 
@@ -112,8 +112,8 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-[12px] sm:text-[13px] font-semibold text-navy-400 uppercase tracking-label mb-0.5 sm:mb-1">Email</p>
-                  <a href="mailto:contact@nexzora.com" className="text-[14px] sm:text-[15px] text-navy-200 hover:text-zenith active:text-zenith transition-colors">
-                    contact@nexzora.com
+                  <a href="mailto:info@nexzora.com" className="text-[14px] sm:text-[15px] text-navy-200 hover:text-zenith active:text-zenith transition-colors">
+                    info@nexzora.com
                   </a>
                 </div>
               </div>
@@ -126,9 +126,22 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-[12px] sm:text-[13px] font-semibold text-navy-400 uppercase tracking-label mb-0.5 sm:mb-1">Phone</p>
-                  <a href="tel:+1234567890" className="text-[14px] sm:text-[15px] text-navy-200 hover:text-zenith active:text-zenith transition-colors">
-                    +1 (234) 567-890
+                  <a href="tel:4692644242" className="text-[14px] sm:text-[15px] text-navy-200 hover:text-zenith active:text-zenith transition-colors">
+                    469-264-4242
                   </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3.5 sm:gap-4">
+                <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-navy-800/60 text-zenith shrink-0">
+                  <svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <polyline points="12 6 12 12 16 14" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-[12px] sm:text-[13px] font-semibold text-navy-400 uppercase tracking-label mb-0.5 sm:mb-1">Business Hours</p>
+                  <p className="text-[14px] sm:text-[15px] text-navy-200">8:00 AM – 6:00 PM CST</p>
                 </div>
               </div>
             </motion.div>

@@ -67,14 +67,14 @@ const LEADERSHIP = [
 ];
 
 const LOCATIONS = [
-  { city: 'San Francisco', country: 'USA', type: 'Headquarters' },
+  { city: 'Dallas, Texas', country: 'USA', type: 'Headquarters' },
   { city: 'Bangalore', country: 'India', type: 'Engineering Center' },
   { city: 'Munich', country: 'Germany', type: 'European Office' },
   { city: 'Toronto', country: 'Canada', type: 'R&D Lab' },
 ];
 
 const MILESTONES = [
-  { year: '2018', event: 'Founded in San Francisco with a focus on embedded engineering' },
+  { year: '2018', event: 'Founded in Dallas, Texas with a focus on embedded engineering' },
   { year: '2019', event: 'Opened Bangalore engineering center — 50+ engineers' },
   { year: '2020', event: 'Expanded into semiconductor and VLSI services' },
   { year: '2021', event: 'Launched AI & Robotics practice, Munich office opened' },

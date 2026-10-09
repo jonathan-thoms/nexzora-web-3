@@ -91,7 +91,7 @@ const OPENINGS = [
   {
     title: 'VLSI Design Engineer — Physical Design',
     department: 'Semiconductor',
-    location: 'San Francisco, USA',
+    location: 'Dallas, Texas, USA',
     type: 'Full-time',
     posted: '3 days ago',
   },
@@ -133,7 +133,7 @@ const OPENINGS = [
   {
     title: 'Cloud Solutions Architect',
     department: 'Cloud',
-    location: 'San Francisco, USA',
+    location: 'Dallas, Texas, USA',
     type: 'Full-time',
     posted: '2 weeks ago',
   },
