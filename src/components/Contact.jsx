@@ -33,7 +33,8 @@ export default function Contact() {
     setErrorMessage('');
 
     // Access key from environment or fallback
-    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+    const accessKey =
+      import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || '92c6bd1f-9402-4d40-9ff9-81395980ce61';
 
     if (!accessKey) {
       setErrorMessage(
