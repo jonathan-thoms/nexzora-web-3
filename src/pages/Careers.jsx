@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import PageHero from '../components/PageHero';
 import CTABanner from '../components/CTABanner';
+import ApplyModal from '../components/ApplyModal';
 
 /* ============================================
    Careers Page
@@ -155,6 +156,18 @@ const CULTURE_STATS = [
 
 export default function Careers() {
   const [filter, setFilter] = useState('All');
+  const [selectedJob, setSelectedJob] = useState(null);
+  const [isApplyOpen, setIsApplyOpen] = useState(false);
+
+  const handleOpenApply = (job = null) => {
+    setSelectedJob(job);
+    setIsApplyOpen(true);
+  };
+
+  const handleCloseApply = () => {
+    setIsApplyOpen(false);
+    setSelectedJob(null);
+  };
 
   const filtered = filter === 'All'
     ? OPENINGS
@@ -319,15 +332,16 @@ export default function Careers() {
                       <span className="text-[12px] text-text-tertiary/60">{job.posted}</span>
                     </div>
                   </div>
-                  <a
-                    href="#"
-                    className="shrink-0 inline-flex items-center gap-1.5 px-5 py-2.5 text-[13px] font-semibold text-zenith border border-zenith/30 rounded-[6px] hover:bg-zenith hover:text-white transition-all duration-200 active:scale-[0.98]"
+                  <button
+                    type="button"
+                    onClick={() => handleOpenApply(job)}
+                    className="shrink-0 inline-flex items-center gap-1.5 px-5 py-2.5 text-[13px] font-semibold text-zenith border border-zenith/30 rounded-[6px] hover:bg-zenith hover:text-white transition-all duration-200 active:scale-[0.98] cursor-pointer"
                   >
                     Apply
                     <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                     </svg>
-                  </a>
+                  </button>
                 </motion.div>
               ))}
             </AnimatePresence>
@@ -404,9 +418,23 @@ export default function Careers() {
         title="Don't See Your Role?"
         subtitle="We're always looking for exceptional engineers. Send us your resume and we'll reach out when there's a match."
         primaryText="Send Your Resume"
-        primaryHref="/company#contact"
+        onPrimaryClick={() =>
+          handleOpenApply({
+            isGeneral: true,
+            title: 'General Application / Talent Pool',
+            department: 'Engineering & Operations',
+            location: 'Global / Remote',
+          })
+        }
         secondaryText="View Company"
         secondaryHref="/company"
+      />
+
+      {/* ── Job Application Modal ── */}
+      <ApplyModal
+        isOpen={isApplyOpen}
+        onClose={handleCloseApply}
+        job={selectedJob}
       />
     </>
   );
