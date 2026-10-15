@@ -181,7 +181,8 @@ export default function Careers() {
         subtitle="Join a global team of engineers solving the hardest problems in automotive, semiconductors, AI, and cloud — with real ownership from day one."
       />
 
-      {/* ── Culture Stats ── */}
+      {/* ── Culture Stats (Hidden for early stage — re-enable later) ── */}
+      {/*
       <section className="py-12 lg:py-14 bg-navy-950">
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
@@ -205,6 +206,7 @@ export default function Careers() {
           </div>
         </div>
       </section>
+      */}
 
       {/* ── Why Join Us ── */}
       <section className="py-16 lg:py-20 bg-surface" id="culture">

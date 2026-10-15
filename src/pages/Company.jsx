@@ -131,28 +131,35 @@ export default function Company() {
                   We combine domain expertise in embedded systems, semiconductors, AI, and cloud engineering with a relentless focus on quality, to help organizations design, develop, validate, and scale next-generation products.
                 </p>
                 <p>
-                  Today, we serve leading automotive OEMs, semiconductor companies, industrial automation firms, and technology enterprises across four global engineering centers.
+                  Today, we serve leading automotive OEMs, semiconductor companies, industrial automation firms, and technology enterprises across three global engineering centers.
                 </p>
               </motion.div>
             </div>
 
-            {/* Right — Vision / Key numbers */}
-            <div className="flex-1">
+            {/* Right — Vision */}
+            <div className="flex-1 flex flex-col justify-center">
               <motion.div
                 variants={fadeUp}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
                 custom={0.15}
-                className="p-8 rounded-xl bg-navy-950 text-white mb-6"
+                className="relative p-8 sm:p-10 lg:p-12 rounded-2xl bg-navy-950 text-white border border-navy-800/80 shadow-xl overflow-hidden"
               >
-                <span className="text-[11px] font-semibold uppercase tracking-wider text-zenith mb-2 block">Our Vision</span>
-                <p className="text-[18px] font-semibold leading-snug text-white/90">
-                  "To be the world's most trusted engineering partner for companies building intelligent, connected, and sustainable technology."
-                </p>
+                {/* Ambient glow */}
+                <div className="absolute -top-20 -right-20 w-48 h-48 bg-zenith/10 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute -bottom-20 -left-20 w-48 h-48 bg-navy-700/30 rounded-full blur-3xl pointer-events-none" />
+
+                <div className="relative z-10">
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-zenith mb-3 block">Our Vision</span>
+                  <p className="text-[20px] sm:text-[22px] font-semibold leading-relaxed text-white/95 font-display">
+                    "To be the world's most trusted engineering partner for companies building intelligent, connected, and sustainable technology."
+                  </p>
+                </div>
               </motion.div>
 
-              <div className="grid grid-cols-2 gap-4">
+              {/* Key numbers stats (Hidden for early stage — re-enable later)
+              <div className="grid grid-cols-2 gap-4 mt-6">
                 {[
                   { number: '500+', label: 'Engineers Globally' },
                   { number: '4', label: 'Global Centers' },
@@ -172,6 +179,7 @@ export default function Company() {
                   </motion.div>
                 ))}
               </div>
+              */}
             </div>
           </div>
         </div>
