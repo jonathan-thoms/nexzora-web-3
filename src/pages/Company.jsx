@@ -58,29 +58,28 @@ const VALUES = [
 ];
 
 const LEADERSHIP = [
-  { name: 'Michael Adler', role: 'Founder & CEO', initials: 'MA' },
+  { name: 'Joffin Sebastian', role: 'Founder & CEO', initials: 'JS' },
   { name: 'Priya Sharma', role: 'VP of Engineering', initials: 'PS' },
-  { name: 'Daniel Kim', role: 'Head of Semiconductor', initials: 'DK' },
+  { name: 'Daniel Kim', role: 'Head of Embedded', initials: 'DK' },
   { name: 'Sarah Mitchell', role: 'Head of AI & Robotics', initials: 'SM' },
   { name: 'Raj Patel', role: 'Head of Automotive', initials: 'RP' },
   { name: 'Emily Chen', role: 'VP of Operations', initials: 'EC' },
 ];
 
 const LOCATIONS = [
-  { city: 'Dallas, Texas', country: 'USA', type: 'Headquarters' },
-  { city: 'Bangalore', country: 'India', type: 'Engineering Center' },
-  { city: 'Munich', country: 'Germany', type: 'European Office' },
-  { city: 'Toronto', country: 'Canada', type: 'R&D Lab' },
+  { city: 'Dallas', country: 'USA' },
+  { city: 'Thiruvananthapuram', country: 'India' },
+  { city: 'Tokyo', country: 'Japan' },
 ];
 
 const MILESTONES = [
   { year: '2018', event: 'Founded in Dallas, Texas with a focus on embedded engineering' },
-  { year: '2019', event: 'Opened Bangalore engineering center — 50+ engineers' },
-  { year: '2020', event: 'Expanded into semiconductor and VLSI services' },
-  { year: '2021', event: 'Launched AI & Robotics practice, Munich office opened' },
+  { year: '2019', event: 'Opened Thiruvananthapuram engineering center — 50+ engineers' },
+  { year: '2020', event: 'Expanded into automotive and embedded systems services' },
+  { year: '2021', event: 'Launched AI & Robotics practice, Tokyo office opened' },
   { year: '2022', event: '200+ engineers, first Fortune 500 automotive client' },
-  { year: '2023', event: 'Toronto R&D lab established, open-source program launched' },
-  { year: '2024', event: '500+ engineers across 4 global centers, 50+ patents filed' },
+  { year: '2023', event: 'Global delivery model established, open-source program launched' },
+  { year: '2024', event: 'Engineering teams across 3 global centers, 50+ patents filed' },
 ];
 
 export default function Company() {
@@ -352,7 +351,7 @@ export default function Company() {
             </motion.h2>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1050px] mx-auto">
             {LOCATIONS.map((loc, i) => (
               <motion.div
                 key={loc.city}
@@ -371,9 +370,6 @@ export default function Company() {
                 </div>
                 <h3 className="text-[15px] font-semibold text-white">{loc.city}</h3>
                 <p className="text-[13px] text-white/50">{loc.country}</p>
-                <span className="inline-block mt-2 text-[11px] font-semibold uppercase tracking-wider text-zenith bg-zenith/10 px-2.5 py-1 rounded-full">
-                  {loc.type}
-                </span>
               </motion.div>
             ))}
           </div>

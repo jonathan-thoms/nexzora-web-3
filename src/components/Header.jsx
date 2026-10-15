@@ -414,8 +414,8 @@ export default function Header() {
                 <a href="mailto:info@nexzora.com" className="hover:text-zenith transition-colors">
                   info@nexzora.com
                 </a>
-                <a href="tel:4692644242" className="hover:text-zenith transition-colors">
-                  469-264-4242
+                <a href="tel:+14696466162" className="hover:text-zenith transition-colors">
+                  +1 469-646-6162
                 </a>
               </div>
             </div>

@@ -126,8 +126,8 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-[12px] sm:text-[13px] font-semibold text-navy-400 uppercase tracking-label mb-0.5 sm:mb-1">Phone</p>
-                  <a href="tel:4692644242" className="text-[14px] sm:text-[15px] text-navy-200 hover:text-zenith active:text-zenith transition-colors">
-                    469-264-4242
+                  <a href="tel:+14696466162" className="text-[14px] sm:text-[15px] text-navy-200 hover:text-zenith active:text-zenith transition-colors">
+                    +1 469-646-6162
                   </a>
                 </div>
               </div>
