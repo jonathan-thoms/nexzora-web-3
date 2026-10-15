@@ -54,8 +54,8 @@ function LogoTile({ client }) {
 }
 
 export default function ClientLogos() {
-  /* Repeat the 5 clients to ensure a seamless continuous loop on all screens */
-  const sequence = [...CLIENTS, ...CLIENTS, ...CLIENTS, ...CLIENTS];
+  /* Repeat the clients to create a seamless continuous loop */
+  const sequence = [...CLIENTS, ...CLIENTS];
   const doubled = [...sequence, ...sequence];
 
   return (
@@ -83,7 +83,7 @@ export default function ClientLogos() {
           animate={{ x: ['0%', '-50%'] }}
           transition={{
             x: {
-              duration: 32,
+              duration: 55,
               repeat: Infinity,
               ease: 'linear',
             },
