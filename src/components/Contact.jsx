@@ -11,11 +11,77 @@ const fadeUp = {
 };
 
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    company: '',
+    message: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setErrorMessage('');
+
+    // Access key from environment or fallback
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+
+    if (!accessKey) {
+      setErrorMessage(
+        'Web3Forms access key is missing. Please add VITE_WEB3FORMS_ACCESS_KEY in your .env file.'
+      );
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      const payload = {
+        access_key: accessKey,
+        subject: `New Project Inquiry from ${formData.firstName} ${formData.lastName} (${formData.company || 'Website Inquiry'})`,
+        from_name: 'NEXZORA Technologies Contact',
+        name: `${formData.firstName} ${formData.lastName}`.trim(),
+        email: formData.email,
+        company: formData.company || 'Not provided',
+        message: formData.message,
+      };
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitted(true);
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          company: '',
+          message: '',
+        });
+      } else {
+        setErrorMessage(result.message || 'Failed to send message. Please try again or email us directly.');
+      }
+    } catch (err) {
+      setErrorMessage('Network error occurred. Please check your connection or email info@nexzora.com.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -170,10 +236,29 @@ export default function Contact() {
                     </svg>
                   </div>
                   <h3 className="font-display text-[20px] sm:text-[22px] font-bold text-white mb-2">Message sent</h3>
-                  <p className="text-[14.5px] sm:text-[15px] text-navy-300">We'll get back to you within 24 hours.</p>
+                  <p className="text-[14.5px] sm:text-[15px] text-navy-300 mb-6">
+                    Thank you for reaching out. We will review your inquiry and get back to you within 24 hours.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => setSubmitted(false)}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-navy-700 text-white text-[13.5px] font-medium hover:border-zenith/60 hover:text-zenith transition-all cursor-pointer"
+                  >
+                    Send another message
+                  </button>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+                  {/* Honeypot Spam Protection (hidden from real users) */}
+                  <input
+                    type="checkbox"
+                    name="botcheck"
+                    className="hidden"
+                    style={{ display: 'none' }}
+                    tabIndex="-1"
+                    autoComplete="off"
+                  />
+
                   {/* Name row */}
                   <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
                     <div>
@@ -183,8 +268,12 @@ export default function Contact() {
                       <input
                         type="text"
                         id="contact-first"
+                        name="firstName"
+                        value={formData.firstName}
+                        onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 sm:py-3.5 bg-navy-950/80 border border-navy-700/50 rounded-lg text-[16px] sm:text-[14.5px] text-white placeholder-navy-500 outline-none transition-all duration-200 focus:border-zenith/60 focus:ring-1 focus:ring-zenith/20"
+                        disabled={isSubmitting}
+                        className="w-full px-4 py-3 sm:py-3.5 bg-navy-950/80 border border-navy-700/50 rounded-lg text-[16px] sm:text-[14.5px] text-white placeholder-navy-500 outline-none transition-all duration-200 focus:border-zenith/60 focus:ring-1 focus:ring-zenith/20 disabled:opacity-50"
                         placeholder="John"
                       />
                     </div>
@@ -195,8 +284,12 @@ export default function Contact() {
                       <input
                         type="text"
                         id="contact-last"
+                        name="lastName"
+                        value={formData.lastName}
+                        onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 sm:py-3.5 bg-navy-950/80 border border-navy-700/50 rounded-lg text-[16px] sm:text-[14.5px] text-white placeholder-navy-500 outline-none transition-all duration-200 focus:border-zenith/60 focus:ring-1 focus:ring-zenith/20"
+                        disabled={isSubmitting}
+                        className="w-full px-4 py-3 sm:py-3.5 bg-navy-950/80 border border-navy-700/50 rounded-lg text-[16px] sm:text-[14.5px] text-white placeholder-navy-500 outline-none transition-all duration-200 focus:border-zenith/60 focus:ring-1 focus:ring-zenith/20 disabled:opacity-50"
                         placeholder="Doe"
                       />
                     </div>
@@ -210,8 +303,12 @@ export default function Contact() {
                     <input
                       type="email"
                       id="contact-email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 sm:py-3.5 bg-navy-950/80 border border-navy-700/50 rounded-lg text-[16px] sm:text-[14.5px] text-white placeholder-navy-500 outline-none transition-all duration-200 focus:border-zenith/60 focus:ring-1 focus:ring-zenith/20"
+                      disabled={isSubmitting}
+                      className="w-full px-4 py-3 sm:py-3.5 bg-navy-950/80 border border-navy-700/50 rounded-lg text-[16px] sm:text-[14.5px] text-white placeholder-navy-500 outline-none transition-all duration-200 focus:border-zenith/60 focus:ring-1 focus:ring-zenith/20 disabled:opacity-50"
                       placeholder="john@company.com"
                     />
                   </div>
@@ -224,7 +321,11 @@ export default function Contact() {
                     <input
                       type="text"
                       id="contact-company"
-                      className="w-full px-4 py-3 sm:py-3.5 bg-navy-950/80 border border-navy-700/50 rounded-lg text-[16px] sm:text-[14.5px] text-white placeholder-navy-500 outline-none transition-all duration-200 focus:border-zenith/60 focus:ring-1 focus:ring-zenith/20"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleChange}
+                      disabled={isSubmitting}
+                      className="w-full px-4 py-3 sm:py-3.5 bg-navy-950/80 border border-navy-700/50 rounded-lg text-[16px] sm:text-[14.5px] text-white placeholder-navy-500 outline-none transition-all duration-200 focus:border-zenith/60 focus:ring-1 focus:ring-zenith/20 disabled:opacity-50"
                       placeholder="Company name"
                     />
                   </div>
@@ -236,20 +337,46 @@ export default function Contact() {
                     </label>
                     <textarea
                       id="contact-message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
                       rows={4}
                       required
-                      className="w-full px-4 py-3 sm:py-3.5 bg-navy-950/80 border border-navy-700/50 rounded-lg text-[16px] sm:text-[14.5px] text-white placeholder-navy-500 outline-none transition-all duration-200 focus:border-zenith/60 focus:ring-1 focus:ring-zenith/20 resize-none"
+                      disabled={isSubmitting}
+                      className="w-full px-4 py-3 sm:py-3.5 bg-navy-950/80 border border-navy-700/50 rounded-lg text-[16px] sm:text-[14.5px] text-white placeholder-navy-500 outline-none transition-all duration-200 focus:border-zenith/60 focus:ring-1 focus:ring-zenith/20 resize-none disabled:opacity-50"
                       placeholder="Tell us about your project or inquiry..."
                     />
                   </div>
 
-                  {/* Submit */}
+                  {/* Error Notification Banner */}
+                  {errorMessage && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="p-3.5 rounded-lg bg-red-500/10 border border-red-500/30 text-red-200 text-[13px] text-center"
+                    >
+                      {errorMessage}
+                    </motion.div>
+                  )}
+
+                  {/* Submit Button */}
                   <button
                     type="submit"
-                    className="w-full py-3.5 px-6 min-h-[48px] bg-zenith text-white text-[15px] font-semibold rounded-lg transition-all duration-200 hover:bg-zenith-600 hover:shadow-[0_8px_24px_rgba(255,90,0,0.3)] active:scale-[0.99] cursor-pointer shadow-lg"
+                    disabled={isSubmitting}
+                    className="w-full py-3.5 px-6 min-h-[48px] bg-zenith text-white text-[15px] font-semibold rounded-lg transition-all duration-200 hover:bg-zenith-600 hover:shadow-[0_8px_24px_rgba(255,90,0,0.3)] active:scale-[0.99] cursor-pointer shadow-lg disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     id="contact-submit"
                   >
-                    Send Message
+                    {isSubmitting ? (
+                      <>
+                        <svg className="w-4 h-4 animate-spin text-white" viewBox="0 0 24 24" fill="none">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+                        </svg>
+                        <span>Sending inquiry...</span>
+                      </>
+                    ) : (
+                      'Send Message'
+                    )}
                   </button>
 
                   <p className="text-[11.5px] sm:text-[12px] text-navy-400 text-center">
