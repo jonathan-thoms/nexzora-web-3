@@ -19,11 +19,14 @@ import { motion } from 'framer-motion';
    ============================================ */
 
 const CLIENTS = [
-  { name: 'Cognizant', logo: '/clients/cognizant.png' },
   { name: 'Panasonic', logo: '/clients/Panasonic-logo.png', className: 'scale-130' },
+  { name: 'Toyota', logo: '/clients/toyota-logos-brands-logotypes-0.png', className: 'scale-115' },
+  { name: 'CrowdStrike', logo: '/clients/crowdstrikelogo-freelogovectors.net_.png' },
   { name: 'Tata Elxsi', logo: '/clients/talaelxsilogo.png' },
   { name: 'Amentum', logo: '/clients/Amentum_Logo-RGB-Full_Color_H.png' },
   { name: 'UST', logo: '/clients/partner-3979-logo.png' },
+  { name: 'Evezas', logo: '/clients/evezas.png' },
+  { name: 'Total Chronic Care', logo: '/clients/tcc logo.png' },
 ];
 
 /* Single logo tile — renders image with graceful fallback */
