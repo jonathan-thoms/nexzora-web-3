@@ -288,7 +288,7 @@ export default function Services() {
               custom={0.12}
               className="mt-5 text-[16px] lg:text-[17.5px] leading-relaxed text-white/75 max-w-[620px]"
             >
-              We build dedicated engineering squads and provide strategic technology advisory across VLSI chip design, embedded firmware, real-time edge AI, and mission-critical cloud platforms.
+              We build dedicated engineering squads and provide strategic technology advisory across embedded firmware, real-time edge AI, digital transformation, and mission-critical cloud platforms.
             </motion.p>
 
             {/* Hero Action Buttons */}
@@ -336,7 +336,8 @@ export default function Services() {
         </div>
       </section>
 
-      {/* ── Section 2: Toolchain & Ecosystem Ribbon (Single Clean Line on Desktop) ── */}
+      {/* ── Section 2: Toolchain & Ecosystem Ribbon (Hidden) ── */}
+      {/*
       <section className="py-4.5 bg-surface-alt border-b border-navy-100 overflow-hidden">
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
           <div className="flex flex-col lg:flex-row lg:items-center gap-3 lg:gap-6 justify-between">
@@ -357,6 +358,7 @@ export default function Services() {
           </div>
         </div>
       </section>
+      */}
 
       {/* ── Section 3: Core Engineering Capabilities Matrix (All 6 Shown Directly) ── */}
       <section className="py-16 lg:py-20 bg-surface" id="engineering">
