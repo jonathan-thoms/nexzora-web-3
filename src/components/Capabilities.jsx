@@ -74,22 +74,6 @@ const CAPABILITIES = [
     image: '/capabilities/automotive.jpg',
   },
   {
-    id: 'semiconductor',
-    label: 'Semiconductor & Chip Engineering',
-    tabLabel: 'Semiconductor\n& Chip',
-    description:
-      'End-to-end semiconductor design services — from RTL design and verification to physical design and post-silicon validation. Expertise across leading-edge process nodes and advanced packaging technologies.',
-    image: '/capabilities/semiconductor.jpg',
-  },
-  {
-    id: 'ai-robotics',
-    label: 'Robotics & Connected Technologies',
-    tabLabel: 'Robotics &\nConnected Tech',
-    description:
-      'End-to-end robotics engineering — from industrial automation and autonomous mobile robots to IoT-enabled connected systems. We design perception pipelines, motion control architectures, and edge-to-cloud connectivity for real-world deployment at scale.',
-    image: '/capabilities/ai-robotics.jpg',
-  },
-  {
     id: 'ai-systems',
     label: 'AI & Intelligent Systems',
     tabLabel: 'AI & Intelligent\nSystems',

@@ -17,12 +17,14 @@ const fadeUp = {
 
 const RESEARCH_AREAS = [
   {
-    title: 'Autonomous Systems',
-    description: 'Advancing perception, planning, and control algorithms for next-generation autonomous vehicles and robotic platforms.',
+    title: 'Cockpit Domain Controller',
+    description: 'Engineering unified digital cockpit architectures — integrating virtualized instrument clusters, IVI infotainment, HUD, and occupant monitoring on centralized high-performance SoCs.',
     icon: (
       <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="3" />
-        <path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+        <rect x="2" y="3" width="20" height="14" rx="2" />
+        <path d="M8 21h8M12 17v4" />
+        <circle cx="7" cy="10" r="2" />
+        <path d="M13 10h4M13 7h2" />
       </svg>
     ),
   },
@@ -58,12 +60,13 @@ const RESEARCH_AREAS = [
     ),
   },
   {
-    title: 'Next-Gen Connectivity',
-    description: 'Exploring 5G-V2X, satellite-terrestrial integration, and mesh networking protocols for ultra-reliable communications.',
+    title: 'Digital Transformation',
+    description: 'Pioneering intelligent enterprise platforms, cloud-native modernization, automated data pipelines, and scalable microservices architectures.',
     icon: (
       <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-        <path d="M8.5 16.5a5 5 0 017 0M5 13a10 10 0 0114 0M2 10a15 15 0 0120 0" />
-        <circle cx="12" cy="19" r="1" fill="currentColor" />
+        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83" />
+        <rect x="7" y="7" width="10" height="10" rx="2" />
+        <path d="M10 12h4M12 10v4" />
       </svg>
     ),
   },

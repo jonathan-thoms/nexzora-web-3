@@ -4,37 +4,19 @@ import { Link } from 'react-router-dom';
 
 const NAV_ITEMS = [
   {
-    label: 'Products',
-    href: '/#capabilities',
-    megaMenu: {
-      columns: [
-        { heading: 'Platforms', items: [
-          { label: 'Embedded OS Suite', href: '/#capabilities' },
-          { label: 'AutoDrive SDK', href: '/#capabilities' },
-          { label: 'CyberShield Pro', href: '/#capabilities' },
-        ]},
-        { heading: 'Tools', items: [
-          { label: 'ChipForge IDE', href: '/#capabilities' },
-          { label: 'RoboSim Studio', href: '/#capabilities' },
-          { label: 'SecureNet Analyzer', href: '/#capabilities' },
-        ]},
-      ],
-    },
-  },
-  {
     label: 'Services',
     href: '/services',
     megaMenu: {
       columns: [
         { heading: 'Engineering', items: [
           { label: 'System Design', href: '/services#engineering' },
-          { label: 'VLSI Development', href: '/services#engineering' },
+          { label: 'Digital Transformation Services', href: '/services#engineering' },
           { label: 'Firmware Engineering', href: '/services#engineering' },
         ]},
         { heading: 'Consulting', items: [
           { label: 'Architecture Review', href: '/services#consulting' },
           { label: 'Compliance Audits', href: '/services#consulting' },
-          { label: 'Digital Transformation', href: '/services#consulting' },
+          { label: 'Technology Advisory', href: '/services#consulting' },
         ]},
       ],
     },

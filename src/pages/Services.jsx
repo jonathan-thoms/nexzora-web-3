@@ -15,15 +15,15 @@ const fadeUp = {
 };
 
 const HERO_METRICS = [
-  { value: '40+', label: 'Silicon Tape-outs' },
+  { value: 'Enterprise', label: 'Digital Engineering' },
   { value: '99.4%', label: 'First-Pass Success' },
   { value: '< 2 Wks', label: 'Squad Ramp-up' },
   { value: 'ISO 26262', label: 'Safety Certified' },
 ];
 
 const ECOSYSTEM_TOOLS = [
-  'Synopsys EDA',
-  'Cadence Innovus',
+  'AWS & Azure Cloud',
+  'Kubernetes & Docker',
   'ARM Neoverse',
   'RISC-V ISA',
   'AUTOSAR Adaptive',
@@ -51,17 +51,17 @@ const ENGINEERING_SERVICES = [
     ),
   },
   {
-    id: 'vlsi-chip',
-    badge: 'Silicon 3nm–28nm',
-    title: 'VLSI & Chip Development',
-    description: 'Full-flow digital and mixed-signal ASIC/SoC design from RTL coding, logic synthesis, and DFT to physical design and tape-out.',
-    deliverables: ['RTL Microarchitecture & IP Integration', 'Static Timing Analysis (STA)', 'GDSII Sign-off & Tape-out'],
-    tools: ['Synopsys Fusion', 'Cadence Innovus', 'Verilog/SystemVerilog', 'PrimeTime'],
+    id: 'digital-transformation',
+    badge: 'Modernization',
+    title: 'Digital Transformation Services',
+    description: 'End-to-end enterprise digital modernization — transforming legacy ecosystems with cloud-native architectures, API integration, microservices, and automated workflows.',
+    deliverables: ['Cloud-Native Modernization Roadmap', 'Enterprise API & Microservices Architecture', 'Automated CI/CD & DevOps Pipelines'],
+    tools: ['AWS / Azure Cloud', 'Kubernetes', 'Docker', 'GraphQL / REST APIs', 'Terraform'],
     icon: (
       <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">
-        <rect x="6" y="6" width="12" height="12" rx="1.5" />
-        <rect x="9" y="9" width="6" height="6" rx="0.5" />
-        <path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4" />
+        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+        <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+        <line x1="12" y1="22.08" x2="12" y2="12" />
       </svg>
     ),
   },
