@@ -19,14 +19,18 @@ import { motion } from 'framer-motion';
    ============================================ */
 
 const CLIENTS = [
-  { name: 'Panasonic', logo: '/clients/Panasonic-logo.png', className: 'scale-130' },
   { name: 'Toyota', logo: '/clients/toyota-logos-brands-logotypes-0.png', className: 'scale-115' },
-  { name: 'CrowdStrike', logo: '/clients/crowdstrikelogo-freelogovectors.net_.png' },
-  { name: 'Tata Elxsi', logo: '/clients/talaelxsilogo.png' },
+  { name: 'Tata Motors', logo: '/clients/tata motors.png', className: 'scale-115' },
+  { name: 'Aisin Corporation', logo: '/clients/aisin logo.png', className: 'scale-[0.82] max-h-7 sm:max-h-8' },
+  { name: 'Denso Corporation', logo: '/clients/Denso_logo.svg.png', className: 'scale-100' },
+  { name: 'CrowdStrike', logo: '/clients/crowdstrikelogo-freelogovectors.net_.png', className: 'scale-[1.55]' },
+  { name: 'Tata Elxsi', logo: '/clients/talaelxsilogo.png', className: 'scale-[1.6]' },
+  { name: 'JBM Group', logo: '/clients/jbm1.png', className: 'scale-110' },
+  { name: 'Force Motors LTD', logo: '/clients/Force_Motors_Logo.svg.png', className: 'scale-115' },
   { name: 'Amentum', logo: '/clients/Amentum_Logo-RGB-Full_Color_H.png' },
   { name: 'UST', logo: '/clients/partner-3979-logo.png' },
-  { name: 'Evezas', logo: '/clients/evezas.png' },
-  { name: 'Total Chronic Care', logo: '/clients/tcc logo.png' },
+  { name: 'Evezas', logo: '/clients/evezas.png', className: 'scale-[2.1]' },
+  { name: 'Total Chronic Care', logo: '/clients/tcc logo.png', className: 'scale-105' },
 ];
 
 /* Single logo tile — renders image with graceful fallback */
@@ -83,7 +87,7 @@ export default function ClientLogos() {
           animate={{ x: ['0%', '-50%'] }}
           transition={{
             x: {
-              duration: 55,
+              duration: 80,
               repeat: Infinity,
               ease: 'linear',
             },
