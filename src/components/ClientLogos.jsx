@@ -19,18 +19,18 @@ import { motion } from 'framer-motion';
    ============================================ */
 
 const CLIENTS = [
-  { name: 'Toyota', logo: '/clients/toyota-logos-brands-logotypes-0.png', className: 'scale-115' },
-  { name: 'Tata Motors', logo: '/clients/tata motors.png', className: 'scale-115' },
-  { name: 'Aisin Corporation', logo: '/clients/aisin logo.png', className: 'scale-[0.68] max-h-6 sm:max-h-7' },
-  { name: 'Denso Corporation', logo: '/clients/Denso_logo.svg.png', className: 'scale-[0.8]' },
-  { name: 'CrowdStrike', logo: '/clients/crowdstrikelogo-freelogovectors.net_.png', className: 'scale-[1.55]' },
-  { name: 'Tata Elxsi', logo: '/clients/talaelxsilogo.png', className: 'scale-[1.6]' },
-  { name: 'JBM Group', logo: '/clients/jbm1.png', className: 'scale-110' },
-  { name: 'Force Motors LTD', logo: '/clients/Force_Motors_Logo.svg.png', className: 'scale-115' },
-  { name: 'Amentum', logo: '/clients/Amentum_Logo-RGB-Full_Color_H.png' },
-  { name: 'UST', logo: '/clients/partner-3979-logo.png', className: 'scale-[1.2]' },
-  { name: 'Evezas', logo: '/clients/evezas.png', className: 'scale-[2.1]' },
-  { name: 'Total Chronic Care', logo: '/clients/tcc logo.png', className: 'scale-105' },
+  { name: 'Toyota', logo: '/clients/toyota-logos-brands-logotypes-0.png', className: 'scale-115', containerClassName: 'px-5 sm:px-8 lg:px-10' },
+  { name: 'Tata Motors', logo: '/clients/tata motors.png', className: 'scale-115', containerClassName: 'px-5 sm:px-8 lg:px-10' },
+  { name: 'Aisin Corporation', logo: '/clients/aisin logo.png', className: 'scale-[0.68] max-h-6 sm:max-h-7', containerClassName: 'px-2 sm:px-3 lg:px-4' },
+  { name: 'Denso Corporation', logo: '/clients/Denso_logo.svg.png', className: 'scale-[0.8]', containerClassName: 'px-2.5 sm:px-4 lg:px-5' },
+  { name: 'CrowdStrike', logo: '/clients/crowdstrikelogo-freelogovectors.net_.png', className: 'scale-[1.55]', containerClassName: 'px-8 sm:px-11 lg:px-14' },
+  { name: 'Tata Elxsi', logo: '/clients/talaelxsilogo.png', className: 'scale-[1.6]', containerClassName: 'px-7 sm:px-10 lg:px-13' },
+  { name: 'JBM Group', logo: '/clients/jbm1.png', className: 'scale-110', containerClassName: 'px-5 sm:px-8 lg:px-10' },
+  { name: 'Force Motors LTD', logo: '/clients/Force_Motors_Logo.svg.png', className: 'scale-115', containerClassName: 'px-5 sm:px-8 lg:px-10' },
+  { name: 'Amentum', logo: '/clients/Amentum_Logo-RGB-Full_Color_H.png', containerClassName: 'px-4.5 sm:px-7 lg:px-9' },
+  { name: 'UST', logo: '/clients/partner-3979-logo.png', className: 'scale-[1.2]', containerClassName: 'px-5 sm:px-8 lg:px-10' },
+  { name: 'Evezas', logo: '/clients/evezas.png', className: 'scale-[2.1]', containerClassName: 'px-8 sm:px-12 lg:px-15' },
+  { name: 'Total Chronic Care', logo: '/clients/tcc logo.png', className: 'scale-105', containerClassName: 'px-5 sm:px-8 lg:px-10' },
 ];
 
 /* Single logo tile — renders image with graceful fallback */
@@ -38,7 +38,7 @@ function LogoTile({ client }) {
   const [hasError, setHasError] = useState(false);
 
   return (
-    <div className="flex-shrink-0 flex items-center justify-center h-16 px-6 sm:px-10 lg:px-12 select-none">
+    <div className={`flex-shrink-0 flex items-center justify-center h-16 select-none ${client.containerClassName || 'px-5 sm:px-8 lg:px-10'}`}>
       {client.logo && !hasError ? (
         <img
           src={client.logo}
