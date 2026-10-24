@@ -154,7 +154,7 @@ export default function Hero() {
             custom={0.6}
             className="mt-4 sm:mt-5 text-[14.5px] sm:text-[15.5px] leading-relaxed text-white/70 max-w-[500px]"
           >
-            NEXZORA develops advanced engineering solutions across embedded systems, automotive technologies, semiconductors, AI, cybersecurity, and connected mobility—from concept to production.
+            NEXZORA develops advanced engineering solutions across embedded systems, automotive technologies, digital transformation, AI, cybersecurity, and connected mobility—from concept to production.
           </motion.p>
 
           {/* CTAs */}

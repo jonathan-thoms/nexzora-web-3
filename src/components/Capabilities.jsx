@@ -20,21 +20,6 @@ const Icons = {
       <circle cx="12" cy="12" r="2" />
     </svg>
   ),
-  semiconductor: (
-    <svg className="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M6 18L18 6M6 6l12 12" />
-      <rect x="3" y="3" width="18" height="18" rx="2" />
-      <circle cx="12" cy="12" r="3" />
-    </svg>
-  ),
-  'ai-robotics': (
-    <svg className="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="4" width="18" height="12" rx="2" />
-      <path d="M8 20h8M12 16v4" />
-      <circle cx="9" cy="10" r="1.5" fill="currentColor" stroke="none" />
-      <circle cx="15" cy="10" r="1.5" fill="currentColor" stroke="none" />
-    </svg>
-  ),
   cybersecurity: (
     <svg className="w-6 h-6 sm:w-7 sm:h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
       <path d="M12 2l8 4v5c0 5.25-3.5 9.74-8 11-4.5-1.26-8-5.75-8-11V6l8-4Z" />

@@ -61,7 +61,7 @@ const LEADERSHIP = [
   { name: 'Joffin Sebastian', role: 'Founder & CEO', initials: 'JS' },
   { name: 'Priya Sharma', role: 'VP of Engineering', initials: 'PS' },
   { name: 'Daniel Kim', role: 'Head of Embedded', initials: 'DK' },
-  { name: 'Sarah Mitchell', role: 'Head of AI & Robotics', initials: 'SM' },
+  { name: 'Sarah Mitchell', role: 'Head of AI & Edge Intelligence', initials: 'SM' },
   { name: 'Raj Patel', role: 'Head of Automotive', initials: 'RP' },
   { name: 'Emily Chen', role: 'VP of Operations', initials: 'EC' },
 ];
@@ -70,16 +70,6 @@ const LOCATIONS = [
   { city: 'Dallas', country: 'USA' },
   { city: 'Thiruvananthapuram', country: 'India' },
   { city: 'Tokyo', country: 'Japan' },
-];
-
-const MILESTONES = [
-  { year: '2018', event: 'Founded in Dallas, Texas with a focus on embedded engineering' },
-  { year: '2019', event: 'Opened Thiruvananthapuram engineering center — 50+ engineers' },
-  { year: '2020', event: 'Expanded into automotive and embedded systems services' },
-  { year: '2021', event: 'Launched AI & Robotics practice, Tokyo office opened' },
-  { year: '2022', event: '200+ engineers, first Fortune 500 automotive client' },
-  { year: '2023', event: 'Global delivery model established, open-source program launched' },
-  { year: '2024', event: 'Engineering teams across 3 global centers, 50+ patents filed' },
 ];
 
 export default function Company() {
@@ -128,10 +118,10 @@ export default function Company() {
                   NEXZORA Technologies was founded on a simple premise: the world's most complex engineering challenges deserve dedicated, deeply specialized teams — not generalists.
                 </p>
                 <p>
-                  We combine domain expertise in embedded systems, semiconductors, AI, and cloud engineering with a relentless focus on quality, to help organizations design, develop, validate, and scale next-generation products.
+                  We combine domain expertise in embedded systems, digital transformation, AI, and cloud engineering with a relentless focus on quality, to help organizations design, develop, validate, and scale next-generation products.
                 </p>
                 <p>
-                  Today, we serve leading automotive OEMs, semiconductor companies, industrial automation firms, and technology enterprises across three global engineering centers.
+                  Today, we serve leading automotive OEMs, Tier-1 mobility suppliers, industrial automation firms, and technology enterprises across three global engineering centers.
                 </p>
               </motion.div>
             </div>
@@ -231,59 +221,7 @@ export default function Company() {
         </div>
       </section>
 
-      {/* ── Timeline ── */}
-      <section className="py-16 lg:py-20 bg-surface" id="timeline">
-        <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
-          <div className="text-center mb-12">
-            <motion.span
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ type: 'spring', stiffness: 120, damping: 20 }}
-              className="inline-block text-[12px] font-semibold uppercase tracking-[0.2em] text-zenith mb-3"
-            >
-              Our Journey
-            </motion.span>
-            <motion.h2
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              custom={0.05}
-              className="font-display text-[clamp(1.5rem,3vw,2.25rem)] font-bold tracking-display text-navy-950 leading-tight"
-            >
-              Milestones
-            </motion.h2>
-          </div>
-
-          <div className="relative max-w-[680px] mx-auto">
-            {/* Vertical line */}
-            <div className="absolute left-[20px] lg:left-1/2 lg:-translate-x-px top-0 bottom-0 w-[2px] bg-navy-100" />
-
-            {MILESTONES.map((milestone, i) => (
-              <motion.div
-                key={milestone.year}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-30px' }}
-                transition={{ type: 'spring', stiffness: 100, damping: 18, delay: i * 0.04 }}
-                className={`relative flex items-start gap-4 mb-8 last:mb-0 ${
-                  i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                } lg:text-${i % 2 === 0 ? 'right' : 'left'}`}
-              >
-                {/* Dot */}
-                <div className="absolute left-[14px] lg:left-1/2 lg:-translate-x-1/2 top-1 w-[14px] h-[14px] rounded-full bg-white border-[3px] border-zenith z-[2]" />
-
-                {/* Content — on mobile always right of the line */}
-                <div className="ml-12 lg:ml-0 lg:w-1/2 lg:px-8">
-                  <span className="text-[13px] font-black text-zenith">{milestone.year}</span>
-                  <p className="text-[14px] leading-relaxed text-text-secondary mt-1">{milestone.event}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ── Timeline (Milestones 2018-2024 removed per client request) ── */}
 
       {/* ── Leadership ── */}
       <section className="py-16 lg:py-20 bg-surface-alt" id="leadership">

@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 
 const FOOTER_LINKS = {
-  Solutions: ['Embedded Engineering', 'Automotive & Mobility', 'Semiconductor', 'AI & Robotics', 'Cybersecurity'],
+  Solutions: ['Embedded Engineering', 'Automotive & Mobility', 'Digital Transformation', 'AI & Edge Intelligence', 'Cybersecurity'],
   Company: ['About Us', 'Leadership', 'Careers', 'Partners', 'Newsroom'],
   Resources: ['Case Studies', 'Whitepapers', 'Tech Blog', 'Documentation', 'Events'],
 };

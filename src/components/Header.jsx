@@ -28,8 +28,8 @@ const NAV_ITEMS = [
       columns: [
         { heading: 'Sectors', items: [
           { label: 'Automotive & Mobility', href: '/industries#automotive' },
-          { label: 'Semiconductor', href: '/industries#semiconductor' },
-          { label: 'Industrial & Robotics', href: '/industries#robotics' },
+          { label: 'Energy & CleanTech', href: '/industries#energy' },
+          { label: 'Industrial & Automation', href: '/industries#industrial' },
           { label: 'Technology', href: '/industries#technology' },
         ]},
       ],

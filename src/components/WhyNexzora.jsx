@@ -8,7 +8,7 @@ const PILLARS = [
   {
     title: 'Domain Expertise',
     description:
-      'Deep knowledge across embedded, automotive, semiconductor, AI, and cloud technologies.',
+      'Deep knowledge across embedded, automotive, digital transformation, AI, and cloud technologies.',
     icon: (
       <svg className="w-12 h-12" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth={1.3} strokeLinecap="round" strokeLinejoin="round">
         {/* People / expertise */}

@@ -45,42 +45,42 @@ const INDUSTRIES_DATA = [
         desc: 'Classic & Adaptive MCAL integration with secure SOME/IP over-the-air update flows.',
       },
     ],
-    chips: ['ISO 26262 ASIL D', 'AUTOSAR 4.4', 'CAN-FD / SOME/IP', 'A-SPICE Level 3'],
+    standards: ['ISO 26262 ASIL D', 'AUTOSAR 4.4', 'CAN-FD / SOME/IP', 'A-SPICE Level 3'],
   },
   {
-    id: 'semiconductor',
-    label: 'Semiconductor & Silicon',
-    badge: '3nm to 28nm Nodes',
-    headline: 'Silicon engineering from microarchitecture to physical design & tape-out.',
+    id: 'digital-transformation',
+    label: 'Digital Transformation & IoT',
+    badge: 'Edge-to-Cloud Platforms',
+    headline: 'Scalable IoT architectures, cloud telemetry, and intelligent connected devices.',
     pillars: [
       {
         num: '01',
-        title: 'RTL & Microarchitecture',
-        desc: 'High-throughput RISC-V and ARM SoC subsystems with AMBA AXI/CHI interconnects.',
+        title: 'Edge Device Connectivity',
+        desc: 'Secure MQTT, CoAP, and lightweight edge gateway firmware for mission-critical deployments.',
       },
       {
         num: '02',
-        title: 'UVM Verification Closure',
-        desc: 'Constrained-random testbenches, formal proofs, and hardware emulation on FPGA farms.',
+        title: 'Data Pipelines & Telemetry',
+        desc: 'Distributed event ingestion, Kafka streaming, and sub-second fleet monitoring backends.',
       },
       {
         num: '03',
-        title: 'Physical Design & Timing',
-        desc: 'CTS, power grid synthesis, and sign-off timing closure at advanced FinFET & GAA nodes.',
+        title: 'Over-The-Air (OTA) & Security',
+        desc: 'Zero-downtime firmware updates, zero-trust device PKI identity, and secure bootloaders.',
       },
     ],
-    chips: ['TSMC 3nm–28nm', 'UVM 1.2', 'PCIe Gen 5/6', 'Synopsys & Cadence'],
+    standards: ['MQTT & CoAP', 'Azure IoT Hub', 'AWS Greengrass', 'Zero-Trust PKI'],
   },
   {
-    id: 'robotics',
-    label: 'Industrial & Robotics',
+    id: 'industrial',
+    label: 'Industrial & Automation',
     badge: 'IEC 61508 SIL 3',
-    headline: 'Real-time motion control, autonomous robotics, and smart edge IoT.',
+    headline: 'Real-time motion control, industrial automation, and smart edge IoT.',
     pillars: [
       {
         num: '01',
-        title: 'Autonomous Mobile Robots',
-        desc: 'LiDAR SLAM navigation, 3D obstacle avoidance, and multi-robot fleet dispatching.',
+        title: 'Automated Guided Vehicles & Machinery',
+        desc: 'LiDAR SLAM navigation, 3D obstacle avoidance, and automated industrial dispatching.',
       },
       {
         num: '02',
@@ -93,7 +93,7 @@ const INDUSTRIES_DATA = [
         desc: 'Deterministic EtherCAT slave nodes, OPC-UA gateways, and edge predictive telemetry.',
       },
     ],
-    chips: ['ROS 2 Humble', 'EtherCAT & OPC-UA', 'IEC 61508 SIL 3', 'ISO 13849 PL e'],
+    standards: ['ROS 2 Humble', 'EtherCAT & OPC-UA', 'IEC 61508 SIL 3', 'ISO 13849 PL e'],
   },
   {
     id: 'aerospace',
@@ -117,7 +117,7 @@ const INDUSTRIES_DATA = [
         desc: 'Software-Defined Radio waveforms and SpaceWire bus firmware for orbital systems.',
       },
     ],
-    chips: ['DO-178C DAL A', 'DO-254 Hardware', 'ARINC 429 / 653', 'MIL-STD-1553'],
+    standards: ['DO-178C DAL A', 'DO-254 Hardware', 'ARINC 429 / 653', 'MIL-STD-1553'],
   },
   {
     id: 'energy',
@@ -137,11 +137,11 @@ const INDUSTRIES_DATA = [
       },
       {
         num: '03',
-        title: 'SiC & GaN Power Inverters',
-        desc: 'High-frequency switching control, grid-forming algorithms, and bidirectional V2G.',
+        title: 'Bidirectional Power Inverters',
+        desc: 'High-efficiency digital switching control, grid-forming algorithms, and bidirectional V2G.',
       },
     ],
-    chips: ['ISO 15118-20', 'OCPP 2.0.1', 'IEC 61850', 'Silicon Carbide (SiC)'],
+    standards: ['ISO 15118-20', 'OCPP 2.0.1', 'IEC 61850', 'Bidirectional Inverters'],
   },
   {
     id: 'technology',
@@ -165,7 +165,7 @@ const INDUSTRIES_DATA = [
         desc: 'Cryptographically signed delta firmware distribution and remote diagnostics.',
       },
     ],
-    chips: ['Kubernetes & Go', 'Apache Kafka', 'Terraform IaC', 'SOC 2 Type II'],
+    standards: ['Kubernetes & Go', 'Apache Kafka', 'Terraform IaC', 'SOC 2 Type II'],
   },
 ];
 
@@ -199,19 +199,19 @@ const COMPLIANCE_FRAMEWORKS = [
 const CASE_HIGHLIGHTS = [
   {
     sector: 'Automotive & Mobility',
-    title: '800V Silicon Carbide Inverter BMS Firmware',
+    title: '800V High-Efficiency Powertrain BMS Firmware',
     metric: '40% Latency Reduction',
     metricLabel: 'ISO 26262 ASIL D Certified',
     description:
       'Engineered an ultra-fast battery management firmware stack with sub-microsecond fault detection and real-time state estimation across 192 battery cells.',
   },
   {
-    sector: 'Semiconductor',
-    title: '5nm Edge AI Vision NPU Verification',
-    metric: '99.8% Coverage',
-    metricLabel: 'Zero Silicon Respins',
+    sector: 'Digital Transformation',
+    title: 'Global Fleet Telematics & Predictive Analytics',
+    metric: '99.99% Uptime',
+    metricLabel: 'Sub-Second Edge Telemetry',
     description:
-      'Delivered full-chip UVM testbench and formal assertion suites for a multi-core neural processing unit, accelerating tape-out by 4 months.',
+      'Engineered an edge-to-cloud IoT data ingestion pipeline supporting 250,000+ connected vehicles with real-time health telemetry and zero-data-loss failover.',
   },
   {
     sector: 'Aerospace & Avionics',
@@ -434,12 +434,12 @@ export default function IndustriesPage() {
                     <span className="text-[11.5px] font-bold uppercase tracking-wider text-navy-900 mr-2">
                       Core Frameworks:
                     </span>
-                    {currentSector.chips.map((chip) => (
+                    {currentSector.standards.map((standard) => (
                       <span
-                        key={chip}
+                        key={standard}
                         className="px-3 py-1 text-[12px] font-medium rounded-md bg-surface-alt text-navy-800 border border-navy-200/70"
                       >
-                        {chip}
+                        {standard}
                       </span>
                     ))}
                   </div>
@@ -551,18 +551,18 @@ export default function IndustriesPage() {
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
-                title: 'Silicon-to-System Verification Rigor',
-                desc: 'We transfer pre-silicon UVM verification methodologies and formal assertion proofs into automotive and aerospace ECU software pipelines.',
-                pill: 'Silicon → System',
+                title: 'Model-Based Verification Rigor',
+                desc: 'We apply rigorous formal verification, automated MIL/SIL/HIL simulation pipelines, and deterministic RTOS profiling to mission-critical ECU platforms.',
+                pill: 'Simulation → Hardware',
               },
               {
                 title: 'Aerospace-Grade Fault Tolerance',
-                desc: 'We apply triple-modular redundancy, fail-operational concepts, and deterministic RTOS partitioning into robotics and industrial controllers.',
+                desc: 'We apply triple-modular redundancy, fail-operational concepts, and deterministic RTOS partitioning into industrial controllers and smart edge machinery.',
                 pill: 'Avionics → Industrial',
               },
               {
                 title: 'Low-Latency Edge AI Acceleration',
-                desc: 'We quantize and compile deep neural networks to run at sub-10ms latency on resource-constrained automotive and robotic edge processors.',
+                desc: 'We quantize and compile deep neural networks to run at sub-10ms latency on resource-constrained automotive and smart edge processors.',
                 pill: 'Cloud AI → Edge MCU',
               },
             ].map((pillar, i) => (

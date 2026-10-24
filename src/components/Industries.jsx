@@ -14,29 +14,22 @@ const INDUSTRIES = [
     iconSrc: '/industries/automotive.svg',
   },
   {
-    id: 'semiconductor',
-    label: 'Semiconductor',
-    description: 'RTL design, verification, physical design, and post-silicon validation across leading-edge nodes.',
+    id: 'energy',
+    label: 'Energy &\nCleanTech',
+    description: 'Smart grid firmware, megawatt inverter telemetry, and EV charging infrastructure.',
     iconType: 'inline',
     icon: (
       <svg className="w-12 h-12 sm:w-16 sm:h-16" viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth={1.2} strokeLinecap="round" strokeLinejoin="round">
-        <rect x="16" y="16" width="32" height="32" rx="2" />
-        <rect x="24" y="24" width="16" height="16" rx="1.5" />
-        <path d="M28 28l3 3M36 28l-3 3M28 36l3-3M36 36l-3-3" strokeWidth={1} />
-        <circle cx="32" cy="32" r="2" />
-        <path d="M22 16v-6M26 16v-6M30 16v-4M34 16v-4M38 16v-6M42 16v-6" />
-        <path d="M22 48v6M26 48v6M30 48v4M34 48v4M38 48v6M42 48v6" />
-        <path d="M16 22h-6M16 26h-6M16 30h-4M16 34h-4M16 38h-6M16 42h-6" />
-        <path d="M48 22h6M48 26h6M48 30h4M48 34h4M48 38h6M48 42h6" />
+        <path d="M36 6L16 34h16l-4 24 26-34H38l4-24z" />
       </svg>
     ),
   },
   {
-    id: 'robotics',
-    label: 'Industrial &\nRobotics',
-    description: 'Industrial automation, autonomous mobile robots, and IoT-enabled connected systems.',
+    id: 'industrial',
+    label: 'Industrial &\nAutomation',
+    description: 'Industrial automation, real-time motion control, and connected factory IoT systems.',
     iconType: 'img',
-    iconSrc: '/industries/robotics.svg',
+    iconSrc: '/industries/industrial.svg',
   },
   {
     id: 'technology',

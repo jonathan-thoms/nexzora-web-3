@@ -98,8 +98,8 @@ const INSIGHTS = [
   },
   {
     type: 'Case Study',
-    title: 'Reducing Verification Time by 60% with AI-Driven Testbench Automation',
-    description: 'How we helped a leading semiconductor company transform their UVM verification workflow with ML-powered stimulus generation.',
+    title: 'Reducing ADAS Test Cycles by 60% with AI-Driven Scenario Generation',
+    description: 'How we helped a global automotive OEM transform their virtual validation workflows with ML-powered scenario generation.',
     date: '2025',
   },
   {
