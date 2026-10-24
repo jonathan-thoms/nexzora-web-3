@@ -432,12 +432,15 @@ export default function Careers() {
                 return (
                   <motion.div
                     key={job.id || job.title}
-                    layout
+                    layout="position"
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.97 }}
-                    transition={{ type: 'spring', stiffness: 120, damping: 20, delay: i * 0.03 }}
-                    className={`rounded-xl border transition-all duration-300 bg-white overflow-hidden ${
+                    transition={{
+                      layout: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
+                      opacity: { duration: 0.2 },
+                    }}
+                    className={`rounded-xl border transition-colors duration-200 bg-white overflow-hidden ${
                       isExpanded
                         ? 'border-zenith/40 shadow-[0_8px_30px_rgba(4,30,66,0.08)] ring-1 ring-zenith/20'
                         : 'border-navy-100 hover:border-zenith/30 hover:shadow-[0_4px_16px_rgba(4,30,66,0.04)]'
@@ -520,15 +523,30 @@ export default function Careers() {
                     </div>
 
                     {/* Expandable Full Job Description */}
-                    <AnimatePresence>
+                    <AnimatePresence initial={false}>
                       {isExpanded && (
                         <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.3, ease: 'easeInOut' }}
-                          className="border-t border-navy-100 bg-navy-50/40 px-5 sm:px-7 py-6 space-y-6"
+                          key="accordion-drawer"
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{
+                            height: 'auto',
+                            opacity: 1,
+                            transition: {
+                              height: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
+                              opacity: { duration: 0.25, delay: 0.05, ease: 'easeOut' },
+                            },
+                          }}
+                          exit={{
+                            height: 0,
+                            opacity: 0,
+                            transition: {
+                              height: { duration: 0.28, ease: [0.16, 1, 0.3, 1] },
+                              opacity: { duration: 0.15, ease: 'easeIn' },
+                            },
+                          }}
+                          className="overflow-hidden"
                         >
+                          <div className="border-t border-navy-100 bg-navy-50/40 px-5 sm:px-7 py-6 space-y-6">
                           {/* Role Overview */}
                           {job.overview && (
                             <div>
@@ -639,9 +657,10 @@ export default function Careers() {
                               Submissions delivered to <a href="mailto:info@nexzora.com" className="text-zenith font-medium hover:underline">info@nexzora.com</a>
                             </p>
                           </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                   </motion.div>
                 );
               })}
