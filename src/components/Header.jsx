@@ -35,6 +35,7 @@ const NAV_ITEMS = [
       ],
     },
   },
+  /* Hidden per client request — can be re-enabled later
   {
     label: 'Innovation',
     href: '/innovation',
@@ -53,6 +54,7 @@ const NAV_ITEMS = [
       ],
     },
   },
+  */
   { label: 'Company', href: '/company' },
   { label: 'Careers', href: '/careers' },
 ];
@@ -277,7 +279,7 @@ export default function Header() {
                     Featured
                   </p>
                   <p className="text-[14px] font-medium text-navy-900 leading-snug">
-                    Explore our latest innovations in engineering excellence.
+                    Explore our engineering solutions and precision capabilities.
                   </p>
                   <a
                     href="#"

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
@@ -8,7 +8,7 @@ import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import Services from './pages/Services';
 import IndustriesPage from './pages/Industries';
-import Innovation from './pages/Innovation';
+// import Innovation from './pages/Innovation'; // Hidden per client request
 import Company from './pages/Company';
 import Careers from './pages/Careers';
 
@@ -31,9 +31,12 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
           <Route path="/industries" element={<IndustriesPage />} />
-          <Route path="/innovation" element={<Innovation />} />
+          {/* Innovation page hidden per client request — can be re-enabled later */}
+          {/* <Route path="/innovation" element={<Innovation />} /> */}
+          <Route path="/innovation" element={<Navigate to="/" replace />} />
           <Route path="/company" element={<Company />} />
           <Route path="/careers" element={<Careers />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
       <Footer />
