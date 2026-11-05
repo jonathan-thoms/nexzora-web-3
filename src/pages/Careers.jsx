@@ -79,186 +79,110 @@ const PERKS = [
   },
 ];
 
-const DEPARTMENTS = ['All', 'Engineering', 'Cybersecurity', 'AI & Edge', 'Cloud & DevOps', 'Operations'];
+const DEPARTMENTS = ['All', 'Engineering', 'Cybersecurity'];
 
 const OPENINGS = [
   {
-    id: 'senior-embedded-software-engineer',
-    title: 'Senior Embedded Software Engineer',
+    id: 'senior-embedded-engineer',
+    title: 'Senior Embedded Engineer',
     department: 'Engineering',
-    location: 'Dallas, USA / Thiruvananthapuram, India (Hybrid)',
+    location: 'Hybrid',
     type: 'Full-time',
     experience: '5+ Years Experience',
     posted: '2 days ago',
-    techStack: ['Embedded C', 'C++17/20', 'FreeRTOS & Zephyr', 'ARM Cortex-M/A', 'CAN-FD / Ethernet', 'ISO 26262 ASIL D'],
+    techStack: ['Embedded C', 'Modern C++ (17/20)', 'FreeRTOS / Zephyr', 'ARM Cortex-M/R/A', 'CAN-FD / Ethernet', 'ISO 26262 ASIL B/D'],
     overview:
-      'We are looking for a Senior Embedded Software Engineer to architect, build, and deploy mission-critical low-level firmware and RTOS software platforms for automotive ECUs, gateway domain controllers, and high-reliability industrial edge hardware.',
+      'We are seeking a Senior Embedded Engineer to lead the architecture, development, and deployment of mission-critical firmware and real-time software systems. In this hybrid role, you will balance deep-focus firmware architecture and coding with hands-on laboratory collaboration—bringing up custom hardware, building low-level Board Support Packages (BSPs), and deploying high-reliability software for next-generation automotive ECUs, zonal controllers, and industrial edge devices.',
     responsibilities: [
-      'Architect, develop, and optimize safety-critical bare-metal and RTOS firmware (FreeRTOS, Zephyr, QNX) on 32-bit/64-bit ARM Cortex-M/R/A and heterogeneous multi-core SoCs.',
-      'Develop robust Board Support Packages (BSP), hardware abstraction layers (HAL), and low-level device drivers for CAN-FD, SPI, I2C, UART, PCIe, and Automotive Ethernet.',
-      'Profile and tune software execution for microsecond deterministic response times, ultra-low latency interrupt handling, and minimal RAM/Flash footprints.',
-      'Implement automotive diagnostic stacks (UDS ISO 14229, DoIP) and SOME/IP inter-ECU communication layers.',
-      'Ensure strict compliance with ISO 26262 ASIL-B/D functional safety requirements and MISRA-C/C++ coding guidelines.',
-      'Lead hardware bring-up in laboratory environments using digital storage oscilloscopes, logic analyzers, Lauterbach JTAG emulators, and Vector CANoe toolchains.',
-      'Collaborate with systems and cloud teams to design secure bootloaders and Over-The-Air (OTA) dual-bank flash update mechanisms.',
+      'Architect, develop, and optimize robust bare-metal and RTOS-based firmware (FreeRTOS, Zephyr, QNX) on 32-bit and 64-bit microcontrollers and heterogeneous multi-core SoCs (ARM Cortex-M/R/A, STM32, NXP S32G, Infineon AURIX).',
+      'Develop and maintain low-level device drivers, HAL layers, and Board Support Packages (BSP) for high-speed buses and serial interfaces including CAN-FD, Automotive Ethernet, SPI, I2C, UART, and PCIe.',
+      'Lead board bring-up, hardware-software integration, and signal validation in the laboratory using digital storage oscilloscopes, logic analyzers, Lauterbach JTAG/SWD emulators, and protocol analyzers.',
+      'Implement and profile deterministic real-time control loops, interrupt handlers, and memory management to meet microsecond latency constraints and minimal RAM/Flash footprints.',
+      'Design secure bootloaders, dual-bank flash memory partitions, and fail-safe Over-the-Air (OTA) firmware update mechanisms.',
+      'Enforce software quality and safety compliance adhering to MISRA-C/C++ guidelines and functional safety standards (ISO 26262 ASIL B/D).',
+      'Mentor junior and associate engineers through comprehensive technical design reviews, automated CI/CD unit testing, and embedded coding best practices.',
     ],
     requirements: [
-      'Bachelor’s or Master’s degree in Electrical Engineering, Computer Engineering, Computer Science, or equivalent.',
-      '5+ years of professional embedded firmware development experience with deep proficiency in Embedded C and Modern C++.',
-      'Extensive hands-on experience with ARM Cortex architectures (nested vectored interrupt controllers, memory protection units, DMA pipelines).',
-      'Solid command of RTOS design patterns: preemptive scheduling, mutexes, semaphores, race condition mitigation, and task prioritization.',
-      'Proven expertise in serial protocols (CAN-FD, SPI, I2C, UART) and high-speed bus interfaces.',
-      'Comfortable conducting hardware board bring-up, schematic reading, and hardware-software integration testing.',
+      'Bachelor’s or Master’s degree in Computer Engineering, Electrical Engineering, Electronics, Computer Science, or equivalent.',
+      '5+ years of hands-on professional embedded software and firmware development experience with deep mastery of Embedded C and Modern C++.',
+      'Strong experience with ARM Cortex architectures, nested vector interrupt controllers (NVIC), memory protection units (MPU), and DMA pipelines.',
+      'Solid command of RTOS design patterns: preemptive priority scheduling, mutexes, semaphores, race-condition mitigation, and inter-task message queues.',
+      'Demonstrated success in physical board bring-up, schematic reading, PCB probing, and hardware-in-the-loop (HIL) testing.',
+      'Professional experience with version control (Git), CMake, static analysis tools (Coverity, SonarQube), and automated test suites (GoogleTest, Unity).',
     ],
     niceToHave: [
-      'Experience with AUTOSAR Classic / Adaptive stacks or ISO 26262 safety case documentation.',
-      'Hands-on experience with hardware security modules (HSM) or secure boot implementations.',
-      'Familiarity with CMake, GoogleTest/Unity, static analysis (Coverity/SonarQube), and automated CI/CD for embedded systems.',
+      'Experience with AUTOSAR Classic or Adaptive stacks (MCAL, BSW, RTE) or Vector DaVinci toolchains.',
+      'Familiarity with hardware cryptographic engines, Secure Boot, or Hardware Security Modules (HSM).',
+      'Python scripting experience for automated regression test benches and laboratory instrumentation control.',
     ],
   },
   {
-    id: 'cybersecurity-lead',
-    title: 'Cybersecurity Lead / Principal Security Architect',
-    department: 'Cybersecurity',
-    location: 'Dallas, USA / Remote',
-    type: 'Full-time',
-    experience: '6+ Years Experience',
-    posted: 'Just now',
-    techStack: ['ISO/SAE 21434', 'UNECE R155/R156', 'TARA & Threat Modeling', 'HSM & Secure Boot', 'CAN / Ethernet Security'],
-    overview:
-      'NEXZORA is seeking an accomplished Cybersecurity Lead to spearhead our automotive and connected vehicle cybersecurity engineering practice. You will direct threat modeling, establish cryptographic security frameworks, and guide Tier-1 and OEM clients through rigorous ISO/SAE 21434 and UNECE R155 type approvals.',
-    responsibilities: [
-      'Define, architect, and enforce end-to-end cybersecurity architectures across vehicle ECUs, telematics gateways, and cloud interfaces in compliance with ISO/SAE 21434.',
-      'Lead comprehensive Threat Analysis and Risk Assessments (TARA), attack path modeling, and STRIDE evaluations on modern vehicle electrical/electronic (E/E) architectures.',
-      'Architect robust embedded cryptographic foundations: Secure Boot, Hardware Security Module (HSM / SHE) drivers, secure key storage, and PKI certificate lifecycle management.',
-      'Lead embedded penetration testing, vulnerability discovery, and protocol fuzzing across in-vehicle networks (CAN-FD, Automotive Ethernet, SOME/IP).',
-      'Design and audit secure software update management systems (SUMS) adhering to UNECE WP.29 R156 compliance standards.',
-      'Establish DevSecOps pipelines, automated Software Bill of Materials (SBOM) tracking, and vulnerability disclosure response playbooks.',
-      'Collaborate directly with OEM and regulatory homologation authorities for cybersecurity auditing, validation, and type certification.',
-    ],
-    requirements: [
-      'Bachelor’s or Master’s in Cybersecurity, Computer Science, Computer Engineering, or related technical field.',
-      '6+ years of cybersecurity engineering experience, with at least 3+ years dedicated to automotive, embedded systems, or IoT security.',
-      'Thorough expertise in ISO/SAE 21434, UNECE R155/R156, and AUTOSAR Crypto Stack (CSM, CryIf, Crypto Driver).',
-      'Deep technical mastery of cryptographic primitives, TLS 1.3, SecOC (Secure Onboard Communication), and Hardware Security Modules (Infineon AURIX HSM, Renesas ICU, NXP HSE).',
-      'Demonstrated experience with firmware reverse engineering, binary auditing (Ghidra, IDA Pro), and protocol analysis (Wireshark, CANalyzer).',
-      'Recognized industry credentials such as CISSP, CSSLP, Certified Automotive Cybersecurity Professional (CACP), or equivalent.',
-    ],
-    niceToHave: [
-      'Experience in automotive hardware fault-injection attacks or side-channel resistance analysis.',
-      'Active participation in automotive cybersecurity working groups (Auto-ISAC, SAE, ISO).',
-      'Hands-on experience configuring zero-trust network architectures for connected mobility platforms.',
-    ],
-  },
-  {
-    id: 'autosar-software-architect',
-    title: 'AUTOSAR Software Architect',
+    id: 'junior-embedded-engineer',
+    title: 'Junior Embedded Engineer',
     department: 'Engineering',
-    location: 'Tokyo, Japan / Hybrid',
+    location: 'Hybrid',
     type: 'Full-time',
-    experience: '7+ Years Experience',
-    posted: '3 days ago',
-    techStack: ['Classic & Adaptive AUTOSAR', 'Vector DaVinci', 'SOME/IP & Ethernet', 'MCAL / BSW / RTE', 'ISO 26262 ASIL D'],
+    experience: '0–2 Years Experience',
+    posted: 'Just now',
+    techStack: ['Embedded C', 'C++', 'ARM Cortex-M', 'STM32 / ESP32', 'UART / SPI / I2C / CAN', 'Logic Analyzers & JTAG', 'Git'],
     overview:
-      'Lead the architecture, configuration, and integration of Classic and Adaptive AUTOSAR stacks for next-generation zonal gateways, cockpit domain controllers, and ADAS perception ECUs across global OEM production programs.',
+      'NEXZORA is looking for an enthusiastic Junior Embedded Engineer to join our core firmware engineering team. This hybrid position is ideal for an early-career engineer or recent graduate with solid programming fundamentals and a genuine passion for physical computing, microcontrollers, and hardware-software interaction. You will collaborate closely with senior engineers in our lab, writing peripheral drivers, conducting board validation, and building firmware for smart connected devices and automotive modules.',
     responsibilities: [
-      'Architect Classic and Adaptive AUTOSAR software component architectures, specifying BSW, RTE, and application layer interfaces.',
-      'Configure communication clusters, diagnostic managers (Dem/Dcm), and memory stacks (NvM/Fee) using Vector DaVinci Developer and Configurator.',
-      'Oversee MCAL porting and low-level driver integration on multi-core automotive microcontrollers (Infineon AURIX TC3xx/TC4xx, Renesas RH850, NXP S32G).',
-      'Design inter-core communication and synchronization between real-time safety cores and high-compute POSIX/Linux partitions.',
-      'Guide software teams through A-SPICE Level 3 process compliance and ISO 26262 ASIL D functional safety work products.',
+      'Design, write, and debug clean, modular Embedded C and C++ code for 32-bit microcontrollers (ARM Cortex-M, STM32, ESP32, NXP).',
+      'Implement and test peripheral communication drivers for standard serial protocols, including UART, I2C, SPI, and basic CAN interfaces.',
+      'Participate in hardware lab bring-up, prototype assembly, schematic tracing, and signal verification using digital multimeters, logic analyzers, and oscilloscopes.',
+      'Configure and test lightweight RTOS tasks (FreeRTOS) and bare-metal state machines to ensure predictable timing and efficient resource utilization.',
+      'Write and maintain unit tests, automated test scripts (Python/C), and simulation test benches to validate firmware stability and edge cases.',
+      'Maintain clear technical documentation, register-level hardware configuration guides, and register maps for engineering handoffs.',
+      'Actively participate in daily standups, code reviews, and technical workshops under the direct mentorship of senior embedded architects.',
     ],
     requirements: [
-      '7+ years in automotive embedded software development, including 4+ years dedicated to AUTOSAR architecture and configuration.',
-      'In-depth mastery of Vector DaVinci toolchains (DaVinci Configurator Pro, Developer, CANoe, CANalyzer).',
-      'Solid command of Ethernet, SOME/IP, CAN-FD communication protocols and UDS diagnostic specifications.',
-      'Strong knowledge of multi-core concurrency, memory protection, and ASIL D safety decomposition.',
+      'Bachelor’s degree in Electrical & Electronics Engineering (EEE), Electronics & Communication (ECE), Computer Engineering, or Computer Science.',
+      '0–2 years of embedded experience (solid academic capstone projects, internships, or open-source hardware contributions are highly valued).',
+      'Strong fundamental knowledge of C and C++ programming, memory management, pointers, and bitwise operations.',
+      'Clear understanding of basic microcontroller peripherals: GPIO, Timers, ADC/DAC, PWM, Interrupts, and DMA.',
+      'Basic hands-on experience using lab tools (multimeter, digital oscilloscope, logic analyzer) and debuggers (JTAG, ST-Link, J-Link).',
+      'Familiarity with version control using Git and an eager mindset to learn complex embedded architectures and safety standards.',
     ],
     niceToHave: [
-      'Hands-on experience with Adaptive AUTOSAR platform (ara::com, ara::exec, ara::diag).',
-      'Familiarity with automotive cybersecurity integration within AUTOSAR (SecOC, Crypto stack).',
+      'Hands-on experience with RTOS concepts (tasks, queues, semaphores in FreeRTOS or Zephyr).',
+      'Python scripting skills for data logging, serial communication scripts, or test automation.',
+      'Prior experience with IoT wireless modules (BLE, Wi-Fi, LoRaWAN) or automotive CAN bus networks.',
+      'Personal embedded projects (e.g., custom STM32/ESP32 PCBs, sensor interfaces, or robotics).',
     ],
   },
   {
-    id: 'lead-edge-ai-engineer',
-    title: 'Lead Edge AI & Computer Vision Engineer',
-    department: 'AI & Edge',
-    location: 'Dallas, USA / Hybrid',
+    id: 'cybersecurity-engineer',
+    title: 'Cybersecurity Engineer',
+    department: 'Cybersecurity',
+    location: 'Hybrid',
     type: 'Full-time',
-    experience: '5+ Years Experience',
-    posted: '1 week ago',
-    techStack: ['PyTorch & ONNX', 'TensorRT & Edge TPU', 'Modern C++ & CUDA', 'Object Detection & SLAM', 'Model Quantization'],
+    experience: '3–5 Years Experience',
+    posted: 'Just now',
+    techStack: ['ISO/SAE 21434', 'UNECE R155/R156', 'TARA & Threat Modeling', 'Secure Boot & HSM', 'Cryptography (AES, ECC, PKI)', 'CAN-FD / Ethernet Security', 'Wireshark & Ghidra'],
     overview:
-      'Lead the development and edge deployment of low-latency deep learning, neural perception, and computer vision models running directly on automotive-grade edge compute hardware.',
+      'We are seeking a dedicated Cybersecurity Engineer to protect connected vehicles, embedded edge devices, and automotive electronic architectures against modern cyber threats. In this hybrid role, you will conduct threat modeling (TARA), architect cryptographic security mechanisms, evaluate ECU firmware attack surfaces, and ensure compliance with ISO/SAE 21434 and UNECE WP.29 R155 regulations alongside our embedded software and systems teams.',
     responsibilities: [
-      'Design, train, and deploy real-time convolutional neural networks (CNNs) and Vision Transformers for object detection, lane tracking, and spatial perception.',
-      'Optimize, quantize, and compile models (FP32 to INT8/FP16) using TensorRT, ONNX Runtime, and OpenVINO for sub-15ms inference latency.',
-      'Profile edge hardware accelerator execution on NVIDIA Jetson Orin, Qualcomm Snapdragon Ride, and ARM Ethos NPUs.',
-      'Build end-to-end synthetic dataset generation, active learning, and model validation testbenches.',
+      'Conduct Threat Analysis and Risk Assessments (TARA) using STRIDE and attack-tree methodologies to identify attack surfaces in vehicle ECUs, telematics gateways, and smart edge controllers.',
+      'Define and implement embedded security concepts: Secure Boot, Secure Flash/OTA updates, encrypted communication (SecOC / TLS 1.3), and secure diagnostic authentication (UDS ISO 14229-1).',
+      'Integrate Hardware Security Module (HSM / SHE) firmware drivers and cryptographic primitives (AES, SHA-256, ECC, RSA, HMAC) for key storage and certificate lifecycle management.',
+      'Conduct embedded vulnerability assessments, fuzz testing, and protocol-level penetration testing across in-vehicle networks (CAN-FD, LIN, Automotive Ethernet, SOME/IP).',
+      'Support OEM and Tier-1 homologation workflows, ensuring alignment with ISO/SAE 21434 cybersecurity engineering processes and UNECE R155 / R156 compliance audits.',
+      'Establish automated Software Bill of Materials (SBOM) generation, open-source license/vulnerability tracking, and vulnerability disclosure response processes.',
+      'Collaborate with systems architects and DevOps teams to enforce secure coding standards (MISRA, CERT C) and integrate security gates into automated CI/CD pipelines.',
     ],
     requirements: [
-      '5+ years of experience training and successfully deploying production computer vision models on embedded edge devices.',
-      'Advanced programming skills in Modern C++ (C++17/20) and Python.',
-      'Deep understanding of model quantization techniques (PTQ, QAT), pruning, and memory bandwidth optimization.',
+      'Bachelor’s or Master’s degree in Cybersecurity, Computer Engineering, Computer Science, Information Security, or Electrical Engineering.',
+      '3–5 years of dedicated cybersecurity engineering experience, with a solid focus on embedded systems, automotive networks, or connected IoT hardware.',
+      'Strong understanding of cryptographic concepts: symmetric/asymmetric ciphers, digital signatures, hash algorithms, PKI, and key exchange protocols.',
+      'Solid familiarity with automotive security frameworks and regulations: ISO/SAE 21434, UNECE R155 (Cybersecurity Management Systems), and UNECE R156 (Software Updates).',
+      'Experience with network traffic and protocol inspection tools (Wireshark, CANoe/CANalyzer, Busmaster) and firmware reverse engineering tools (Ghidra, IDA Pro, Binwalk).',
+      'Working knowledge of Embedded C / C++ and scripting (Python, Bash) for security test harness development.',
     ],
     niceToHave: [
-      'Experience with ROS 2, LiDAR point-cloud processing, or sensor fusion pipelines.',
-      'Track record of technical publications or patents in edge machine learning.',
-    ],
-  },
-  {
-    id: 'senior-cloud-devops-architect',
-    title: 'Senior Cloud & DevOps Solutions Architect',
-    department: 'Cloud & DevOps',
-    location: 'Remote',
-    type: 'Full-time',
-    experience: '6+ Years Experience',
-    posted: '2 weeks ago',
-    techStack: ['AWS & Azure Cloud', 'Kubernetes & Helm', 'Terraform & GitOps', 'Apache Kafka', 'Go / Python'],
-    overview:
-      'Design resilient, high-throughput cloud infrastructure and GitOps automation pipelines supporting millions of connected vehicle telemetry streams and mission-critical enterprise backends.',
-    responsibilities: [
-      'Architect multi-region, fault-tolerant cloud backends on AWS and Azure capable of ingesting high-throughput real-time telemetry.',
-      'Develop distributed streaming pipelines using Apache Kafka, RabbitMQ, and microservices written in Go.',
-      'Automate cloud infrastructure provisioning using Terraform, Helm, and GitOps workflows via ArgoCD and GitHub Actions.',
-      'Implement enterprise zero-trust access, centralized observability (Prometheus/Grafana), and SOC 2 Type II compliance controls.',
-    ],
-    requirements: [
-      '6+ years of cloud architecture and infrastructure engineering experience.',
-      'Strong hands-on mastery of Kubernetes container orchestration, service meshes, and Docker.',
-      'Deep fluency with Infrastructure as Code (Terraform) and CI/CD automation.',
-      'Certified AWS Solutions Architect or Azure Solutions Architect Expert.',
-    ],
-    niceToHave: [
-      'Experience handling IoT / Telematics MQTT payloads at scale.',
-      'Experience with security compliance frameworks (SOC 2, ISO 27001).',
-    ],
-  },
-  {
-    id: 'technical-recruiter',
-    title: 'Technical Recruiter — Global Engineering',
-    department: 'Operations',
-    location: 'Thiruvananthapuram, India / Hybrid',
-    type: 'Full-time',
-    experience: '4+ Years Experience',
-    posted: '3 weeks ago',
-    techStack: ['Technical Sourcing', 'Engineering Screening', 'ATS Management', 'Global Talent Acquisition'],
-    overview:
-      'Partner directly with technical leadership to identify, attract, and hire world-class embedded, automotive, and cloud engineering talent across our Dallas, Thiruvananthapuram, and Tokyo centers.',
-    responsibilities: [
-      'Manage full-lifecycle recruitment for high-demand engineering positions across embedded firmware, cybersecurity, and cloud systems.',
-      'Sustain a proactive pipeline of top-tier passive candidates through targeted LinkedIn sourcing, technical networks, and referrals.',
-      'Conduct rigorous candidate screenings to evaluate technical alignment, communication skills, and culture contribution.',
-      'Orchestrate a seamless candidate experience from initial outreach through offer negotiation and onboarding.',
-    ],
-    requirements: [
-      '4+ years of technical recruiting experience specializing in software, embedded systems, or automotive engineering.',
-      'Familiarity with modern engineering disciplines, tools, and technical terminologies.',
-      'Superb interpersonal, verbal, and written communication skills with international hiring experience.',
-    ],
-    niceToHave: [
-      'Experience working in high-growth engineering services or R&D environments.',
-      'Familiarity with immigration and international relocation protocols.',
+      'Relevant industry certifications such as Certified Automotive Cybersecurity Professional (CACP), CompTIA Security+, CEH, CISSP, or GIAC.',
+      'Hands-on experience configuring AUTOSAR Crypto Stack (CSM, CryIf, Crypto Driver).',
+      'Experience analyzing hardware attack vectors (side-channel analysis, JTAG lock-out bypass, or glitching attacks).',
     ],
   },
 ];
@@ -412,11 +336,10 @@ export default function Careers() {
               <button
                 key={dept}
                 onClick={() => setFilter(dept)}
-                className={`px-4 py-2 text-[13px] font-medium rounded-full transition-all duration-200 cursor-pointer ${
-                  filter === dept
+                className={`px-4 py-2 text-[13px] font-medium rounded-full transition-all duration-200 cursor-pointer ${filter === dept
                     ? 'bg-navy-950 text-white'
                     : 'bg-white border border-navy-100 text-text-secondary hover:border-navy-300 hover:text-navy-900'
-                }`}
+                  }`}
               >
                 {dept}
               </button>
@@ -440,11 +363,10 @@ export default function Careers() {
                       layout: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
                       opacity: { duration: 0.2 },
                     }}
-                    className={`rounded-xl border transition-colors duration-200 bg-white overflow-hidden ${
-                      isExpanded
+                    className={`rounded-xl border transition-colors duration-200 bg-white overflow-hidden ${isExpanded
                         ? 'border-zenith/40 shadow-[0_8px_30px_rgba(4,30,66,0.08)] ring-1 ring-zenith/20'
                         : 'border-navy-100 hover:border-zenith/30 hover:shadow-[0_4px_16px_rgba(4,30,66,0.04)]'
-                    }`}
+                      }`}
                   >
                     {/* Main Summary Header */}
                     <div className="p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
@@ -497,9 +419,8 @@ export default function Careers() {
                         >
                           {isExpanded ? 'Hide Details' : 'View Job Description'}
                           <svg
-                            className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                              isExpanded ? 'rotate-180' : ''
-                            }`}
+                            className={`w-3.5 h-3.5 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''
+                              }`}
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -547,120 +468,120 @@ export default function Careers() {
                           className="overflow-hidden"
                         >
                           <div className="border-t border-navy-100 bg-navy-50/40 px-5 sm:px-7 py-6 space-y-6">
-                          {/* Role Overview */}
-                          {job.overview && (
-                            <div>
-                              <h4 className="text-[12px] font-bold uppercase tracking-[0.15em] text-zenith mb-2">
-                                About the Role
-                              </h4>
-                              <p className="text-[14px] leading-relaxed text-text-primary">
-                                {job.overview}
+                            {/* Role Overview */}
+                            {job.overview && (
+                              <div>
+                                <h4 className="text-[12px] font-bold uppercase tracking-[0.15em] text-zenith mb-2">
+                                  About the Role
+                                </h4>
+                                <p className="text-[14px] leading-relaxed text-text-primary">
+                                  {job.overview}
+                                </p>
+                              </div>
+                            )}
+
+                            {/* Tech Stack Badges */}
+                            {job.techStack && job.techStack.length > 0 && (
+                              <div>
+                                <h4 className="text-[12px] font-bold uppercase tracking-[0.15em] text-navy-950 mb-2.5">
+                                  Primary Technical Stack
+                                </h4>
+                                <div className="flex flex-wrap gap-2">
+                                  {job.techStack.map((tech) => (
+                                    <span
+                                      key={tech}
+                                      className="text-[12px] font-semibold text-navy-900 bg-white border border-navy-200/80 px-3 py-1 rounded-md shadow-2xs"
+                                    >
+                                      {tech}
+                                    </span>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+
+                            {/* Responsibilities */}
+                            {job.responsibilities && job.responsibilities.length > 0 && (
+                              <div>
+                                <h4 className="text-[12px] font-bold uppercase tracking-[0.15em] text-navy-950 mb-2.5">
+                                  Key Responsibilities
+                                </h4>
+                                <ul className="space-y-2 text-[13.5px] text-text-secondary leading-relaxed">
+                                  {job.responsibilities.map((resp, idx) => (
+                                    <li key={idx} className="flex items-start gap-2.5">
+                                      <span className="w-1.5 h-1.5 rounded-full bg-zenith shrink-0 mt-2" />
+                                      <span>{resp}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+
+                            {/* Requirements */}
+                            {job.requirements && job.requirements.length > 0 && (
+                              <div>
+                                <h4 className="text-[12px] font-bold uppercase tracking-[0.15em] text-navy-950 mb-2.5">
+                                  What We Look For
+                                </h4>
+                                <ul className="space-y-2 text-[13.5px] text-text-secondary leading-relaxed">
+                                  {job.requirements.map((req, idx) => (
+                                    <li key={idx} className="flex items-start gap-2.5">
+                                      <svg className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" />
+                                      </svg>
+                                      <span>{req}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+
+                            {/* Preferred / Nice to Have */}
+                            {job.niceToHave && job.niceToHave.length > 0 && (
+                              <div>
+                                <h4 className="text-[12px] font-bold uppercase tracking-[0.15em] text-navy-950 mb-2.5">
+                                  Nice to Have
+                                </h4>
+                                <ul className="space-y-1.5 text-[13px] text-text-tertiary leading-relaxed">
+                                  {job.niceToHave.map((item, idx) => (
+                                    <li key={idx} className="flex items-start gap-2.5">
+                                      <span className="text-navy-400 font-bold">+</span>
+                                      <span>{item}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+
+                            {/* Bottom Apply Action Bar */}
+                            <div className="pt-4 border-t border-navy-200/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                              <div className="flex items-center gap-3">
+                                <button
+                                  type="button"
+                                  onClick={() => handleOpenApply(job)}
+                                  className="inline-flex items-center gap-2 px-6 py-2.5 bg-zenith hover:bg-zenith-600 text-white text-[13.5px] font-bold rounded-lg shadow-sm transition-all duration-200 cursor-pointer active:scale-[0.98]"
+                                >
+                                  Apply for this Position
+                                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                                  </svg>
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => toggleExpand(job.id)}
+                                  className="text-[13px] font-medium text-text-secondary hover:text-navy-950 transition-colors cursor-pointer"
+                                >
+                                  Collapse
+                                </button>
+                              </div>
+
+                              <p className="text-[12px] text-text-tertiary">
+                                Submissions delivered to <a href="mailto:info@nexzora.com" className="text-zenith font-medium hover:underline">info@nexzora.com</a>
                               </p>
                             </div>
-                          )}
-
-                          {/* Tech Stack Badges */}
-                          {job.techStack && job.techStack.length > 0 && (
-                            <div>
-                              <h4 className="text-[12px] font-bold uppercase tracking-[0.15em] text-navy-950 mb-2.5">
-                                Primary Technical Stack
-                              </h4>
-                              <div className="flex flex-wrap gap-2">
-                                {job.techStack.map((tech) => (
-                                  <span
-                                    key={tech}
-                                    className="text-[12px] font-semibold text-navy-900 bg-white border border-navy-200/80 px-3 py-1 rounded-md shadow-2xs"
-                                  >
-                                    {tech}
-                                  </span>
-                                ))}
-                              </div>
-                            </div>
-                          )}
-
-                          {/* Responsibilities */}
-                          {job.responsibilities && job.responsibilities.length > 0 && (
-                            <div>
-                              <h4 className="text-[12px] font-bold uppercase tracking-[0.15em] text-navy-950 mb-2.5">
-                                Key Responsibilities
-                              </h4>
-                              <ul className="space-y-2 text-[13.5px] text-text-secondary leading-relaxed">
-                                {job.responsibilities.map((resp, idx) => (
-                                  <li key={idx} className="flex items-start gap-2.5">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-zenith shrink-0 mt-2" />
-                                    <span>{resp}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          )}
-
-                          {/* Requirements */}
-                          {job.requirements && job.requirements.length > 0 && (
-                            <div>
-                              <h4 className="text-[12px] font-bold uppercase tracking-[0.15em] text-navy-950 mb-2.5">
-                                What We Look For
-                              </h4>
-                              <ul className="space-y-2 text-[13.5px] text-text-secondary leading-relaxed">
-                                {job.requirements.map((req, idx) => (
-                                  <li key={idx} className="flex items-start gap-2.5">
-                                    <svg className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
-                                      <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" />
-                                    </svg>
-                                    <span>{req}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          )}
-
-                          {/* Preferred / Nice to Have */}
-                          {job.niceToHave && job.niceToHave.length > 0 && (
-                            <div>
-                              <h4 className="text-[12px] font-bold uppercase tracking-[0.15em] text-navy-950 mb-2.5">
-                                Nice to Have
-                              </h4>
-                              <ul className="space-y-1.5 text-[13px] text-text-tertiary leading-relaxed">
-                                {job.niceToHave.map((item, idx) => (
-                                  <li key={idx} className="flex items-start gap-2.5">
-                                    <span className="text-navy-400 font-bold">+</span>
-                                    <span>{item}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          )}
-
-                          {/* Bottom Apply Action Bar */}
-                          <div className="pt-4 border-t border-navy-200/50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                            <div className="flex items-center gap-3">
-                              <button
-                                type="button"
-                                onClick={() => handleOpenApply(job)}
-                                className="inline-flex items-center gap-2 px-6 py-2.5 bg-zenith hover:bg-zenith-600 text-white text-[13.5px] font-bold rounded-lg shadow-sm transition-all duration-200 cursor-pointer active:scale-[0.98]"
-                              >
-                                Apply for this Position
-                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                                </svg>
-                              </button>
-                              <button
-                                type="button"
-                                onClick={() => toggleExpand(job.id)}
-                                className="text-[13px] font-medium text-text-secondary hover:text-navy-950 transition-colors cursor-pointer"
-                              >
-                                Collapse
-                              </button>
-                            </div>
-
-                            <p className="text-[12px] text-text-tertiary">
-                              Submissions delivered to <a href="mailto:info@nexzora.com" className="text-zenith font-medium hover:underline">info@nexzora.com</a>
-                            </p>
                           </div>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </motion.div>
                 );
               })}
