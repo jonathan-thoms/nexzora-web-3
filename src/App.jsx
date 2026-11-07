@@ -23,8 +23,12 @@ function ScrollToTopOnNav() {
 }
 
 export default function App() {
-  const { pathname } = useLocation();
-  const isMockupRoute = pathname === '/mockup' || pathname === '/home-mockup';
+  const { pathname, search, hash } = useLocation();
+  const isMockupRoute =
+    pathname === '/mockup' ||
+    pathname === '/home-mockup' ||
+    search.includes('mockup') ||
+    hash.includes('mockup');
 
   if (isMockupRoute) {
     return (
