@@ -11,6 +11,7 @@ import IndustriesPage from './pages/Industries';
 // import Innovation from './pages/Innovation'; // Hidden per client request
 import Company from './pages/Company';
 import Careers from './pages/Careers';
+import HomeMockup from './pages/HomeMockup';
 
 /* Scroll to top on route change */
 function ScrollToTopOnNav() {
@@ -22,6 +23,18 @@ function ScrollToTopOnNav() {
 }
 
 export default function App() {
+  const { pathname } = useLocation();
+  const isMockupRoute = pathname === '/mockup' || pathname === '/home-mockup';
+
+  if (isMockupRoute) {
+    return (
+      <>
+        <ScrollToTopOnNav />
+        <HomeMockup />
+      </>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-surface">
       <ScrollToTopOnNav />
