@@ -28,7 +28,6 @@ const CLIENTS = [
   { name: 'JBM Group', logo: '/clients/jbm1.png', className: 'scale-110', containerClassName: 'px-5 sm:px-8 lg:px-10' },
   { name: 'Force Motors LTD', logo: '/clients/Force_Motors_Logo.svg.png', className: 'scale-115', containerClassName: 'px-5 sm:px-8 lg:px-10' },
   { name: 'Amentum', logo: '/clients/Amentum_Logo-RGB-Full_Color_H.png', containerClassName: 'px-4.5 sm:px-7 lg:px-9' },
-  { name: 'UST', logo: '/clients/partner-3979-logo.png', className: 'scale-[1.2]', containerClassName: 'px-5 sm:px-8 lg:px-10' },
   { name: 'Evezas', logo: '/clients/evezas.png', className: 'scale-[2.1]', containerClassName: 'px-8 sm:px-12 lg:px-15' },
   { name: 'Total Chronic Care', logo: '/clients/tcc logo.png', className: 'scale-105', containerClassName: 'px-5 sm:px-8 lg:px-10' },
 ];
