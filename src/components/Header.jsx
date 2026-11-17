@@ -16,6 +16,7 @@ const NAV_ITEMS = [
         { heading: 'Consulting', items: [
           { label: 'Architecture Review', href: '/services#consulting' },
           { label: 'Compliance Audits', href: '/services#consulting' },
+          { label: 'Quality & Standards', href: '/quality' },
           { label: 'Technology Advisory', href: '/services#consulting' },
         ]},
       ],
@@ -55,6 +56,7 @@ const NAV_ITEMS = [
     },
   },
   */
+  { label: 'Quality', href: '/quality' },
   { label: 'Company', href: '/company' },
   { label: 'Careers', href: '/careers' },
 ];

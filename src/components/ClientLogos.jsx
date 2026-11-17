@@ -20,6 +20,7 @@ import { motion } from 'framer-motion';
 
 const CLIENTS = [
   { name: 'Toyota', logo: '/clients/toyota-logos-brands-logotypes-0.png', className: 'scale-115', containerClassName: 'px-5 sm:px-8 lg:px-10' },
+  { name: 'Panasonic', logo: '/clients/Panasonic-logo.png', className: 'scale-[1.7]', containerClassName: 'px-8 sm:px-12 lg:px-14' },
   { name: 'Tata Motors', logo: '/clients/tata motors.png', className: 'scale-115', containerClassName: 'px-5 sm:px-8 lg:px-10' },
   { name: 'Aisin Corporation', logo: '/clients/aisin logo.png', className: 'scale-[0.68] max-h-6 sm:max-h-7', containerClassName: 'px-2 sm:px-3 lg:px-4' },
   { name: 'Denso Corporation', logo: '/clients/Denso_logo.svg.png', className: 'scale-[0.8]', containerClassName: 'px-2.5 sm:px-4 lg:px-5' },

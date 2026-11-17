@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import PageHero from '../components/PageHero';
 import Contact from '../components/Contact';
 
@@ -70,6 +71,7 @@ const LOCATIONS = [
   { city: 'Dallas', country: 'USA' },
   { city: 'Thiruvananthapuram', country: 'India' },
   { city: 'Tokyo', country: 'Japan' },
+  { city: 'Cairo', country: 'Egypt' },
 ];
 
 export default function Company() {
@@ -121,7 +123,7 @@ export default function Company() {
                   We combine domain expertise in embedded systems, digital transformation, AI, and cloud engineering with a relentless focus on quality, to help organizations design, develop, validate, and scale next-generation products.
                 </p>
                 <p>
-                  Today, we serve leading automotive OEMs, Tier-1 mobility suppliers, industrial automation firms, and technology enterprises across three global engineering centers.
+                  Today, we serve leading automotive OEMs, Tier-1 mobility suppliers, industrial automation firms, and technology enterprises across four global engineering centers.
                 </p>
               </motion.div>
             </div>
@@ -221,7 +223,123 @@ export default function Company() {
         </div>
       </section>
 
-      {/* ── Timeline (Milestones 2018-2024 removed per client request) ── */}
+      {/* ── Certifications & Quality Standards ── */}
+      <section className="py-16 lg:py-20 bg-surface border-y border-navy-100/60" id="certifications">
+        <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
+          <div className="text-center mb-12">
+            <motion.span
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ type: 'spring', stiffness: 120, damping: 20 }}
+              className="inline-block text-[12px] font-semibold uppercase tracking-[0.2em] text-zenith mb-3"
+            >
+              Certified Excellence
+            </motion.span>
+            <motion.h2
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              custom={0.05}
+              className="font-display text-[clamp(1.5rem,3vw,2.25rem)] font-bold tracking-display text-navy-950 leading-tight mb-4"
+            >
+              Quality & Security Certifications
+            </motion.h2>
+            <p className="text-[15px] leading-relaxed text-text-secondary max-w-2xl mx-auto">
+              Recognized certifications and rigorous frameworks demonstrating our commitment to quality, functional safety, and automotive information security.
+            </p>
+          </div>
+
+          {/* Primary 2 Certifications Cards */}
+          <div className="grid md:grid-cols-2 gap-6 max-w-[960px] mx-auto mb-10">
+            {/* ISO 9001:2015 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ type: 'spring', stiffness: 100, damping: 18, delay: 0.05 }}
+              className="relative p-7 sm:p-8 rounded-2xl bg-white border border-navy-100 shadow-[0_4px_20px_rgba(6,27,46,0.04)] hover:border-zenith/40 hover:shadow-[0_12px_32px_rgba(6,27,46,0.08)] transition-all duration-300 flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-zenith/10 text-zenith flex items-center justify-center">
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2Z" />
+                    </svg>
+                  </div>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    Verified • Valid until 2026
+                  </span>
+                </div>
+                <h3 className="font-display text-[22px] font-bold text-navy-950 mb-1">
+                  ISO 9001:2015
+                </h3>
+                <p className="text-[12.5px] font-medium text-zenith mb-3 uppercase tracking-wider">
+                  International Organization for Standardization
+                </p>
+                <p className="text-[14px] leading-relaxed text-text-secondary">
+                  Quality Management Systems (QMS) certification ensuring consistent quality, rigorous process discipline, and continuous improvement across our engineering deliverables.
+                </p>
+              </div>
+              <div className="pt-5 mt-5 border-t border-navy-100/80 flex items-center justify-between text-[12.5px] text-text-tertiary">
+                <span>Scope: Global Engineering Services</span>
+                <span className="font-semibold text-navy-900">Certified</span>
+              </div>
+            </motion.div>
+
+            {/* TISAX - ENX */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ type: 'spring', stiffness: 100, damping: 18, delay: 0.1 }}
+              className="relative p-7 sm:p-8 rounded-2xl bg-white border border-navy-100 shadow-[0_4px_20px_rgba(6,27,46,0.04)] hover:border-zenith/40 hover:shadow-[0_12px_32px_rgba(6,27,46,0.08)] transition-all duration-300 flex flex-col justify-between"
+            >
+              <div>
+                <div className="flex items-center justify-between gap-3 mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-navy-950 text-white flex items-center justify-center">
+                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                  </div>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    Verified • Valid until 2027
+                  </span>
+                </div>
+                <h3 className="font-display text-[22px] font-bold text-navy-950 mb-1">
+                  TISAX – ENX
+                </h3>
+                <p className="text-[12.5px] font-medium text-zenith mb-3 uppercase tracking-wider">
+                  ENX Association
+                </p>
+                <p className="text-[14px] leading-relaxed text-text-secondary">
+                  Trusted Information Security Assessment Exchange (TISAX) framework tailored for the automotive industry, validating rigorous data protection, prototype confidentiality, and supply chain cybersecurity.
+                </p>
+              </div>
+              <div className="pt-5 mt-5 border-t border-navy-100/80 flex items-center justify-between text-[12.5px] text-text-tertiary">
+                <span>Scope: Automotive Information Security</span>
+                <span className="font-semibold text-navy-900">Certified</span>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Link to full Quality & Standards page */}
+          <div className="text-center">
+            <Link
+              to="/quality"
+              className="inline-flex items-center gap-2 text-[14px] font-semibold text-zenith hover:text-zenith-600 transition-colors"
+            >
+              <span>Explore our complete Quality & Standards framework</span>
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+      </section>
 
       {/* ── Leadership ── */}
       <section className="py-16 lg:py-20 bg-surface-alt" id="leadership">
@@ -297,7 +415,7 @@ export default function Company() {
             </motion.h2>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1050px] mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-[1240px] mx-auto">
             {LOCATIONS.map((loc, i) => (
               <motion.div
                 key={loc.city}

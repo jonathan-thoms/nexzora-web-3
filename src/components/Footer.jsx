@@ -1,9 +1,28 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const FOOTER_LINKS = {
-  Solutions: ['Embedded Engineering', 'Automotive & Mobility', 'Digital Transformation', 'AI & Edge Intelligence', 'Cybersecurity'],
-  Company: ['About Us', 'Leadership', 'Careers', 'Partners', 'Newsroom'],
-  Resources: ['Case Studies', 'Whitepapers', 'Tech Blog', 'Documentation', 'Events'],
+  Solutions: [
+    { label: 'Embedded Engineering', href: '/services' },
+    { label: 'Automotive & Mobility', href: '/industries' },
+    { label: 'Digital Transformation', href: '/services' },
+    { label: 'AI & Edge Intelligence', href: '/services' },
+    { label: 'Cybersecurity', href: '/services' },
+  ],
+  Company: [
+    { label: 'About Us', href: '/company' },
+    { label: 'Leadership', href: '/company' },
+    { label: 'Quality & Certifications', href: '/quality' },
+    { label: 'Careers', href: '/careers' },
+    { label: 'Partners', href: '/company' },
+  ],
+  Resources: [
+    { label: 'Case Studies', href: '#' },
+    { label: 'Whitepapers', href: '#' },
+    { label: 'Tech Blog', href: '#' },
+    { label: 'Documentation', href: '#' },
+    { label: 'Events', href: '#' },
+  ],
 };
 
 export default function Footer() {
@@ -102,16 +121,31 @@ export default function Footer() {
                 {heading}
               </h4>
               <ul className="space-y-2.5 sm:space-y-3">
-                {links.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
-                      className="text-[13.5px] sm:text-[14px] text-navy-300 hover:text-zenith transition-colors duration-150 inline-block py-0.5"
-                    >
-                      {link}
-                    </a>
-                  </li>
-                ))}
+                {links.map((link) => {
+                  const label = typeof link === 'object' ? link.label : link;
+                  const href = typeof link === 'object' ? link.href : '#';
+                  const isInternal = href.startsWith('/') && !href.startsWith('//');
+
+                  return (
+                    <li key={label}>
+                      {isInternal ? (
+                        <Link
+                          to={href}
+                          className="text-[13.5px] sm:text-[14px] text-navy-300 hover:text-zenith transition-colors duration-150 inline-block py-0.5"
+                        >
+                          {label}
+                        </Link>
+                      ) : (
+                        <a
+                          href={href}
+                          className="text-[13.5px] sm:text-[14px] text-navy-300 hover:text-zenith transition-colors duration-150 inline-block py-0.5"
+                        >
+                          {label}
+                        </a>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}
