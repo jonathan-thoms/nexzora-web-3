@@ -10,12 +10,23 @@ const fadeUp = {
   }),
 };
 
+const PRODUCT_CATEGORIES = [
+  'Automotive',
+  'Cybersecurity',
+  'AI & Robotics',
+  'Embedded',
+  'Smart Energy',
+  'Other',
+];
+
 export default function Contact() {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
-    email: '',
     company: '',
+    email: '',
+    phone: '',
+    category: '',
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -47,11 +58,13 @@ export default function Contact() {
     try {
       const payload = {
         access_key: accessKey,
-        subject: `New Project Inquiry from ${formData.firstName} ${formData.lastName} (${formData.company || 'Website Inquiry'})`,
+        subject: `New ${formData.category || 'Project'} Inquiry from ${formData.firstName} ${formData.lastName} (${formData.company || 'Website Inquiry'})`,
         from_name: 'NEXZORA Technologies Contact',
         name: `${formData.firstName} ${formData.lastName}`.trim(),
-        email: formData.email,
         company: formData.company || 'Not provided',
+        email: formData.email,
+        phone: formData.phone || 'Not provided',
+        category: formData.category || 'Not specified',
         message: formData.message,
       };
 
@@ -71,8 +84,10 @@ export default function Contact() {
         setFormData({
           firstName: '',
           lastName: '',
-          email: '',
           company: '',
+          email: '',
+          phone: '',
+          category: '',
           message: '',
         });
       } else {
@@ -260,7 +275,7 @@ export default function Contact() {
                     autoComplete="off"
                   />
 
-                  {/* Name row */}
+                  {/* 1. Name row — First & Last */}
                   <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
                     <div>
                       <label htmlFor="contact-first" className="block text-[12px] sm:text-[12.5px] font-semibold text-navy-300 uppercase tracking-label mb-1.5 sm:mb-2">
@@ -296,7 +311,24 @@ export default function Contact() {
                     </div>
                   </div>
 
-                  {/* Email */}
+                  {/* 2. Company */}
+                  <div>
+                    <label htmlFor="contact-company" className="block text-[12px] sm:text-[12.5px] font-semibold text-navy-300 uppercase tracking-label mb-1.5 sm:mb-2">
+                      Company
+                    </label>
+                    <input
+                      type="text"
+                      id="contact-company"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleChange}
+                      disabled={isSubmitting}
+                      className="w-full px-4 py-3 sm:py-3.5 bg-navy-950/80 border border-navy-700/50 rounded-lg text-[16px] sm:text-[14.5px] text-white placeholder-navy-500 outline-none transition-all duration-200 focus:border-zenith/60 focus:ring-1 focus:ring-zenith/20 disabled:opacity-50"
+                      placeholder="Company name"
+                    />
+                  </div>
+
+                  {/* 3. Work Email */}
                   <div>
                     <label htmlFor="contact-email" className="block text-[12px] sm:text-[12.5px] font-semibold text-navy-300 uppercase tracking-label mb-1.5 sm:mb-2">
                       Work Email
@@ -314,24 +346,64 @@ export default function Contact() {
                     />
                   </div>
 
-                  {/* Company */}
+                  {/* 4. Phone */}
                   <div>
-                    <label htmlFor="contact-company" className="block text-[12px] sm:text-[12.5px] font-semibold text-navy-300 uppercase tracking-label mb-1.5 sm:mb-2">
-                      Company
+                    <label htmlFor="contact-phone" className="block text-[12px] sm:text-[12.5px] font-semibold text-navy-300 uppercase tracking-label mb-1.5 sm:mb-2">
+                      Phone
                     </label>
                     <input
-                      type="text"
-                      id="contact-company"
-                      name="company"
-                      value={formData.company}
+                      type="tel"
+                      id="contact-phone"
+                      name="phone"
+                      value={formData.phone}
                       onChange={handleChange}
                       disabled={isSubmitting}
                       className="w-full px-4 py-3 sm:py-3.5 bg-navy-950/80 border border-navy-700/50 rounded-lg text-[16px] sm:text-[14.5px] text-white placeholder-navy-500 outline-none transition-all duration-200 focus:border-zenith/60 focus:ring-1 focus:ring-zenith/20 disabled:opacity-50"
-                      placeholder="Company name"
+                      placeholder="+1 (555) 000-0000"
                     />
                   </div>
 
-                  {/* Message */}
+                  {/* 5. How can we help you? */}
+                  <div>
+                    <label htmlFor="contact-category" className="block text-[12px] sm:text-[12.5px] font-semibold text-navy-300 uppercase tracking-label mb-1.5 sm:mb-2">
+                      How can we help you?
+                    </label>
+                    <div className="relative">
+                      <select
+                        id="contact-category"
+                        name="category"
+                        value={formData.category}
+                        onChange={handleChange}
+                        required
+                        disabled={isSubmitting}
+                        className={`w-full appearance-none px-4 pr-10 py-3 sm:py-3.5 bg-navy-950/80 border border-navy-700/50 rounded-lg text-[16px] sm:text-[14.5px] outline-none transition-all duration-200 focus:border-zenith/60 focus:ring-1 focus:ring-zenith/20 disabled:opacity-50 cursor-pointer ${
+                          formData.category ? 'text-white' : 'text-navy-400'
+                        }`}
+                      >
+                        <option value="" disabled className="bg-navy-950 text-navy-400">
+                          Select a category
+                        </option>
+                        {PRODUCT_CATEGORIES.map((category) => (
+                          <option key={category} value={category} className="bg-navy-950 text-white">
+                            {category}
+                          </option>
+                        ))}
+                      </select>
+                      <svg
+                        className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-navy-400"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="m6 9 6 6 6-6" />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* 6. Message */}
                   <div>
                     <label htmlFor="contact-message" className="block text-[12px] sm:text-[12.5px] font-semibold text-navy-300 uppercase tracking-label mb-1.5 sm:mb-2">
                       Message

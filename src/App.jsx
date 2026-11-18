@@ -14,12 +14,22 @@ import Company from './pages/Company';
 import Careers from './pages/Careers';
 import HomeMockup from './pages/HomeMockup';
 
-/* Scroll to top on route change */
+/* Scroll to top or hash anchor on route change */
 function ScrollToTopOnNav() {
-  const { pathname } = useLocation();
+  const { pathname, hash, key } = useLocation();
   useEffect(() => {
+    if (hash) {
+      const id = hash.slice(1);
+      const timeoutId = setTimeout(() => {
+        const target = document.getElementById(id);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 60);
+      return () => clearTimeout(timeoutId);
+    }
     window.scrollTo(0, 0);
-  }, [pathname]);
+  }, [pathname, hash, key]);
   return null;
 }
 

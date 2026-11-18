@@ -4,7 +4,9 @@ import CTABanner from '../components/CTABanner';
 
 /* ============================================
    Quality & Standards Page
-   Reference: ISO 9001:2015 & TISAX - ENX Certifications
+   Certifications: ISO 9001:2015 & TISAX®
+   Standards: ASPICE, ISO 26262 (FuSa), ISO/SAE 21434,
+              Model-Based Development & AUTOSAR
    ============================================ */
 
 const fadeUp = {
@@ -20,30 +22,55 @@ const CERTIFICATIONS = [
   {
     id: 'iso-9001',
     name: 'ISO 9001:2015',
-    issuer: 'International Organization for Standardization',
     badge: 'Quality Management System',
-    description:
-      'Quality Management Systems certification ensuring consistent engineering quality, rigorous process discipline, and continuous improvement across our processes and deliverables.',
-    validUntil: '2026',
-    scope: 'Global Embedded, Automotive & Software Engineering Services',
+    issuer: 'International Organization for Standardization',
+    pillars: [
+      {
+        label: 'Process Efficiency',
+        text: 'Streamlined workflows for consistent delivery',
+      },
+      {
+        label: 'Continuous Improvement',
+        text: 'Data-driven performance optimization',
+      },
+      {
+        label: 'Risk Management',
+        text: 'Proactive identification and mitigation of operational risks',
+      },
+    ],
+    summary: 'Ensures we meet international standards for reliability and quality.',
     icon: (
       <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2Z" />
+        <circle cx="12" cy="12" r="10" />
+        <path d="M2 12h20" />
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
       </svg>
     ),
   },
   {
     id: 'tisax',
-    name: 'TISAX – ENX',
-    issuer: 'ENX Association',
+    name: 'TISAX®',
     badge: 'Automotive Information Security',
-    description:
-      'Trusted Information Security Assessment Exchange (TISAX) framework tailored for the automotive industry, validating high-level data protection, prototype confidentiality, and supply chain cybersecurity.',
-    validUntil: '2027',
-    scope: 'High Protection Levels (Assessment Level 2 & 3), Prototype Confidentiality & Cyber Resilience',
+    issuer: 'ENX Association',
+    pillars: [
+      {
+        label: 'Information Security',
+        text: 'Robust protection of IP and digital assets',
+      },
+      {
+        label: 'Data Privacy',
+        text: 'GDPR/VDA compliance for industry-specific requirements',
+      },
+      {
+        label: 'Prototype Protection',
+        text: 'High-level security for physical and digital designs',
+      },
+    ],
+    summary: 'Guarantees a secure partnership environment for OEMs and tier-suppliers.',
     icon: (
       <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <path d="m9 12 2 2 4-4" />
       </svg>
     ),
   },
@@ -51,79 +78,99 @@ const CERTIFICATIONS = [
 
 const STANDARDS = [
   {
-    id: 'sdlc',
-    name: 'Software Development Life Cycle',
-    code: 'SDLC Standards',
-    description: 'Comprehensive SDLC processes following industry best practices for embedded and cloud software development.',
+    id: 'fusa',
+    name: '(FuSa) Functional Safety',
+    code: 'ISO 26262',
+    spanClass: 'lg:col-span-3',
+    description: 'End-to-end safety-critical software development and lifecycle management up to ASIL D.',
     icon: (
-      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6}>
-        <polyline points="16 18 22 12 16 6" />
-        <polyline points="8 6 2 12 8 18" />
-      </svg>
-    ),
-    requirements: [
-      'Agile/Scrum engineering workflows & milestone tracking',
-      'Mandatory peer code review and collaborative pairing',
-      'Automated testing pipelines and CI/CD automation',
-      'Strict version control, branch protections & documentation',
-      'Regular sprint reviews and defect root-cause retrospectives',
-    ],
-  },
-  {
-    id: 'cybersecurity',
-    name: 'Cybersecurity Standards',
-    code: 'ISO 27001, NIST, ISO/SAE 21434',
-    description: 'Robust security measures and compliance with international cybersecurity standards across edge, vehicle, and cloud.',
-    icon: (
-      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6}>
-        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-      </svg>
-    ),
-    requirements: [
-      'Secure coding practices (MISRA-C, CERT C/C++)',
-      'Threat Analysis and Risk Assessment (TARA / STRIDE)',
-      'Hardware Security Module (HSM) & secure boot enforcement',
-      'End-to-end cryptographic data encryption & key lifecycle',
-      'Regular penetration testing and incident response protocols',
-    ],
-  },
-  {
-    id: 'safety',
-    name: 'Automotive Safety Standards',
-    code: 'ISO 26262, A-SPICE',
-    description: 'Functional safety and process maturity standards for automotive software and electronics development.',
-    icon: (
-      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6}>
+      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
         <path d="m9 12 2 2 4-4" />
       </svg>
     ),
     requirements: [
-      'Functional safety analysis from ASIL A through ASIL D',
-      'Hazard Analysis and Risk Assessment (HARA)',
-      'Bi-directional safety requirements traceability',
-      'Hardware-in-the-Loop (HIL) & Fault Injection Testing',
-      'A-SPICE Level 2/3 engineering process conformity',
+      'Functional Safety compliant software development (up to ASIL D)',
+      'HARA, Functional safety life cycle management plan, Safety concept & technical requirements, FMEDA, FTA, FSM plans, and Safety Assessment',
+      'Tools: Software tools qualification, MATLAB Simulink, Atlassian JIRA, Ansys Medini',
     ],
   },
   {
-    id: 'qa',
-    name: 'Quality Assurance & Testing',
-    code: 'IEEE 1012, ISO 29119',
-    description: 'Comprehensive QA processes ensuring software determinism, reliability, and peak defect prevention.',
+    id: 'cybersecurity',
+    name: 'Automotive Cybersecurity',
+    code: 'ISO/SAE 21434',
+    spanClass: 'lg:col-span-3',
+    description: 'Defense-in-depth engineering securing connected vehicles from silicon through cloud backends.',
     icon: (
-      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6}>
+      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+      </svg>
+    ),
+    requirements: [
+      'Chip-to-cloud cybersecurity solutions',
+      'Secure by design (secure boot / firmware OTA)',
+      'Active security (anomaly detection & reporting)',
+      'Authentication & Intrusion Detection',
+      'Threat modeling & Penetration Testing',
+    ],
+  },
+  {
+    id: 'aspice',
+    name: 'ASPICE',
+    code: 'Automotive SPICE® V3.1',
+    spanClass: 'lg:col-span-2',
+    description: 'Disciplined process maturity and centralized quality governance for automotive programs.',
+    icon: (
+      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">
         <path d="M9 11l3 3L22 4" />
         <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
       </svg>
     ),
     requirements: [
-      'Multi-tier test strategy and complete coverage matrices',
-      'Automated unit, integration, system, and regression testing',
-      'Real-time deterministic timing & latency profiling',
-      'Custom hardware simulation and automated test benches',
-      'Structured quality metrics reporting and audit trails',
+      'Automotive SPICE® V3.1 Capability Level 2 Certified',
+      'Centralized QMS system for ASPICE project execution',
+      'Pool of ASPICE trained engineers',
+    ],
+  },
+  {
+    id: 'mbd',
+    name: 'Model-Based Development',
+    code: 'MIL / SIL / HIL',
+    spanClass: 'lg:col-span-2',
+    description: 'Model-driven control design, simulation, and automated hardware-in-the-loop verification.',
+    icon: (
+      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="7" height="7" rx="1" />
+        <rect x="14" y="3" width="7" height="7" rx="1" />
+        <rect x="14" y="14" width="7" height="7" rx="1" />
+        <rect x="3" y="14" width="7" height="7" rx="1" />
+        <path d="M10 6.5h4M6.5 10v4M17.5 10v4M10 17.5h4" />
+      </svg>
+    ),
+    requirements: [
+      'MIL/SIL/HIL development and testing',
+      'Control algorithm and embedded software development',
+      'Modeling and Simulation – MATLAB & Simulink',
+      'Automation & Test – LabVIEW, VeriStand',
+    ],
+  },
+  {
+    id: 'autosar',
+    name: 'AUTOSAR',
+    code: 'Classic & Adaptive AUTOSAR',
+    spanClass: 'md:col-span-2 lg:col-span-2',
+    description: 'Standardized ECU software architectures across basic software modules and application layers.',
+    icon: (
+      <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round">
+        <rect x="4" y="4" width="16" height="16" rx="2" />
+        <rect x="9" y="9" width="6" height="6" />
+        <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3" />
+      </svg>
+    ),
+    requirements: [
+      'Expertise in development, integration, and validation of AUTOSAR Basic Software Module (BSW) & ASW',
+      'AUTOSAR tooling: Vector Tools, Siemens (VSA), Elektrobit EB tresos Studio',
     ],
   },
 ];
@@ -144,7 +191,7 @@ const CHECKLIST = [
   {
     id: 2,
     title: 'Testing Coverage',
-    description: 'Comprehensive unit, integration, and full HIL/MIL verification for zero-defect delivery.',
+    description: 'Comprehensive unit, integration, and full MIL/SIL/HIL verification for zero-defect delivery.',
     status: 'Active',
     icon: (
       <svg className="w-5 h-5 text-zenith" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
@@ -156,7 +203,7 @@ const CHECKLIST = [
   {
     id: 3,
     title: 'Documentation',
-    description: 'Complete architectural specifications, hardware register maps, and API interface docs.',
+    description: 'Complete architectural specifications, safety cases, traceability matrices, and interface docs.',
     status: 'Active',
     icon: (
       <svg className="w-5 h-5 text-zenith" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
@@ -183,7 +230,7 @@ const CHECKLIST = [
   {
     id: 5,
     title: 'Security Audits',
-    description: 'Regular embedded vulnerability scanning, protocol fuzzing, and threat modeling.',
+    description: 'Regular threat modeling, vulnerability scanning, penetration testing, and firmware integrity checks.',
     status: 'Active',
     icon: (
       <svg className="w-5 h-5 text-zenith" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
@@ -195,7 +242,7 @@ const CHECKLIST = [
   {
     id: 6,
     title: 'Compliance Review',
-    description: 'Systematic alignment checks against ISO 9001, TISAX, ISO 26262, and UNECE R155/R156.',
+    description: 'Systematic alignment checks against ISO 9001:2015, TISAX®, ASPICE V3.1, ISO 26262, and ISO/SAE 21434.',
     status: 'Active',
     icon: (
       <svg className="w-5 h-5 text-zenith" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
@@ -220,7 +267,7 @@ const CHECKLIST = [
   {
     id: 8,
     title: 'Training & Development',
-    description: 'Ongoing engineering certifications in functional safety, AUTOSAR, and automotive cybersecurity.',
+    description: 'Dedicated pool of ASPICE-trained engineers and ongoing certifications in FuSa, AUTOSAR, and cybersecurity.',
     status: 'Active',
     icon: (
       <svg className="w-5 h-5 text-zenith" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
@@ -232,7 +279,7 @@ const CHECKLIST = [
   {
     id: 9,
     title: 'Risk Management',
-    description: 'Proactive failure mode evaluations (FMEA/FMEDA) and disciplined mitigation tracking.',
+    description: 'Proactive HARA, FMEDA, and FTA evaluations with disciplined operational risk mitigation.',
     status: 'Active',
     icon: (
       <svg className="w-5 h-5 text-zenith" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
@@ -250,10 +297,10 @@ export default function Quality() {
       <PageHero
         label="Quality & Standards"
         title="Engineering Precision Built on Proven Standards"
-        subtitle="Committed to excellence through rigorous quality standards, international certifications, and continuous process improvement."
+        subtitle="Committed to excellence through globally recognized certifications, automotive safety standards, and rigorous engineering governance."
       />
 
-      {/* ── Section 1: Our Certifications ── */}
+      {/* ── Section 1: Our Commitment to Quality & Security (PDF Page 10) ── */}
       <section className="py-16 lg:py-20 bg-surface" id="certifications">
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
           <div className="text-center mb-12">
@@ -274,14 +321,14 @@ export default function Quality() {
               custom={0.05}
               className="font-display text-[clamp(1.5rem,3vw,2.25rem)] font-bold tracking-display text-navy-950 leading-tight mb-4"
             >
-              Recognized Industry Certifications
+              Our Commitment to Quality &amp; Security
             </motion.h2>
             <p className="text-[15px] leading-relaxed text-text-secondary max-w-2xl mx-auto">
-              Recognized certifications that demonstrate our commitment to quality, functional safety, and automotive information security.
+              Two globally recognized certifications that define how we operate and how we protect your business.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-[1000px] mx-auto">
+          <div className="grid md:grid-cols-2 gap-8 max-w-[1040px] mx-auto">
             {CERTIFICATIONS.map((cert, i) => (
               <motion.div
                 key={cert.id}
@@ -298,28 +345,37 @@ export default function Quality() {
                     </div>
                     <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-[11.5px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
                       <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                      Verified • Valid until {cert.validUntil}
+                      Globally Recognized • Certified
                     </span>
                   </div>
 
                   <span className="text-[11px] font-bold uppercase tracking-wider text-zenith block mb-1">
                     {cert.badge}
                   </span>
-                  <h3 className="font-display text-[24px] sm:text-[26px] font-bold text-navy-950 mb-1.5">
+                  <h3 className="font-display text-[24px] sm:text-[26px] font-bold text-navy-950 mb-1">
                     {cert.name}
                   </h3>
-                  <p className="text-[13px] text-text-tertiary mb-4 font-medium">
-                    Issued by: {cert.issuer}
+                  <p className="text-[13px] text-text-tertiary mb-6 font-medium">
+                    {cert.issuer}
                   </p>
 
-                  <p className="text-[14.5px] leading-relaxed text-text-secondary mb-6">
-                    {cert.description}
-                  </p>
+                  <ul className="space-y-3.5 mb-7">
+                    {cert.pillars.map((pillar) => (
+                      <li key={pillar.label} className="flex items-start gap-2.5 text-[14px] leading-relaxed text-text-secondary">
+                        <svg className="w-4 h-4 text-zenith shrink-0 mt-1" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clipRule="evenodd" />
+                        </svg>
+                        <span>
+                          <strong className="font-semibold text-navy-950">{pillar.label}:</strong>{' '}
+                          {pillar.text}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
-                <div className="pt-5 border-t border-navy-100 flex items-center justify-between text-[12.5px]">
-                  <span className="text-text-tertiary">Scope:</span>
-                  <span className="font-semibold text-navy-950 text-right">{cert.scope}</span>
+                <div className="pt-5 border-t border-navy-100 text-[13px] font-medium text-navy-900">
+                  {cert.summary}
                 </div>
               </motion.div>
             ))}
@@ -327,7 +383,7 @@ export default function Quality() {
         </div>
       </section>
 
-      {/* ── Section 2: Standards & Compliance ── */}
+      {/* ── Section 2: Standards — AUTOSAR, ISO 26262, ASPICE, Cybersecurity (PDF Page 17) ── */}
       <section className="py-16 lg:py-20 bg-surface-alt border-y border-navy-100/60" id="standards">
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
           <div className="text-center mb-12">
@@ -338,7 +394,7 @@ export default function Quality() {
               transition={{ type: 'spring', stiffness: 120, damping: 20 }}
               className="inline-block text-[12px] font-semibold uppercase tracking-[0.2em] text-zenith mb-3"
             >
-              Standards & Compliance
+              Standards &amp; Compliance
             </motion.span>
             <motion.h2
               variants={fadeUp}
@@ -348,14 +404,14 @@ export default function Quality() {
               custom={0.05}
               className="font-display text-[clamp(1.5rem,3vw,2.25rem)] font-bold tracking-display text-navy-950 leading-tight mb-4"
             >
-              Rigorous Engineering Frameworks
+              AUTOSAR, ISO 26262, ASPICE &amp; Cybersecurity
             </motion.h2>
             <p className="text-[15px] leading-relaxed text-text-secondary max-w-2xl mx-auto">
-              We adhere to international standards and best practices to ensure the highest safety, reliability, and engineering discipline.
+              Industry-leading automotive engineering standards, functional safety lifecycles, cybersecurity architectures, and model-based verification frameworks.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-[1100px] mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-6 gap-6 max-w-[1200px] mx-auto">
             {STANDARDS.map((std, i) => (
               <motion.div
                 key={std.id}
@@ -363,15 +419,15 @@ export default function Quality() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ type: 'spring', stiffness: 100, damping: 18, delay: i * 0.06 }}
-                className="p-7 sm:p-8 rounded-2xl bg-white border border-navy-100 shadow-xs hover:border-zenith/30 transition-all flex flex-col justify-between"
+                className={`p-7 sm:p-8 rounded-2xl bg-white border border-navy-100 shadow-xs hover:border-zenith/30 hover:shadow-[0_12px_30px_rgba(6,27,46,0.06)] transition-all flex flex-col justify-between ${std.spanClass}`}
               >
                 <div>
                   <div className="flex items-center gap-3.5 mb-4">
-                    <div className="w-11 h-11 rounded-xl bg-navy-950/5 flex items-center justify-center text-navy-900">
+                    <div className="w-11 h-11 rounded-xl bg-navy-950/5 flex items-center justify-center text-navy-900 shrink-0">
                       {std.icon}
                     </div>
                     <div>
-                      <h3 className="font-display text-[18px] sm:text-[20px] font-bold text-navy-950 leading-snug">
+                      <h3 className="font-display text-[18px] sm:text-[19px] font-bold text-navy-950 leading-snug">
                         {std.name}
                       </h3>
                       <span className="text-[12px] font-mono text-zenith font-semibold">
@@ -380,7 +436,7 @@ export default function Quality() {
                     </div>
                   </div>
 
-                  <p className="text-[14px] leading-relaxed text-text-secondary mb-5">
+                  <p className="text-[13.5px] leading-relaxed text-text-secondary mb-5">
                     {std.description}
                   </p>
 

@@ -134,6 +134,16 @@ export default function Header() {
     setMobileExpandedIndex(null);
   };
 
+  const handleContactClick = (e) => {
+    setActiveMenu(null);
+    closeMobileMenu();
+    const contactEl = document.getElementById('contact');
+    if (contactEl) {
+      e.preventDefault();
+      contactEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <header
       ref={headerRef}
@@ -206,6 +216,7 @@ export default function Header() {
           {/* Desktop CTA */}
           <Link
             to="/company#contact"
+            onClick={handleContactClick}
             className="hidden lg:inline-flex items-center px-6 py-2.5 bg-navy-900 text-white text-[13.5px] font-semibold tracking-wide rounded-[6px] transition-all duration-200 hover:bg-navy-800 hover:shadow-[0_4px_16px_rgba(10,37,64,0.2)] active:scale-[0.98]"
             id="header-cta"
           >
@@ -390,7 +401,7 @@ export default function Header() {
             <div className="p-5 bg-surface-alt border-t border-navy-100 space-y-4 safe-bottom">
               <Link
                 to="/company#contact"
-                onClick={closeMobileMenu}
+                onClick={handleContactClick}
                 className="w-full flex items-center justify-center py-3.5 px-6 bg-zenith text-white text-[15px] font-semibold rounded-lg shadow-[0_4px_16px_rgba(217,106,26,0.25)] hover:bg-zenith-600 active:scale-[0.99] transition-all"
               >
                 Contact Us

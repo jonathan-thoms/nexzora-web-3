@@ -69,9 +69,9 @@ const LEADERSHIP = [
 
 const LOCATIONS = [
   { city: 'Dallas', country: 'USA' },
-  { city: 'Thiruvananthapuram', country: 'India' },
-  { city: 'Tokyo', country: 'Japan' },
   { city: 'Cairo', country: 'Egypt' },
+  { city: 'Tokyo', country: 'Japan' },
+  { city: 'Thiruvananthapuram', country: 'India' },
 ];
 
 export default function Company() {
@@ -247,7 +247,7 @@ export default function Company() {
               Quality & Security Certifications
             </motion.h2>
             <p className="text-[15px] leading-relaxed text-text-secondary max-w-2xl mx-auto">
-              Recognized certifications and rigorous frameworks demonstrating our commitment to quality, functional safety, and automotive information security.
+              Two globally recognized certifications that define how we operate and how we protect your business.
             </p>
           </div>
 
@@ -265,31 +265,34 @@ export default function Company() {
                 <div className="flex items-center justify-between gap-3 mb-4">
                   <div className="w-12 h-12 rounded-xl bg-zenith/10 text-zenith flex items-center justify-center">
                     <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2Z" />
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M2 12h20" />
+                      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
                     </svg>
                   </div>
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                    Verified • Valid until 2026
+                    Globally Recognized • Certified
                   </span>
                 </div>
                 <h3 className="font-display text-[22px] font-bold text-navy-950 mb-1">
                   ISO 9001:2015
                 </h3>
-                <p className="text-[12.5px] font-medium text-zenith mb-3 uppercase tracking-wider">
-                  International Organization for Standardization
+                <p className="text-[12.5px] font-medium text-zenith mb-4 uppercase tracking-wider">
+                  Quality Management System
                 </p>
-                <p className="text-[14px] leading-relaxed text-text-secondary">
-                  Quality Management Systems (QMS) certification ensuring consistent quality, rigorous process discipline, and continuous improvement across our engineering deliverables.
-                </p>
+                <ul className="space-y-2.5 text-[13.5px] leading-relaxed text-text-secondary">
+                  <li><strong className="text-navy-950">Process Efficiency:</strong> Streamlined workflows for consistent delivery</li>
+                  <li><strong className="text-navy-950">Continuous Improvement:</strong> Data-driven performance optimization</li>
+                  <li><strong className="text-navy-950">Risk Management:</strong> Proactive identification and mitigation of operational risks</li>
+                </ul>
               </div>
-              <div className="pt-5 mt-5 border-t border-navy-100/80 flex items-center justify-between text-[12.5px] text-text-tertiary">
-                <span>Scope: Global Engineering Services</span>
-                <span className="font-semibold text-navy-900">Certified</span>
+              <div className="pt-5 mt-5 border-t border-navy-100/80 text-[12.5px] font-medium text-navy-900">
+                Ensures we meet international standards for reliability and quality.
               </div>
             </motion.div>
 
-            {/* TISAX - ENX */}
+            {/* TISAX® */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -302,26 +305,28 @@ export default function Company() {
                   <div className="w-12 h-12 rounded-xl bg-navy-950 text-white flex items-center justify-center">
                     <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
                       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                      <path d="m9 12 2 2 4-4" />
                     </svg>
                   </div>
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                    Verified • Valid until 2027
+                    Globally Recognized • Certified
                   </span>
                 </div>
                 <h3 className="font-display text-[22px] font-bold text-navy-950 mb-1">
-                  TISAX – ENX
+                  TISAX®
                 </h3>
-                <p className="text-[12.5px] font-medium text-zenith mb-3 uppercase tracking-wider">
-                  ENX Association
+                <p className="text-[12.5px] font-medium text-zenith mb-4 uppercase tracking-wider">
+                  Automotive Information Security
                 </p>
-                <p className="text-[14px] leading-relaxed text-text-secondary">
-                  Trusted Information Security Assessment Exchange (TISAX) framework tailored for the automotive industry, validating rigorous data protection, prototype confidentiality, and supply chain cybersecurity.
-                </p>
+                <ul className="space-y-2.5 text-[13.5px] leading-relaxed text-text-secondary">
+                  <li><strong className="text-navy-950">Information Security:</strong> Robust protection of IP and digital assets</li>
+                  <li><strong className="text-navy-950">Data Privacy:</strong> GDPR/VDA compliance for industry-specific requirements</li>
+                  <li><strong className="text-navy-950">Prototype Protection:</strong> High-level security for physical and digital designs</li>
+                </ul>
               </div>
-              <div className="pt-5 mt-5 border-t border-navy-100/80 flex items-center justify-between text-[12.5px] text-text-tertiary">
-                <span>Scope: Automotive Information Security</span>
-                <span className="font-semibold text-navy-900">Certified</span>
+              <div className="pt-5 mt-5 border-t border-navy-100/80 text-[12.5px] font-medium text-navy-900">
+                Guarantees a secure partnership environment for OEMs and tier-suppliers.
               </div>
             </motion.div>
           </div>
