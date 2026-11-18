@@ -24,6 +24,9 @@ const CERTIFICATIONS = [
     name: 'ISO 9001:2015',
     badge: 'Quality Management System',
     issuer: 'International Organization for Standardization',
+    logo: '/certifications/iso%20logo.png',
+    logoAlt: 'ISO 9001:2015 Certified Company',
+    logoClass: 'h-16 sm:h-[72px] w-auto object-contain',
     pillars: [
       {
         label: 'Process Efficiency',
@@ -39,19 +42,15 @@ const CERTIFICATIONS = [
       },
     ],
     summary: 'Ensures we meet international standards for reliability and quality.',
-    icon: (
-      <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10" />
-        <path d="M2 12h20" />
-        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-      </svg>
-    ),
   },
   {
     id: 'tisax',
     name: 'TISAX®',
     badge: 'Automotive Information Security',
     issuer: 'ENX Association',
+    logo: '/certifications/Tisax%20logo.png',
+    logoAlt: 'TISAX Automotive Information Security',
+    logoClass: 'h-11 sm:h-12 w-auto object-contain',
     pillars: [
       {
         label: 'Information Security',
@@ -67,12 +66,6 @@ const CERTIFICATIONS = [
       },
     ],
     summary: 'Guarantees a secure partnership environment for OEMs and tier-suppliers.',
-    icon: (
-      <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-        <path d="m9 12 2 2 4-4" />
-      </svg>
-    ),
   },
 ];
 
@@ -339,11 +332,15 @@ export default function Quality() {
                 className="relative p-8 sm:p-9 rounded-2xl bg-white border border-navy-100 shadow-[0_6px_28px_rgba(6,27,46,0.05)] hover:border-zenith/40 hover:shadow-[0_16px_40px_rgba(6,27,46,0.08)] transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
-                  <div className="flex items-center justify-between gap-3 mb-5">
-                    <div className="w-13 h-13 rounded-2xl bg-zenith/10 text-zenith flex items-center justify-center">
-                      {cert.icon}
+                  <div className="flex items-center justify-between gap-4 mb-6 min-h-[68px] sm:min-h-[76px]">
+                    <div className="flex items-center">
+                      <img
+                        src={cert.logo}
+                        alt={cert.logoAlt}
+                        className={cert.logoClass}
+                      />
                     </div>
-                    <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-[11.5px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                    <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-[11.5px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0">
                       <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                       Globally Recognized • Certified
                     </span>
