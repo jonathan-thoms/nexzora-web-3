@@ -2,26 +2,27 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const FOOTER_LINKS = {
-  Solutions: [
-    { label: 'Embedded Engineering', href: '/services' },
-    { label: 'Automotive & Mobility', href: '/industries' },
-    { label: 'Digital Transformation', href: '/services' },
-    { label: 'AI & Edge Intelligence', href: '/services' },
-    { label: 'Cybersecurity', href: '/services' },
+  Offerings: [
+    { label: 'All Services', href: '/services' },
+    { label: 'All Solutions', href: '/solutions' },
+    { label: 'All Industries', href: '/industries' },
+    { label: 'AUTOSAR & SDV', href: '/solutions/sdv' },
+    { label: 'Vision & Agentic AI', href: '/solutions/vision-agentic-ai' },
+    { label: 'Consulting & Staffing', href: '/services/consulting' },
   ],
   Company: [
     { label: 'About Us', href: '/company' },
-    { label: 'Leadership', href: '/company' },
+    { label: 'Leadership', href: '/company#leadership' },
     { label: 'Quality & Certifications', href: '/quality' },
     { label: 'Careers', href: '/careers' },
-    { label: 'Partners', href: '/company' },
+    { label: 'Contact Us', href: '/company#contact' },
   ],
   Resources: [
-    { label: 'Case Studies', href: '#' },
-    { label: 'Whitepapers', href: '#' },
-    { label: 'Tech Blog', href: '#' },
-    { label: 'Documentation', href: '#' },
-    { label: 'Events', href: '#' },
+    { label: 'ADAS & Automated Driving', href: '/solutions/adas' },
+    { label: 'Powertrain & BMS', href: '/solutions/powertrain-bms' },
+    { label: 'Robotics & Autonomy', href: '/solutions/robotics-autonomous' },
+    { label: 'IoT & Connected Ecosystems', href: '/solutions/iot-ecosystems' },
+    { label: 'Safety & Cybersecurity', href: '/solutions/safety-cybersecurity' },
   ],
 };
 

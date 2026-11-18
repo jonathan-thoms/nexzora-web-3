@@ -1,61 +1,51 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { SERVICES_DATA, SOLUTIONS_DATA, INDUSTRIES_DATA } from '../data/offeringsData';
+
+const SERVICES_SUBMENU = [
+  {
+    key: 'services',
+    label: 'Services',
+    href: '/services',
+    description: 'Engineering, AUTOSAR, XIL, Cloud & Consulting',
+    items: SERVICES_DATA.map((s) => ({
+      label: s.shortTitle,
+      badge: s.badge,
+      href: `/services/${s.slug}`,
+    })),
+  },
+  {
+    key: 'solutions',
+    label: 'Solutions',
+    href: '/solutions',
+    description: 'SDV, ADAS, IVI, BMS, Vision/Agentic AI & Robotics',
+    items: SOLUTIONS_DATA.map((s) => ({
+      label: s.shortTitle,
+      badge: s.badge,
+      href: `/solutions/${s.slug}`,
+    })),
+  },
+  {
+    key: 'industries',
+    label: 'Industries',
+    href: '/industries',
+    description: 'Domain-specific safety & embedded engineering',
+    items: INDUSTRIES_DATA.map((ind) => ({
+      label: ind.shortTitle,
+      badge: ind.badge,
+      href: `/industries/${ind.slug}`,
+    })),
+  },
+];
 
 const NAV_ITEMS = [
   {
     label: 'Services',
     href: '/services',
-    megaMenu: {
-      columns: [
-        { heading: 'Engineering', items: [
-          { label: 'System Design', href: '/services#engineering' },
-          { label: 'Digital Transformation Services', href: '/services#engineering' },
-          { label: 'Firmware Engineering', href: '/services#engineering' },
-        ]},
-        { heading: 'Consulting', items: [
-          { label: 'Architecture Review', href: '/services#consulting' },
-          { label: 'Compliance Audits', href: '/services#consulting' },
-          { label: 'Quality & Standards', href: '/quality' },
-          { label: 'Technology Advisory', href: '/services#consulting' },
-        ]},
-      ],
-    },
+    hasCascadingMenu: true,
+    categories: SERVICES_SUBMENU,
   },
-  {
-    label: 'Industries',
-    href: '/industries',
-    megaMenu: {
-      columns: [
-        { heading: 'Sectors', items: [
-          { label: 'Automotive & Mobility', href: '/industries#automotive' },
-          { label: 'Energy & CleanTech', href: '/industries#energy' },
-          { label: 'Industrial & Automation', href: '/industries#industrial' },
-          { label: 'Technology', href: '/industries#technology' },
-        ]},
-      ],
-    },
-  },
-  /* Hidden per client request — can be re-enabled later
-  {
-    label: 'Innovation',
-    href: '/innovation',
-    megaMenu: {
-      columns: [
-        { heading: 'R&D', items: [
-          { label: 'Research Labs', href: '/innovation#research' },
-          { label: 'Patent Portfolio', href: '/innovation#patents' },
-          { label: 'Open Source', href: '/innovation#opensource' },
-        ]},
-        { heading: 'Insights', items: [
-          { label: 'Whitepapers', href: '/innovation#insights' },
-          { label: 'Case Studies', href: '/innovation#insights' },
-          { label: 'Tech Blog', href: '/innovation#insights' },
-        ]},
-      ],
-    },
-  },
-  */
   { label: 'Quality', href: '/quality' },
   { label: 'Company', href: '/company' },
   { label: 'Careers', href: '/careers' },
@@ -63,10 +53,12 @@ const NAV_ITEMS = [
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
-  const [activeMenu, setActiveMenu] = useState(null);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [activeCategoryKey, setActiveCategoryKey] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mobileExpandedIndex, setMobileExpandedIndex] = useState(null);
-  const timeoutRef = useRef(null);
+  const [mobileServicesExpanded, setMobileServicesExpanded] = useState(false);
+  const [mobileSubExpanded, setMobileSubExpanded] = useState(null);
+  const closeTimeoutRef = useRef(null);
   const headerRef = useRef(null);
 
   useEffect(() => {
@@ -90,53 +82,50 @@ export default function Header() {
   // Close mobile menu on resize to desktop
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 1024) {
+      if (window.innerWidth >= 1024 && mobileMenuOpen) {
         setMobileMenuOpen(false);
       }
     };
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [mobileMenuOpen]);
 
-  // Close on Escape
+  // Close menus on Escape key
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
+        setServicesOpen(false);
+        setActiveCategoryKey(null);
         setMobileMenuOpen(false);
-        setActiveMenu(null);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  const handleMouseEnter = (index) => {
-    clearTimeout(timeoutRef.current);
-    if (NAV_ITEMS[index].megaMenu) {
-      setActiveMenu(index);
-    }
+  const handleServicesEnter = () => {
+    clearTimeout(closeTimeoutRef.current);
+    setServicesOpen(true);
   };
 
-  const handleMouseLeave = () => {
-    timeoutRef.current = setTimeout(() => setActiveMenu(null), 150);
+  const handleServicesLeave = () => {
+    closeTimeoutRef.current = setTimeout(() => {
+      setServicesOpen(false);
+      setActiveCategoryKey(null);
+    }, 160);
   };
 
-  const handleMenuPanelEnter = () => {
-    clearTimeout(timeoutRef.current);
-  };
-
-  const toggleMobileAccordion = (index) => {
-    setMobileExpandedIndex((prev) => (prev === index ? null : index));
-  };
-
-  const closeMobileMenu = () => {
+  const closeAllMenus = () => {
+    clearTimeout(closeTimeoutRef.current);
+    setServicesOpen(false);
+    setActiveCategoryKey(null);
     setMobileMenuOpen(false);
-    setMobileExpandedIndex(null);
+    setMobileServicesExpanded(false);
+    setMobileSubExpanded(null);
   };
 
   const handleContactClick = (e) => {
-    setActiveMenu(null);
-    closeMobileMenu();
+    closeAllMenus();
     const contactEl = document.getElementById('contact');
     if (contactEl) {
       e.preventDefault();
@@ -144,20 +133,22 @@ export default function Header() {
     }
   };
 
+  const activeCategory =
+    SERVICES_SUBMENU.find((cat) => cat.key === activeCategoryKey) || null;
+
   return (
     <header
       ref={headerRef}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-[#fafaf8]/95 backdrop-blur-md ${
         scrolled || mobileMenuOpen ? 'shadow-[0_1px_3px_rgba(6,27,46,0.06)]' : ''
       }`}
-      onMouseLeave={handleMouseLeave}
     >
       <div className="mx-auto max-w-[1320px] px-5 sm:px-6 lg:px-10">
         <div className="flex items-center justify-between h-[68px] sm:h-[72px]">
           {/* Logo */}
           <Link
             to="/"
-            onClick={closeMobileMenu}
+            onClick={closeAllMenus}
             className="flex items-center gap-3 shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-zenith rounded-md"
             id="header-logo"
           >
@@ -168,49 +159,183 @@ export default function Header() {
             />
           </Link>
 
-          {/* Desktop Center Navigation */}
-          <nav className="hidden lg:flex items-center gap-1" id="header-nav">
-            {NAV_ITEMS.map((item, index) => (
-              <div
-                key={item.label}
-                className="relative group"
-                onMouseEnter={() => handleMouseEnter(index)}
-              >
-                {item.megaMenu ? (
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-1" aria-label="Main Navigation">
+            {NAV_ITEMS.map((item) =>
+              item.hasCascadingMenu ? (
+                <div
+                  key={item.label}
+                  className="relative"
+                  onMouseEnter={handleServicesEnter}
+                  onMouseLeave={handleServicesLeave}
+                >
                   <Link
-                    to={item.href || '#'}
-                    className={`relative px-4 py-2.5 text-[15px] font-medium tracking-wide transition-colors duration-200 cursor-pointer ${
-                      activeMenu === index
+                    to={item.href}
+                    onClick={closeAllMenus}
+                    className={`relative inline-flex items-center gap-1.5 px-4 py-2.5 text-[15px] font-medium tracking-wide transition-colors duration-200 cursor-pointer ${
+                      servicesOpen
                         ? 'text-navy-900'
                         : 'text-text-secondary hover:text-navy-900'
                     }`}
-                    id={`nav-${item.label.toLowerCase()}`}
-                    onClick={() => setActiveMenu(null)}
+                    id="nav-services"
+                    aria-haspopup="true"
+                    aria-expanded={servicesOpen}
                   >
-                    {item.label}
-                    {activeMenu === index && (
+                    <span>{item.label}</span>
+                    <svg
+                      className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                        servicesOpen ? 'rotate-180 text-zenith' : 'text-navy-400'
+                      }`}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2.2}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                    </svg>
+                    {servicesOpen && (
                       <motion.div
                         layoutId="nav-underline"
                         className="absolute bottom-0 left-4 right-4 h-[2px] bg-zenith"
                         transition={{ type: 'spring', stiffness: 500, damping: 35 }}
                       />
                     )}
-                    {activeMenu !== index && (
-                      <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-zenith/70 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
-                    )}
                   </Link>
-                ) : (
+
+                  {/* Cascading Level-1 & Level-2 Flyout Menu (Expert Engine Style) */}
+                  <AnimatePresence>
+                    {servicesOpen && (
+                      <motion.div
+                        key="services-cascading-menu"
+                        initial={{ opacity: 0, y: 6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 4 }}
+                        transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+                        className="absolute left-0 top-full pt-2.5 z-50"
+                        id="services-dropdown-menu"
+                      >
+                        <div className="relative flex items-start">
+                          {/* Level 1 Panel: Services / Solutions / Industries */}
+                          <div className="w-[232px] bg-white border border-navy-100 rounded-xl shadow-[0_16px_44px_rgba(6,27,46,0.12)] py-2">
+                            {SERVICES_SUBMENU.map((cat) => {
+                              const isHovered = activeCategoryKey === cat.key;
+                              return (
+                                <div
+                                  key={cat.key}
+                                  onMouseEnter={() => setActiveCategoryKey(cat.key)}
+                                  className="px-1.5"
+                                >
+                                  <Link
+                                    to={cat.href}
+                                    onClick={closeAllMenus}
+                                    className={`flex items-center justify-between px-3.5 py-2.5 rounded-lg text-[14.5px] font-semibold transition-all duration-150 ${
+                                      isHovered
+                                        ? 'bg-navy-950 text-white shadow-xs'
+                                        : 'text-navy-900 hover:bg-surface-alt hover:text-zenith'
+                                    }`}
+                                    id={`nav-tier1-${cat.key}`}
+                                  >
+                                    <span>{cat.label}</span>
+                                    <svg
+                                      className={`w-4 h-4 transition-transform duration-150 ${
+                                        isHovered
+                                          ? 'text-zenith translate-x-0.5'
+                                          : 'text-navy-400'
+                                      }`}
+                                      fill="none"
+                                      viewBox="0 0 24 24"
+                                      stroke="currentColor"
+                                      strokeWidth={2.2}
+                                    >
+                                      <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                  </Link>
+                                </div>
+                              );
+                            })}
+                          </div>
+
+                          {/* Level 2 Flyout Submenu Panel */}
+                          <AnimatePresence mode="wait">
+                            {activeCategory && (
+                              <motion.div
+                                key={activeCategory.key}
+                                initial={{ opacity: 0, x: -6 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -4 }}
+                                transition={{ duration: 0.16, ease: [0.16, 1, 0.3, 1] }}
+                                className="pl-2"
+                                id={`nav-tier2-${activeCategory.key}`}
+                              >
+                                <div className="w-[320px] bg-white border border-navy-100 rounded-xl shadow-[0_18px_48px_rgba(6,27,46,0.14)] overflow-hidden">
+                                  {/* Submenu Header — Clean Main Page Link */}
+                                  <Link
+                                    to={activeCategory.href}
+                                    onClick={closeAllMenus}
+                                    className="group px-4 py-3 bg-surface-alt border-b border-navy-100/80 flex items-center justify-between gap-2 hover:bg-navy-950 transition-colors duration-150"
+                                  >
+                                    <span className="text-[13px] font-bold uppercase tracking-[0.14em] text-zenith group-hover:text-white transition-colors">
+                                      {activeCategory.label}
+                                    </span>
+                                    <svg
+                                      className="w-4 h-4 text-zenith group-hover:text-white group-hover:translate-x-0.5 transition-all"
+                                      fill="none"
+                                      viewBox="0 0 24 24"
+                                      stroke="currentColor"
+                                      strokeWidth={2.2}
+                                    >
+                                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                                    </svg>
+                                  </Link>
+
+                                  {/* Submenu Items List */}
+                                  <ul className="py-2 px-1.5 max-h-[70vh] overflow-y-auto">
+                                    {activeCategory.items.map((subItem) => (
+                                      <li key={subItem.href}>
+                                        <Link
+                                          to={subItem.href}
+                                          onClick={closeAllMenus}
+                                          className="group flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg hover:bg-surface-alt transition-colors duration-150"
+                                        >
+                                          <span className="text-[13.5px] font-medium text-navy-900 group-hover:text-zenith transition-colors leading-snug">
+                                            {subItem.label}
+                                          </span>
+                                          <svg
+                                            className="w-3.5 h-3.5 text-navy-300 group-hover:text-zenith group-hover:translate-x-0.5 transition-all shrink-0"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                            stroke="currentColor"
+                                            strokeWidth={2}
+                                          >
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                                          </svg>
+                                        </Link>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : (
+                <div key={item.label} className="relative group">
                   <Link
-                    to={item.href || '#'}
+                    to={item.href}
+                    onClick={closeAllMenus}
                     className="relative px-4 py-2.5 text-[15px] font-medium tracking-wide transition-colors duration-200 text-text-secondary hover:text-navy-900"
                     id={`nav-${item.label.toLowerCase()}`}
                   >
                     {item.label}
                     <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-zenith/70 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
                   </Link>
-                )}
-              </div>
-            ))}
+                </div>
+              )
+            )}
           </nav>
 
           {/* Desktop CTA */}
@@ -250,66 +375,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Desktop Mega Menu Dropdown */}
-      <AnimatePresence>
-        {activeMenu !== null && NAV_ITEMS[activeMenu]?.megaMenu && (
-          <motion.div
-            key="mega-menu"
-            initial={{ opacity: 0, y: -4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-            className="hidden lg:block absolute top-full left-0 right-0 bg-[#fafaf8] border-t border-navy-100 shadow-[0_12px_40px_rgba(6,27,46,0.06)]"
-            onMouseEnter={handleMenuPanelEnter}
-            onMouseLeave={handleMouseLeave}
-            id="mega-menu-panel"
-          >
-            <div className="mx-auto max-w-[1320px] px-6 lg:px-10 py-8">
-              <div className="flex gap-16">
-                {NAV_ITEMS[activeMenu].megaMenu.columns.map((col) => (
-                  <div key={col.heading}>
-                    <h4 className="text-[11px] font-semibold uppercase tracking-label text-text-tertiary mb-4">
-                      {col.heading}
-                    </h4>
-                    <ul className="space-y-2.5">
-                      {col.items.map((menuItem) => (
-                        <li key={menuItem.label}>
-                          <Link
-                            to={menuItem.href}
-                            onClick={() => setActiveMenu(null)}
-                            className="text-[14px] font-medium text-navy-800 hover:text-zenith transition-colors duration-150"
-                          >
-                            {menuItem.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-                {/* Featured callout */}
-                <div className="ml-auto max-w-[240px] p-5 bg-surface-alt rounded-lg border border-navy-100">
-                  <p className="text-[11px] font-semibold uppercase tracking-label text-zenith mb-2">
-                    Featured
-                  </p>
-                  <p className="text-[14px] font-medium text-navy-900 leading-snug">
-                    Explore our engineering solutions and precision capabilities.
-                  </p>
-                  <a
-                    href="#"
-                    className="inline-flex items-center mt-3 text-[13px] font-semibold text-zenith hover:text-zenith-600 transition-colors"
-                  >
-                    Learn more
-                    <svg className="ml-1.5 w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       {/* Mobile Navigation Drawer */}
       <AnimatePresence>
         {mobileMenuOpen && (
@@ -323,75 +388,120 @@ export default function Header() {
             id="mobile-menu-drawer"
           >
             <div className="flex-1 px-5 py-6 space-y-1">
-              {NAV_ITEMS.map((item, index) => {
-                const isExpandable = !!item.megaMenu;
-                const isExpanded = mobileExpandedIndex === index;
+              {NAV_ITEMS.map((item) => {
+                if (item.hasCascadingMenu) {
+                  return (
+                    <div key={item.label} className="border-b border-navy-100/60 pb-1">
+                      <button
+                        onClick={() => setMobileServicesExpanded((prev) => !prev)}
+                        className="w-full flex items-center justify-between py-3.5 text-left text-[16px] font-semibold text-navy-950 hover:text-zenith transition-colors"
+                        aria-expanded={mobileServicesExpanded}
+                      >
+                        <span>{item.label}</span>
+                        <motion.svg
+                          animate={{ rotate: mobileServicesExpanded ? 180 : 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="w-4 h-4 text-navy-400 shrink-0"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                        </motion.svg>
+                      </button>
+
+                      <AnimatePresence>
+                        {mobileServicesExpanded && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.25, ease: 'easeInOut' }}
+                            className="overflow-hidden pl-2 pb-3 space-y-2"
+                          >
+                            {SERVICES_SUBMENU.map((cat) => {
+                              const isSubOpen = mobileSubExpanded === cat.key;
+                              return (
+                                <div
+                                  key={cat.key}
+                                  className="rounded-lg bg-white border border-navy-100/80 overflow-hidden"
+                                >
+                                  <button
+                                    onClick={() =>
+                                      setMobileSubExpanded((prev) =>
+                                        prev === cat.key ? null : cat.key
+                                      )
+                                    }
+                                    className="w-full flex items-center justify-between px-4 py-3 text-left text-[14.5px] font-semibold text-navy-900 hover:text-zenith transition-colors"
+                                    aria-expanded={isSubOpen}
+                                  >
+                                    <span>{cat.label}</span>
+                                    <motion.svg
+                                      animate={{ rotate: isSubOpen ? 180 : 0 }}
+                                      transition={{ duration: 0.2 }}
+                                      className="w-4 h-4 text-zenith shrink-0"
+                                      fill="none"
+                                      viewBox="0 0 24 24"
+                                      stroke="currentColor"
+                                      strokeWidth={2}
+                                    >
+                                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                    </motion.svg>
+                                  </button>
+
+                                  <AnimatePresence>
+                                    {isSubOpen && (
+                                      <motion.div
+                                        initial={{ opacity: 0, height: 0 }}
+                                        animate={{ opacity: 1, height: 'auto' }}
+                                        exit={{ opacity: 0, height: 0 }}
+                                        transition={{ duration: 0.22, ease: 'easeInOut' }}
+                                        className="overflow-hidden bg-surface-alt/70 border-t border-navy-100/70 px-4 py-2.5"
+                                      >
+                                        <Link
+                                          to={cat.href}
+                                          onClick={closeAllMenus}
+                                          className="flex items-center justify-between py-1.5 text-[13px] font-semibold text-zenith mb-1"
+                                        >
+                                          <span>{cat.label}</span>
+                                          <span>→</span>
+                                        </Link>
+                                        <ul className="space-y-1">
+                                          {cat.items.map((subItem) => (
+                                            <li key={subItem.href}>
+                                              <Link
+                                                to={subItem.href}
+                                                onClick={closeAllMenus}
+                                                className="block py-1.5 text-[13.5px] text-navy-800 hover:text-zenith transition-colors"
+                                              >
+                                                {subItem.label}
+                                              </Link>
+                                            </li>
+                                          ))}
+                                        </ul>
+                                      </motion.div>
+                                    )}
+                                  </AnimatePresence>
+                                </div>
+                              );
+                            })}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  );
+                }
 
                 return (
                   <div key={item.label} className="border-b border-navy-100/60 last:border-b-0 pb-1">
-                    {isExpandable ? (
-                      <div>
-                        <button
-                          onClick={() => toggleMobileAccordion(index)}
-                          className="w-full flex items-center justify-between py-3.5 text-left text-[16px] font-semibold text-navy-950 hover:text-zenith transition-colors active:text-zenith"
-                          aria-expanded={isExpanded}
-                        >
-                          <span>{item.label}</span>
-                          <motion.svg
-                            animate={{ rotate: isExpanded ? 180 : 0 }}
-                            transition={{ duration: 0.2 }}
-                            className="w-4 h-4 text-navy-400 shrink-0"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                          >
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                          </motion.svg>
-                        </button>
-
-                        <AnimatePresence>
-                          {isExpanded && (
-                            <motion.div
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: 'auto' }}
-                              exit={{ opacity: 0, height: 0 }}
-                              transition={{ duration: 0.25, ease: 'easeInOut' }}
-                              className="overflow-hidden bg-navy-50/50 rounded-lg px-4 py-3 mb-2 space-y-4"
-                            >
-                              {item.megaMenu.columns.map((col) => (
-                                <div key={col.heading}>
-                                  <span className="text-[11px] font-semibold uppercase tracking-wider text-zenith block mb-2">
-                                    {col.heading}
-                                  </span>
-                                  <ul className="space-y-2">
-                                    {col.items.map((subItem) => (
-                                      <li key={subItem.label}>
-                                        <Link
-                                          to={subItem.href}
-                                          onClick={closeMobileMenu}
-                                          className="block py-1 text-[14px] text-navy-800 hover:text-zenith active:text-zenith transition-colors"
-                                        >
-                                          {subItem.label}
-                                        </Link>
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </div>
-                              ))}
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    ) : (
-                      <Link
-                        to={item.href || '#'}
-                        onClick={closeMobileMenu}
-                        className="block py-3.5 text-[16px] font-semibold text-navy-950 hover:text-zenith active:text-zenith transition-colors"
-                      >
-                        {item.label}
-                      </Link>
-                    )}
+                    <Link
+                      to={item.href}
+                      onClick={closeAllMenus}
+                      className="block py-3.5 text-[16px] font-semibold text-navy-950 hover:text-zenith active:text-zenith transition-colors"
+                    >
+                      {item.label}
+                    </Link>
                   </div>
                 );
               })}

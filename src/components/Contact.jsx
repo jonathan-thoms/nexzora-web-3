@@ -16,6 +16,7 @@ const PRODUCT_CATEGORIES = [
   'AI & Robotics',
   'Embedded',
   'Smart Energy',
+  'Digital/Cloud Engineering',
   'Other',
 ];
 

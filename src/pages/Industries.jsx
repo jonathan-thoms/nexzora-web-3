@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import CTABanner from '../components/CTABanner';
+import { INDUSTRIES_DATA } from '../data/offeringsData';
 
 /* ============================================
-   Industries Page — Bespoke Domain Engineering
+   Industries Hub Page — Bespoke Domain Engineering
    ============================================ */
 
 const fadeUp = {
@@ -16,215 +18,82 @@ const fadeUp = {
 };
 
 const HERO_METRICS = [
-  { value: '6+', label: 'Regulated Domains' },
-  { value: 'ASIL D / DAL A', label: 'Safety Integrity' },
+  { value: '7 Sectors', label: 'Regulated & Emerging' },
+  { value: 'ASIL D / SIL 3', label: 'Safety Integrity' },
   { value: 'Tier-1 & OEM', label: 'Production Grade' },
   { value: '100%', label: 'IP Transferred' },
-];
-
-const INDUSTRIES_DATA = [
-  {
-    id: 'automotive',
-    label: 'Automotive & Mobility',
-    badge: 'ISO 26262 ASIL D',
-    headline: 'Software-defined vehicles, ADAS perception, and 800V electrification.',
-    pillars: [
-      {
-        num: '01',
-        title: 'ADAS & Sensor Fusion',
-        desc: 'Deterministic multi-camera and radar perception pipelines on heterogenous SoCs.',
-      },
-      {
-        num: '02',
-        title: '800V Powertrain & BMS',
-        desc: 'High-voltage safety monitoring and state estimation firmware for EV battery packs.',
-      },
-      {
-        num: '03',
-        title: 'AUTOSAR Stacks & OTA',
-        desc: 'Classic & Adaptive MCAL integration with secure SOME/IP over-the-air update flows.',
-      },
-    ],
-    standards: ['ISO 26262 ASIL D', 'AUTOSAR 4.4', 'CAN-FD / SOME/IP', 'A-SPICE Level 3'],
-  },
-  {
-    id: 'digital-transformation',
-    label: 'Digital Transformation & IoT',
-    badge: 'Edge-to-Cloud Platforms',
-    headline: 'Scalable IoT architectures, cloud telemetry, and intelligent connected devices.',
-    pillars: [
-      {
-        num: '01',
-        title: 'Edge Device Connectivity',
-        desc: 'Secure MQTT, CoAP, and lightweight edge gateway firmware for mission-critical deployments.',
-      },
-      {
-        num: '02',
-        title: 'Data Pipelines & Telemetry',
-        desc: 'Distributed event ingestion, Kafka streaming, and sub-second fleet monitoring backends.',
-      },
-      {
-        num: '03',
-        title: 'Over-The-Air (OTA) & Security',
-        desc: 'Zero-downtime firmware updates, zero-trust device PKI identity, and secure bootloaders.',
-      },
-    ],
-    standards: ['MQTT & CoAP', 'Azure IoT Hub', 'AWS Greengrass', 'Zero-Trust PKI'],
-  },
-  {
-    id: 'industrial',
-    label: 'Industrial & Automation',
-    badge: 'IEC 61508 SIL 3',
-    headline: 'Real-time motion control, industrial automation, and smart edge IoT.',
-    pillars: [
-      {
-        num: '01',
-        title: 'Automated Guided Vehicles & Machinery',
-        desc: 'LiDAR SLAM navigation, 3D obstacle avoidance, and automated industrial dispatching.',
-      },
-      {
-        num: '02',
-        title: 'Multi-Axis Motion Control',
-        desc: 'Field-Oriented Control (FOC) for PMSM/BLDC motors with sub-millisecond servo sync.',
-      },
-      {
-        num: '03',
-        title: 'Industrial Fieldbus & IIoT',
-        desc: 'Deterministic EtherCAT slave nodes, OPC-UA gateways, and edge predictive telemetry.',
-      },
-    ],
-    standards: ['ROS 2 Humble', 'EtherCAT & OPC-UA', 'IEC 61508 SIL 3', 'ISO 13849 PL e'],
-  },
-  {
-    id: 'aerospace',
-    label: 'Aerospace & Defense',
-    badge: 'DO-178C DAL A',
-    headline: 'Deterministic flight-critical avionics and radiation-tolerant computing.',
-    pillars: [
-      {
-        num: '01',
-        title: 'Flight Control Software',
-        desc: 'Deterministic Level A control loops with ARINC 653 space-and-time partitioned RTOS.',
-      },
-      {
-        num: '02',
-        title: 'DO-254 FPGA Hardware',
-        desc: 'Safety-critical FPGA logic for flight computers and displays with full artifact traceability.',
-      },
-      {
-        num: '03',
-        title: 'Spacecraft Telemetry & Comms',
-        desc: 'Software-Defined Radio waveforms and SpaceWire bus firmware for orbital systems.',
-      },
-    ],
-    standards: ['DO-178C DAL A', 'DO-254 Hardware', 'ARINC 429 / 653', 'MIL-STD-1553'],
-  },
-  {
-    id: 'energy',
-    label: 'Energy & EV Infrastructure',
-    badge: 'ISO 15118 V2G',
-    headline: 'Megawatt EV charging, grid-scale storage, and power conversion firmware.',
-    pillars: [
-      {
-        num: '01',
-        title: 'DC Fast Charging (EVSE)',
-        desc: 'ISO 15118 Plug & Charge software stacks and OCPP 2.0.1 cloud fleet management.',
-      },
-      {
-        num: '02',
-        title: 'Grid-Scale BESS Master',
-        desc: 'Multi-rack BMS master controllers with thermal runaway prediction algorithms.',
-      },
-      {
-        num: '03',
-        title: 'Bidirectional Power Inverters',
-        desc: 'High-efficiency digital switching control, grid-forming algorithms, and bidirectional V2G.',
-      },
-    ],
-    standards: ['ISO 15118-20', 'OCPP 2.0.1', 'IEC 61850', 'Bidirectional Inverters'],
-  },
-  {
-    id: 'technology',
-    label: 'Cloud & Digital Platforms',
-    badge: 'Enterprise SOC 2',
-    headline: 'Cloud-native backends, streaming IoT telemetry, and DevOps platform scale.',
-    pillars: [
-      {
-        num: '01',
-        title: 'High-Scale IoT Ingestion',
-        desc: 'Distributed event streaming pipelines handling billions of device telemetry events.',
-      },
-      {
-        num: '02',
-        title: 'Microservices & Mesh',
-        desc: 'Kubernetes orchestration, zero-trust Istio service meshes, and automated canary rollouts.',
-      },
-      {
-        num: '03',
-        title: 'Fleet Management & OTA',
-        desc: 'Cryptographically signed delta firmware distribution and remote diagnostics.',
-      },
-    ],
-    standards: ['Kubernetes & Go', 'Apache Kafka', 'Terraform IaC', 'SOC 2 Type II'],
-  },
 ];
 
 const COMPLIANCE_FRAMEWORKS = [
   {
     domain: 'Automotive',
-    standard: 'ISO 26262 & A-SPICE',
-    level: 'ASIL A to ASIL D',
-    scope: 'Hazard analysis (HARA), safety manuals, safety concept architecture, FMEDA, and independent functional safety audits.',
+    standard: 'ISO 26262, ASPICE & ISO/SAE 21434',
+    level: 'ASIL A–D · L2',
+    scope: 'HARA, safety concept architecture, FMEDA/FTA, ASPICE V3.1 process execution, TARA, and chip-to-cloud cybersecurity.',
   },
   {
-    domain: 'Aerospace & Defense',
-    standard: 'DO-178C & DO-254',
-    level: 'DAL A to DAL E',
-    scope: 'Structural code coverage (Statement, Decision, MC/DC), high-level/low-level requirement tracing, and FAA/EASA certification artifacts.',
+    domain: 'Quality & Security',
+    standard: 'ISO 9001:2015 & TISAX®',
+    level: 'Globally Certified',
+    scope: 'Process efficiency, continuous improvement, IP protection, GDPR/VDA data privacy, and prototype security for OEMs and Tier-1s.',
   },
   {
-    domain: 'Industrial Automation',
+    domain: 'Industrial & Robotics',
     standard: 'IEC 61508 & ISO 13849',
-    level: 'SIL 1–4 / PL a–e',
-    scope: 'Safety integrity level calculation, safe state transition mechanisms, hardware fault tolerance (HFT), and redundant voting logic.',
+    level: 'SIL 1–4 / Cat 4',
+    scope: 'Dual-channel MCU safety monitoring, safe-state transitions, fault injection, and ROS 2 real-time control validation.',
   },
   {
-    domain: 'EV Infrastructure',
-    standard: 'ISO 15118 & OCPP 2.0.1',
-    level: 'Plug & Charge V2G',
-    scope: 'TLS 1.3 cryptographic key exchange, automated contract certificate billing, grid synchronization, and charge point interoperability.',
+    domain: 'EV & Connected IoT',
+    standard: 'ISO 15118, OCPP & NIST 8425',
+    level: 'V2G & Cyber Trust',
+    scope: 'Plug & Charge TLS 1.3 key exchange, EVCC charging control, secure boot, and U.S. Cyber Trust Mark security readiness.',
   },
 ];
 
 const CASE_HIGHLIGHTS = [
   {
     sector: 'Automotive & Mobility',
-    title: '800V High-Efficiency Powertrain BMS Firmware',
-    metric: '40% Latency Reduction',
-    metricLabel: 'ISO 26262 ASIL D Certified',
+    slug: 'automotive',
+    title: 'AUTOSAR HPC ECU & 800V Powertrain BMS',
+    metric: 'ASIL D Ready',
+    metricLabel: 'Classic & Adaptive AUTOSAR',
     description:
-      'Engineered an ultra-fast battery management firmware stack with sub-microsecond fault detection and real-time state estimation across 192 battery cells.',
+      'Delivered multi-core HPC cluster/infotainment consolidation and high-efficiency EV battery management firmware with full MIL/SIL/HIL verification.',
   },
   {
-    sector: 'Digital Transformation',
-    title: 'Global Fleet Telematics & Predictive Analytics',
-    metric: '99.99% Uptime',
-    metricLabel: 'Sub-Second Edge Telemetry',
+    sector: 'Robotics & Autonomous Systems',
+    slug: 'robotics',
+    title: '200m Subsea ROV, AUV & Wireless Docking Skid',
+    metric: '200m Depth',
+    metricLabel: 'Stereo Vision & Optical Comms',
     description:
-      'Engineered an edge-to-cloud IoT data ingestion pipeline supporting 250,000+ connected vehicles with real-time health telemetry and zero-data-loss failover.',
+      'Engineered an integrated subsea robotic platform featuring autonomous visual survey, wireless underwater charging, acoustic telemetry, and ROS control.',
   },
   {
-    sector: 'Aerospace & Avionics',
-    title: 'DO-178C Level A Flight Control Actuator',
-    metric: '100% MC/DC',
-    metricLabel: 'DAL A Sign-Off',
+    sector: 'Industrial & Automation',
+    slug: 'industrial',
+    title: 'Unified Category 4 / SIL 3 Safety Controller',
+    metric: 'Cat 4 / SIL 3',
+    metricLabel: 'Dual-MCU Redundant Safety',
     description:
-      'Architected dual-redundant primary flight control actuator firmware with zero-jitter deterministic execution and full FAA compliance artifact package.',
+      'Built dual-channel embedded safety logic with peer heartbeat supervision and bench fault injection for servo drives, EVSE charging, and PLC systems.',
   },
 ];
 
 export default function IndustriesPage() {
+  const { hash } = useLocation();
   const [activeSectorId, setActiveSectorId] = useState(INDUSTRIES_DATA[0].id);
+
+  useEffect(() => {
+    if (hash) {
+      const targetId = hash.slice(1);
+      const match = INDUSTRIES_DATA.find((ind) => ind.id === targetId || ind.slug === targetId);
+      if (match) {
+        setActiveSectorId(match.id);
+      }
+    }
+  }, [hash]);
 
   const currentSector =
     INDUSTRIES_DATA.find((ind) => ind.id === activeSectorId) || INDUSTRIES_DATA[0];
@@ -233,14 +102,12 @@ export default function IndustriesPage() {
     <>
       {/* ── Section 1: Full-Bleed Hero with Left-to-Right Directional Gradient ── */}
       <section className="relative pt-[96px] pb-18 lg:pt-[116px] lg:pb-24 bg-navy-950 overflow-hidden text-white min-h-[580px] flex items-center">
-        {/* Full-bleed background image */}
         <div className="absolute inset-0 z-0">
           <img
             src="/industries-hero.jpg"
             alt="Advanced Multidisciplinary Engineering Laboratory"
             className="w-full h-full object-cover object-right lg:object-center"
           />
-          {/* Directional Gradient Overlay */}
           <div
             className="absolute inset-0"
             style={{
@@ -248,7 +115,6 @@ export default function IndustriesPage() {
                 'linear-gradient(90deg, rgba(6,27,46,0.98) 0%, rgba(6,27,46,0.92) 42%, rgba(6,27,46,0.45) 65%, rgba(6,27,46,0.05) 100%)',
             }}
           />
-          {/* Soft top/bottom edge blend */}
           <div
             className="absolute inset-0"
             style={{
@@ -259,8 +125,16 @@ export default function IndustriesPage() {
         </div>
 
         <div className="relative z-[2] mx-auto max-w-[1320px] px-6 lg:px-10 w-full">
-          <div className="max-w-[720px]">
-            {/* Main Headline */}
+          <div className="max-w-[740px]">
+            <motion.span
+              variants={fadeUp}
+              initial="hidden"
+              animate="visible"
+              custom={0}
+              className="inline-block text-[12px] font-semibold uppercase tracking-[0.2em] text-zenith mb-4"
+            >
+              Industries We Operate In
+            </motion.span>
             <motion.h1
               variants={fadeUp}
               initial="hidden"
@@ -270,22 +144,20 @@ export default function IndustriesPage() {
             >
               Mission-Critical Engineering Across{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-zenith-400 via-zenith-200 to-white">
-                Regulated Industries
+                Global Industries
               </span>
             </motion.h1>
 
-            {/* Subtitle */}
             <motion.p
               variants={fadeUp}
               initial="hidden"
               animate="visible"
               custom={0.12}
-              className="mt-5 text-[16px] lg:text-[17.5px] leading-relaxed text-white/75 max-w-[620px]"
+              className="mt-5 text-[16px] lg:text-[17.5px] leading-relaxed text-white/75 max-w-[640px]"
             >
-              Domain-specific engineering squads and safety-critical architectures built to comply with the most stringent global standards—from ISO 26262 ASIL D to DO-178C DAL A.
+              Domain-specialized engineering squads and safety-critical architectures spanning Automotive &amp; Mobility, Robotics, IoT, Industrial Automation, EV Infrastructure, AI, and Cloud Platforms.
             </motion.p>
 
-            {/* Hero Action Buttons */}
             <motion.div
               variants={fadeUp}
               initial="hidden"
@@ -299,15 +171,14 @@ export default function IndustriesPage() {
               >
                 Explore Sectors
               </a>
-              <a
-                href="/company#contact"
+              <Link
+                to="/company#contact"
                 className="px-6 py-3.5 rounded-lg bg-white/[0.08] hover:bg-white/[0.14] border border-white/20 text-white text-[14px] font-medium tracking-wide backdrop-blur-sm transition-all duration-300"
               >
                 Consult Domain Architect
-              </a>
+              </Link>
             </motion.div>
 
-            {/* Hero Key Metrics Strip */}
             <motion.div
               variants={fadeUp}
               initial="hidden"
@@ -330,10 +201,9 @@ export default function IndustriesPage() {
         </div>
       </section>
 
-      {/* ── Section 2: Sector Spotlight — Clean, Design-Focused (Light Surface) ── */}
+      {/* ── Section 2: Interactive Sector Spotlight (All 8 Industries + Subpage Deep-Dive Links) ── */}
       <section className="py-16 lg:py-24 bg-surface" id="sectors">
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
-          {/* Section Heading */}
           <div className="max-w-[700px] mb-12">
             <motion.span
               initial={{ opacity: 0, y: 10 }}
@@ -356,7 +226,6 @@ export default function IndustriesPage() {
             </motion.h2>
           </div>
 
-          {/* Clean Split Showcase */}
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
             {/* Left Vertical Selector */}
             <div className="lg:col-span-4 space-y-2">
@@ -366,15 +235,15 @@ export default function IndustriesPage() {
                   <button
                     key={ind.id}
                     onClick={() => setActiveSectorId(ind.id)}
-                    className={`w-full text-left px-5 py-4 rounded-xl transition-all duration-200 flex items-center justify-between border cursor-pointer ${
+                    className={`w-full text-left px-5 py-3.5 rounded-xl transition-all duration-200 flex items-center justify-between border cursor-pointer ${
                       isActive
                         ? 'bg-navy-950 text-white border-navy-950 shadow-md font-semibold'
                         : 'bg-white text-navy-800 border-navy-100/90 hover:border-zenith/40 hover:bg-surface-alt font-medium'
                     }`}
                   >
-                    <span className="text-[15px]">{ind.label}</span>
+                    <span className="text-[14.5px]">{ind.label}</span>
                     <span
-                      className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                      className={`w-2 h-2 rounded-full transition-all duration-200 shrink-0 ${
                         isActive ? 'bg-zenith scale-125' : 'bg-navy-200'
                       }`}
                     />
@@ -394,8 +263,7 @@ export default function IndustriesPage() {
                   transition={{ duration: 0.25 }}
                   className="p-8 lg:p-10 rounded-2xl bg-white border border-navy-100 shadow-[0_8px_30px_rgba(6,27,46,0.05)]"
                 >
-                  {/* Top Header */}
-                  <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+                  <div className="flex flex-wrap items-center justify-between gap-4 mb-5">
                     <h3 className="font-display text-[22px] lg:text-[26px] font-bold text-navy-950">
                       {currentSector.label}
                     </h3>
@@ -404,12 +272,11 @@ export default function IndustriesPage() {
                     </span>
                   </div>
 
-                  {/* Headline Statement */}
                   <p className="text-[16px] lg:text-[17px] font-medium text-navy-900 leading-relaxed mb-8">
                     {currentSector.headline}
                   </p>
 
-                  {/* 3 Clean Key Pillars */}
+                  {/* 3 Key Pillars */}
                   <div className="grid sm:grid-cols-3 gap-4 mb-8">
                     {currentSector.pillars.map((pillar) => (
                       <div
@@ -429,19 +296,31 @@ export default function IndustriesPage() {
                     ))}
                   </div>
 
-                  {/* Key Standards Bar */}
-                  <div className="pt-6 border-t border-navy-100 flex flex-wrap items-center gap-2">
-                    <span className="text-[11.5px] font-bold uppercase tracking-wider text-navy-900 mr-2">
-                      Core Frameworks:
-                    </span>
-                    {currentSector.standards.map((standard) => (
-                      <span
-                        key={standard}
-                        className="px-3 py-1 text-[12px] font-medium rounded-md bg-surface-alt text-navy-800 border border-navy-200/70"
-                      >
-                        {standard}
+                  {/* Standards + Deep-Dive Subpage CTA */}
+                  <div className="pt-6 border-t border-navy-100 flex flex-wrap items-center justify-between gap-4">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="text-[11.5px] font-bold uppercase tracking-wider text-navy-900 mr-1">
+                        Core Frameworks:
                       </span>
-                    ))}
+                      {currentSector.standards.slice(0, 4).map((standard) => (
+                        <span
+                          key={standard}
+                          className="px-3 py-1 text-[12px] font-medium rounded-md bg-surface-alt text-navy-800 border border-navy-200/70"
+                        >
+                          {standard}
+                        </span>
+                      ))}
+                    </div>
+
+                    <Link
+                      to={`/industries/${currentSector.slug}`}
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-navy-950 hover:bg-zenith text-white text-[13px] font-semibold transition-colors shrink-0"
+                    >
+                      <span>Explore {currentSector.shortTitle}</span>
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                      </svg>
+                    </Link>
                   </div>
                 </motion.div>
               </AnimatePresence>
@@ -450,7 +329,7 @@ export default function IndustriesPage() {
         </div>
       </section>
 
-      {/* ── Section 3: Regulatory & Safety Standards Matrix (Light Surface-Alt) ── */}
+      {/* ── Section 3: Regulatory & Safety Standards Matrix ── */}
       <section className="py-16 lg:py-20 bg-surface-alt border-y border-navy-100" id="standards">
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
           <div className="text-center max-w-[700px] mx-auto mb-12">
@@ -489,11 +368,11 @@ export default function IndustriesPage() {
                 className="p-6 rounded-xl border border-navy-200/80 bg-white hover:border-zenith/40 hover:shadow-[0_8px_30px_rgba(6,27,46,0.06)] transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
-                  <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center justify-between gap-2 mb-3">
                     <span className="text-[11px] font-bold uppercase tracking-wider text-zenith">
                       {framework.domain}
                     </span>
-                    <span className="text-[10.5px] font-mono font-medium px-2 py-0.5 rounded bg-navy-50 text-navy-700 border border-navy-100">
+                    <span className="text-[10.5px] font-mono font-medium px-2 py-0.5 rounded bg-navy-50 text-navy-700 border border-navy-100 whitespace-nowrap">
                       {framework.level}
                     </span>
                   </div>
@@ -524,7 +403,7 @@ export default function IndustriesPage() {
               transition={{ type: 'spring', stiffness: 120, damping: 20 }}
               className="inline-block text-[12px] font-semibold uppercase tracking-[0.2em] text-zenith mb-3"
             >
-              The Nexzora Advantage
+              The NEXZORA Advantage
             </motion.span>
             <motion.h2
               variants={fadeUp}
@@ -544,7 +423,7 @@ export default function IndustriesPage() {
               custom={0.1}
               className="text-[14.5px] leading-relaxed text-white/65"
             >
-              How our multidisciplinary expertise accelerates delivery and improves system reliability.
+              How our multidisciplinary expertise across automotive, robotics, AI, and cloud accelerates delivery and raises system reliability.
             </motion.p>
           </div>
 
@@ -552,18 +431,18 @@ export default function IndustriesPage() {
             {[
               {
                 title: 'Model-Based Verification Rigor',
-                desc: 'We apply rigorous formal verification, automated MIL/SIL/HIL simulation pipelines, and deterministic RTOS profiling to mission-critical ECU platforms.',
+                desc: 'We apply automated MIL/SIL/HIL simulation pipelines, virtual ECUs, and deterministic RTOS profiling across automotive and industrial controllers.',
                 pill: 'Simulation → Hardware',
               },
               {
-                title: 'Aerospace-Grade Fault Tolerance',
-                desc: 'We apply triple-modular redundancy, fail-operational concepts, and deterministic RTOS partitioning into industrial controllers and smart edge machinery.',
-                pill: 'Avionics → Industrial',
+                title: 'Safety-Critical Fault Tolerance',
+                desc: 'We carry dual-channel safety supervision, fail-operational design, and ISO 26262 / IEC 61508 discipline into robotics and EV energy systems.',
+                pill: 'Safety → Autonomy',
               },
               {
-                title: 'Low-Latency Edge AI Acceleration',
-                desc: 'We quantize and compile deep neural networks to run at sub-10ms latency on resource-constrained automotive and smart edge processors.',
-                pill: 'Cloud AI → Edge MCU',
+                title: 'Domain-Robust Edge AI',
+                desc: 'We quantize foundation vision models and governed AI agents to run reliably across unseen environments on resource-constrained edge SoCs.',
+                pill: 'Research → Edge SoC',
               },
             ].map((pillar, i) => (
               <motion.div
@@ -591,7 +470,7 @@ export default function IndustriesPage() {
         </div>
       </section>
 
-      {/* ── Section 5: Proven Domain Deployments (Light Surface) ── */}
+      {/* ── Section 5: Proven Domain Deployments ── */}
       <section className="py-16 lg:py-20 bg-surface" id="milestones">
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
           <div className="max-w-[700px] mb-12">
@@ -624,14 +503,14 @@ export default function IndustriesPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-30px' }}
                 transition={{ duration: 0.35, delay: i * 0.06 }}
-                className="p-6 rounded-xl border border-navy-100 bg-white hover:border-zenith/40 hover:shadow-[0_12px_36px_rgba(6,27,46,0.08)] transition-all duration-300 flex flex-col justify-between"
+                className="group p-6 rounded-xl border border-navy-100 bg-white hover:border-zenith/40 hover:shadow-[0_12px_36px_rgba(6,27,46,0.08)] transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
                   <span className="text-[11px] font-bold uppercase tracking-wider text-zenith block mb-2">
                     {item.sector}
                   </span>
-                  <h3 className="text-[17px] font-bold text-navy-950 mb-3">
-                    {item.title}
+                  <h3 className="text-[17px] font-bold text-navy-950 mb-3 group-hover:text-zenith transition-colors">
+                    <Link to={`/industries/${item.slug}`}>{item.title}</Link>
                   </h3>
                   <p className="text-[13px] leading-relaxed text-text-secondary mb-6">
                     {item.description}
@@ -647,11 +526,13 @@ export default function IndustriesPage() {
                       {item.metricLabel}
                     </div>
                   </div>
-                  <span className="w-8 h-8 rounded-full bg-navy-50 flex items-center justify-center text-navy-700">
-                    <svg className="w-4 h-4 text-zenith" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                  </span>
+                  <Link
+                    to={`/industries/${item.slug}`}
+                    className="w-8 h-8 rounded-full bg-navy-50 group-hover:bg-zenith/10 flex items-center justify-center text-zenith transition-colors"
+                    aria-label={`Explore ${item.sector}`}
+                  >
+                    →
+                  </Link>
                 </div>
               </motion.div>
             ))}
@@ -666,8 +547,8 @@ export default function IndustriesPage() {
         subtitle="Tell us about your domain-specific engineering challenges. We'll assemble the right team and engagement model."
         primaryText="Start a Conversation"
         primaryHref="/company#contact"
-        secondaryText="View Services"
-        secondaryHref="/services"
+        secondaryText="Explore Solutions"
+        secondaryHref="/solutions"
       />
     </>
   );

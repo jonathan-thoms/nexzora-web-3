@@ -7,7 +7,9 @@ import ScrollToTop from './components/ScrollToTop';
 /* Pages */
 import Home from './pages/Home';
 import Services from './pages/Services';
+import Solutions from './pages/Solutions';
 import IndustriesPage from './pages/Industries';
+import OfferingDetail from './pages/OfferingDetail';
 import Quality from './pages/Quality';
 // import Innovation from './pages/Innovation'; // Hidden per client request
 import Company from './pages/Company';
@@ -58,7 +60,11 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/services/:slug" element={<OfferingDetail type="service" />} />
+          <Route path="/solutions" element={<Solutions />} />
+          <Route path="/solutions/:slug" element={<OfferingDetail type="solution" />} />
           <Route path="/industries" element={<IndustriesPage />} />
+          <Route path="/industries/:slug" element={<OfferingDetail type="industry" />} />
           <Route path="/quality" element={<Quality />} />
           {/* Innovation page hidden per client request — can be re-enabled later */}
           {/* <Route path="/innovation" element={<Innovation />} /> */}
