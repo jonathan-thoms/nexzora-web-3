@@ -482,7 +482,7 @@ export default function Services() {
         title="Let's Build Something Exceptional"
         subtitle="Tell us about your engineering or staffing requirements. We'll assemble the right team and engagement model."
         primaryText="Get in Touch"
-        primaryHref="/company#contact"
+        primaryHref="/about-us#contact"
         secondaryText="Explore Solutions"
         secondaryHref="/solutions"
       />

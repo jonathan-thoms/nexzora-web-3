@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { SERVICES_DATA, SOLUTIONS_DATA, INDUSTRIES_DATA } from '../data/offeringsData';
 
 const SERVICES_SUBMENU = [
@@ -19,7 +19,7 @@ const SERVICES_SUBMENU = [
     key: 'solutions',
     label: 'Solutions',
     href: '/solutions',
-    description: 'SDV, ADAS, IVI, BMS, Vision/Agentic AI & Robotics',
+    description: 'SDV, ADAS, IVI, BMS, Industrial & AI Solutions',
     items: SOLUTIONS_DATA.map((s) => ({
       label: s.shortTitle,
       badge: s.badge,
@@ -30,7 +30,7 @@ const SERVICES_SUBMENU = [
     key: 'industries',
     label: 'Industries',
     href: '/industries',
-    description: 'Domain-specific safety & embedded engineering',
+    description: 'Automotive, Robotics & Energy Infrastructure',
     items: INDUSTRIES_DATA.map((ind) => ({
       label: ind.shortTitle,
       badge: ind.badge,
@@ -40,6 +40,7 @@ const SERVICES_SUBMENU = [
 ];
 
 const NAV_ITEMS = [
+  { label: 'Home', href: '/' },
   {
     label: 'Services',
     href: '/services',
@@ -47,11 +48,12 @@ const NAV_ITEMS = [
     categories: SERVICES_SUBMENU,
   },
   { label: 'Quality', href: '/quality' },
-  { label: 'Company', href: '/company' },
+  { label: 'About Us', href: '/about-us' },
   { label: 'Careers', href: '/careers' },
 ];
 
 export default function Header() {
+  const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [activeCategoryKey, setActiveCategoryKey] = useState(null);
@@ -60,6 +62,26 @@ export default function Header() {
   const [mobileSubExpanded, setMobileSubExpanded] = useState(null);
   const closeTimeoutRef = useRef(null);
   const headerRef = useRef(null);
+
+  const isRouteActive = (item) => {
+    if (item.href === '/') {
+      return location.pathname === '/';
+    }
+    if (item.href === '/about-us' || item.href === '/company') {
+      return location.pathname === '/about-us' || location.pathname === '/company';
+    }
+    if (item.hasCascadingMenu) {
+      return (
+        location.pathname === '/services' ||
+        location.pathname.startsWith('/services/') ||
+        location.pathname === '/solutions' ||
+        location.pathname.startsWith('/solutions/') ||
+        location.pathname === '/industries' ||
+        location.pathname.startsWith('/industries/')
+      );
+    }
+    return location.pathname.startsWith(item.href);
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -161,8 +183,9 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-1" aria-label="Main Navigation">
-            {NAV_ITEMS.map((item) =>
-              item.hasCascadingMenu ? (
+            {NAV_ITEMS.map((item) => {
+              const active = isRouteActive(item);
+              return item.hasCascadingMenu ? (
                 <div
                   key={item.label}
                   className="relative"
@@ -173,8 +196,8 @@ export default function Header() {
                     to={item.href}
                     onClick={closeAllMenus}
                     className={`relative inline-flex items-center gap-1.5 px-4 py-2.5 text-[15px] font-medium tracking-wide transition-colors duration-200 cursor-pointer ${
-                      servicesOpen
-                        ? 'text-navy-900'
+                      servicesOpen || active
+                        ? 'text-navy-900 font-semibold'
                         : 'text-text-secondary hover:text-navy-900'
                     }`}
                     id="nav-services"
@@ -184,7 +207,7 @@ export default function Header() {
                     <span>{item.label}</span>
                     <svg
                       className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                        servicesOpen ? 'rotate-180 text-zenith' : 'text-navy-400'
+                        servicesOpen ? 'rotate-180 text-zenith' : active ? 'text-zenith' : 'text-navy-400'
                       }`}
                       fill="none"
                       viewBox="0 0 24 24"
@@ -193,12 +216,8 @@ export default function Header() {
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                     </svg>
-                    {servicesOpen && (
-                      <motion.div
-                        layoutId="nav-underline"
-                        className="absolute bottom-0 left-4 right-4 h-[2px] bg-zenith"
-                        transition={{ type: 'spring', stiffness: 500, damping: 35 }}
-                      />
+                    {(servicesOpen || active) && (
+                      <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-zenith" />
                     )}
                   </Link>
 
@@ -327,20 +346,30 @@ export default function Header() {
                   <Link
                     to={item.href}
                     onClick={closeAllMenus}
-                    className="relative px-4 py-2.5 text-[15px] font-medium tracking-wide transition-colors duration-200 text-text-secondary hover:text-navy-900"
-                    id={`nav-${item.label.toLowerCase()}`}
+                    className={`relative px-4 py-2.5 text-[15px] font-medium tracking-wide transition-colors duration-200 ${
+                      active
+                        ? 'text-navy-950 font-semibold'
+                        : 'text-text-secondary hover:text-navy-900'
+                    }`}
+                    id={`nav-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
                   >
                     {item.label}
-                    <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-zenith/70 origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+                    <span
+                      className={`absolute bottom-0 left-4 right-4 h-[2px] bg-zenith transition-all duration-300 ${
+                        active
+                          ? 'scale-x-100 opacity-100'
+                          : 'scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100 bg-zenith/70 origin-left'
+                      }`}
+                    />
                   </Link>
                 </div>
-              )
-            )}
+              );
+            })}
           </nav>
 
           {/* Desktop CTA */}
           <Link
-            to="/company#contact"
+            to="/about-us#contact"
             onClick={handleContactClick}
             className="hidden lg:inline-flex items-center px-6 py-2.5 bg-navy-900 text-white text-[13.5px] font-semibold tracking-wide rounded-[6px] transition-all duration-200 hover:bg-navy-800 hover:shadow-[0_4px_16px_rgba(10,37,64,0.2)] active:scale-[0.98]"
             id="header-cta"
@@ -389,12 +418,15 @@ export default function Header() {
           >
             <div className="flex-1 px-5 py-6 space-y-1">
               {NAV_ITEMS.map((item) => {
+                const active = isRouteActive(item);
                 if (item.hasCascadingMenu) {
                   return (
                     <div key={item.label} className="border-b border-navy-100/60 pb-1">
                       <button
                         onClick={() => setMobileServicesExpanded((prev) => !prev)}
-                        className="w-full flex items-center justify-between py-3.5 text-left text-[16px] font-semibold text-navy-950 hover:text-zenith transition-colors"
+                        className={`w-full flex items-center justify-between py-3.5 text-left text-[16px] font-semibold transition-colors ${
+                          active ? 'text-zenith' : 'text-navy-950 hover:text-zenith'
+                        }`}
                         aria-expanded={mobileServicesExpanded}
                       >
                         <span>{item.label}</span>
@@ -498,7 +530,11 @@ export default function Header() {
                     <Link
                       to={item.href}
                       onClick={closeAllMenus}
-                      className="block py-3.5 text-[16px] font-semibold text-navy-950 hover:text-zenith active:text-zenith transition-colors"
+                      className={`block py-3.5 text-[16px] font-semibold transition-colors ${
+                        active
+                          ? 'text-zenith font-bold'
+                          : 'text-navy-950 hover:text-zenith active:text-zenith'
+                      }`}
                     >
                       {item.label}
                     </Link>
@@ -510,7 +546,7 @@ export default function Header() {
             {/* Mobile Drawer Bottom Actions */}
             <div className="p-5 bg-surface-alt border-t border-navy-100 space-y-4 safe-bottom">
               <Link
-                to="/company#contact"
+                to="/about-us#contact"
                 onClick={handleContactClick}
                 className="w-full flex items-center justify-center py-3.5 px-6 bg-zenith text-white text-[15px] font-semibold rounded-lg shadow-[0_4px_16px_rgba(217,106,26,0.25)] hover:bg-zenith-600 active:scale-[0.99] transition-all"
               >

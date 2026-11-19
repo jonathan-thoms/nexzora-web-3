@@ -78,7 +78,7 @@ export default function Company() {
   return (
     <>
       <PageHero
-        label="Company"
+        label="About Us"
         title="Engineering Intelligence. Powering Mobility."
         subtitle="We are a global engineering services company building the technology platforms that will define the next decade of innovation."
       />
@@ -219,126 +219,6 @@ export default function Company() {
                 <p className="text-[13.5px] leading-relaxed text-text-secondary">{value.description}</p>
               </motion.div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Certifications & Quality Standards ── */}
-      <section className="py-16 lg:py-20 bg-surface border-y border-navy-100/60" id="certifications">
-        <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
-          <div className="text-center mb-12">
-            <motion.span
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ type: 'spring', stiffness: 120, damping: 20 }}
-              className="inline-block text-[12px] font-semibold uppercase tracking-[0.2em] text-zenith mb-3"
-            >
-              Certified Excellence
-            </motion.span>
-            <motion.h2
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              custom={0.05}
-              className="font-display text-[clamp(1.5rem,3vw,2.25rem)] font-bold tracking-display text-navy-950 leading-tight mb-4"
-            >
-              Quality & Security Certifications
-            </motion.h2>
-            <p className="text-[15px] leading-relaxed text-text-secondary max-w-2xl mx-auto">
-              Two globally recognized certifications that define how we operate and how we protect your business.
-            </p>
-          </div>
-
-          {/* Primary 2 Certifications Cards */}
-          <div className="grid md:grid-cols-2 gap-6 max-w-[960px] mx-auto mb-10">
-            {/* ISO 9001:2015 */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ type: 'spring', stiffness: 100, damping: 18, delay: 0.05 }}
-              className="relative p-7 sm:p-8 rounded-2xl bg-white border border-navy-100 shadow-[0_4px_20px_rgba(6,27,46,0.04)] hover:border-zenith/40 hover:shadow-[0_12px_32px_rgba(6,27,46,0.08)] transition-all duration-300 flex flex-col justify-between"
-            >
-              <div>
-                <div className="flex items-center justify-between gap-3 mb-5 min-h-[60px]">
-                  <img
-                    src="/certifications/iso%20logo.png"
-                    alt="ISO 9001:2015 Certified Company"
-                    className="h-14 sm:h-16 w-auto object-contain"
-                  />
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                    Globally Recognized • Certified
-                  </span>
-                </div>
-                <h3 className="font-display text-[22px] font-bold text-navy-950 mb-1">
-                  ISO 9001:2015
-                </h3>
-                <p className="text-[12.5px] font-medium text-zenith mb-4 uppercase tracking-wider">
-                  Quality Management System
-                </p>
-                <ul className="space-y-2.5 text-[13.5px] leading-relaxed text-text-secondary">
-                  <li><strong className="text-navy-950">Process Efficiency:</strong> Streamlined workflows for consistent delivery</li>
-                  <li><strong className="text-navy-950">Continuous Improvement:</strong> Data-driven performance optimization</li>
-                  <li><strong className="text-navy-950">Risk Management:</strong> Proactive identification and mitigation of operational risks</li>
-                </ul>
-              </div>
-              <div className="pt-5 mt-5 border-t border-navy-100/80 text-[12.5px] font-medium text-navy-900">
-                Ensures we meet international standards for reliability and quality.
-              </div>
-            </motion.div>
-
-            {/* TISAX® */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ type: 'spring', stiffness: 100, damping: 18, delay: 0.1 }}
-              className="relative p-7 sm:p-8 rounded-2xl bg-white border border-navy-100 shadow-[0_4px_20px_rgba(6,27,46,0.04)] hover:border-zenith/40 hover:shadow-[0_12px_32px_rgba(6,27,46,0.08)] transition-all duration-300 flex flex-col justify-between"
-            >
-              <div>
-                <div className="flex items-center justify-between gap-3 mb-5 min-h-[60px]">
-                  <img
-                    src="/certifications/Tisax%20logo.png"
-                    alt="TISAX Automotive Information Security"
-                    className="h-9 sm:h-10 w-auto object-contain"
-                  />
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                    Globally Recognized • Certified
-                  </span>
-                </div>
-                <h3 className="font-display text-[22px] font-bold text-navy-950 mb-1">
-                  TISAX®
-                </h3>
-                <p className="text-[12.5px] font-medium text-zenith mb-4 uppercase tracking-wider">
-                  Automotive Information Security
-                </p>
-                <ul className="space-y-2.5 text-[13.5px] leading-relaxed text-text-secondary">
-                  <li><strong className="text-navy-950">Information Security:</strong> Robust protection of IP and digital assets</li>
-                  <li><strong className="text-navy-950">Data Privacy:</strong> GDPR/VDA compliance for industry-specific requirements</li>
-                  <li><strong className="text-navy-950">Prototype Protection:</strong> High-level security for physical and digital designs</li>
-                </ul>
-              </div>
-              <div className="pt-5 mt-5 border-t border-navy-100/80 text-[12.5px] font-medium text-navy-900">
-                Guarantees a secure partnership environment for OEMs and tier-suppliers.
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Link to full Quality & Standards page */}
-          <div className="text-center">
-            <Link
-              to="/quality"
-              className="inline-flex items-center gap-2 text-[14px] font-semibold text-zenith hover:text-zenith-600 transition-colors"
-            >
-              <span>Explore our complete Quality & Standards framework</span>
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-              </svg>
-            </Link>
           </div>
         </div>
       </section>

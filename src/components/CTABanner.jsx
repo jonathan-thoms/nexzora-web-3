@@ -11,7 +11,7 @@ export default function CTABanner({
   title = 'Ready to Engineer the Future?',
   subtitle = 'Let\'s discuss how NEXZORA can accelerate your next project.',
   primaryText = 'Contact Us',
-  primaryHref = '/company#contact',
+  primaryHref = '/about-us#contact',
   onPrimaryClick = null,
   secondaryText = 'Explore Capabilities',
   secondaryHref = '/#capabilities',

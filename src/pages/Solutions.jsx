@@ -19,7 +19,7 @@ const fadeUp = {
 };
 
 const HERO_METRICS = [
-  { value: '8 Domains', label: 'Turnkey Solutions' },
+  { value: '9 Solution Suites', label: 'Turnkey Engineering' },
   { value: '6-Layer', label: 'SDV & AI Stacks' },
   { value: 'ASIL D / SIL 3', label: 'Safety Engineered' },
   { value: 'OEM & Tier-1', label: 'Production Proven' },
@@ -119,7 +119,7 @@ export default function Solutions() {
                 Explore Solutions
               </a>
               <Link
-                to="/company#contact"
+                to="/about-us#contact"
                 className="px-6 py-3.5 rounded-lg bg-white/[0.08] hover:bg-white/[0.14] border border-white/20 text-white text-[14px] font-medium tracking-wide backdrop-blur-sm transition-all duration-300"
               >
                 Schedule Technical Briefing
@@ -289,7 +289,7 @@ export default function Solutions() {
         title="Ready to Accelerate Your Product Roadmap?"
         subtitle="Combine our turnkey solutions with dedicated global engineering squads to ship safely and faster."
         primaryText="Get in Touch"
-        primaryHref="/company#contact"
+        primaryHref="/about-us#contact"
         secondaryText="Explore Services"
         secondaryHref="/services"
       />

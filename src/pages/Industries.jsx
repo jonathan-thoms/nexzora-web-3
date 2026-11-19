@@ -18,7 +18,7 @@ const fadeUp = {
 };
 
 const HERO_METRICS = [
-  { value: '7 Sectors', label: 'Regulated & Emerging' },
+  { value: '3 Core Sectors', label: 'Safety-Critical & Regulated' },
   { value: 'ASIL D / SIL 3', label: 'Safety Integrity' },
   { value: 'Tier-1 & OEM', label: 'Production Grade' },
   { value: '100%', label: 'IP Transferred' },
@@ -38,16 +38,16 @@ const COMPLIANCE_FRAMEWORKS = [
     scope: 'Process efficiency, continuous improvement, IP protection, GDPR/VDA data privacy, and prototype security for OEMs and Tier-1s.',
   },
   {
-    domain: 'Industrial & Robotics',
-    standard: 'IEC 61508 & ISO 13849',
+    domain: 'Robotics & Autonomous',
+    standard: 'ROS 2, IEC 61508 & ISO 13849',
     level: 'SIL 1–4 / Cat 4',
-    scope: 'Dual-channel MCU safety monitoring, safe-state transitions, fault injection, and ROS 2 real-time control validation.',
+    scope: 'Autonomous navigation, optical telemetry, safe-state transitions, fault injection, and real-time control validation.',
   },
   {
-    domain: 'EV & Connected IoT',
-    standard: 'ISO 15118, OCPP & NIST 8425',
-    level: 'V2G & Cyber Trust',
-    scope: 'Plug & Charge TLS 1.3 key exchange, EVCC charging control, secure boot, and U.S. Cyber Trust Mark security readiness.',
+    domain: 'Energy & EV Infrastructure',
+    standard: 'ISO 15118, OCPP 2.0.1 & BESS',
+    level: 'V2G & High Voltage',
+    scope: 'Plug & Charge TLS 1.3 key exchange, EVCC charging control, multi-rack BESS masters, and grid-forming power inverters.',
   },
 ];
 
@@ -71,13 +71,13 @@ const CASE_HIGHLIGHTS = [
       'Engineered an integrated subsea robotic platform featuring autonomous visual survey, wireless underwater charging, acoustic telemetry, and ROS control.',
   },
   {
-    sector: 'Industrial & Automation',
-    slug: 'industrial',
-    title: 'Unified Category 4 / SIL 3 Safety Controller',
-    metric: 'Cat 4 / SIL 3',
-    metricLabel: 'Dual-MCU Redundant Safety',
+    sector: 'Energy & EV Infrastructure',
+    slug: 'energy',
+    title: 'ISO 15118 Plug & Charge & Grid BESS Master',
+    metric: 'ISO 15118-20',
+    metricLabel: 'Bidirectional V2G & BESS',
     description:
-      'Built dual-channel embedded safety logic with peer heartbeat supervision and bench fault injection for servo drives, EVSE charging, and PLC systems.',
+      'Engineered intelligent EVSE fast-charging control stacks, TLS 1.3 certificate handshakes, and multi-rack grid battery management controllers.',
   },
 ];
 
@@ -155,7 +155,7 @@ export default function IndustriesPage() {
               custom={0.12}
               className="mt-5 text-[16px] lg:text-[17.5px] leading-relaxed text-white/75 max-w-[640px]"
             >
-              Domain-specialized engineering squads and safety-critical architectures spanning Automotive &amp; Mobility, Robotics, IoT, Industrial Automation, EV Infrastructure, AI, and Cloud Platforms.
+              Domain-specialized engineering squads and safety-critical architectures spanning Automotive &amp; Mobility, Robotics &amp; Autonomy, and Energy &amp; EV Infrastructure.
             </motion.p>
 
             <motion.div
@@ -172,7 +172,7 @@ export default function IndustriesPage() {
                 Explore Sectors
               </a>
               <Link
-                to="/company#contact"
+                to="/about-us#contact"
                 className="px-6 py-3.5 rounded-lg bg-white/[0.08] hover:bg-white/[0.14] border border-white/20 text-white text-[14px] font-medium tracking-wide backdrop-blur-sm transition-all duration-300"
               >
                 Consult Domain Architect
@@ -546,7 +546,7 @@ export default function IndustriesPage() {
         title="Engineering Expertise for Your Industry"
         subtitle="Tell us about your domain-specific engineering challenges. We'll assemble the right team and engagement model."
         primaryText="Start a Conversation"
-        primaryHref="/company#contact"
+        primaryHref="/about-us#contact"
         secondaryText="Explore Solutions"
         secondaryHref="/solutions"
       />

@@ -60,16 +60,22 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/services/cloud-devops" element={<Navigate to="/services/cloud-digital-platforms" replace />} />
           <Route path="/services/:slug" element={<OfferingDetail type="service" />} />
           <Route path="/solutions" element={<Solutions />} />
+          <Route path="/solutions/industrial" element={<Navigate to="/solutions/industrial-automation" replace />} />
           <Route path="/solutions/:slug" element={<OfferingDetail type="solution" />} />
           <Route path="/industries" element={<IndustriesPage />} />
+          <Route path="/industries/industrial" element={<Navigate to="/solutions/industrial-automation" replace />} />
+          <Route path="/industries/cloud-digital" element={<Navigate to="/services/cloud-digital-platforms" replace />} />
           <Route path="/industries/:slug" element={<OfferingDetail type="industry" />} />
           <Route path="/quality" element={<Quality />} />
           {/* Innovation page hidden per client request — can be re-enabled later */}
           {/* <Route path="/innovation" element={<Innovation />} /> */}
           <Route path="/innovation" element={<Navigate to="/" replace />} />
           <Route path="/company" element={<Company />} />
+          <Route path="/about-us" element={<Company />} />
+          <Route path="/about" element={<Navigate to="/about-us" replace />} />
           <Route path="/careers" element={<Careers />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

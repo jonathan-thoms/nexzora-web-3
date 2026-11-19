@@ -285,39 +285,49 @@ export const SERVICES_DATA = [
     standards: ['OWASP Top 10', 'WCAG Accessibility', 'Core Web Vitals', 'ISO 9001:2015'],
   },
   {
-    slug: 'cloud-devops',
-    title: 'Cloud & Industrial DevOps Engineering',
-    shortTitle: 'Cloud & Industrial DevOps',
-    badge: 'Cloud, CI/CD & OTA',
+    slug: 'cloud-digital-platforms',
+    title: 'Cloud and Digital Platforms',
+    shortTitle: 'Cloud & Digital Platforms',
+    badge: 'Cloud, DevOps & Web/Mobile',
     tagline:
-      'Well-architected cloud platforms, Infrastructure as Code, and embedded CI/CD pipelines engineered for connected vehicles, IoT fleets, and regulated software.',
+      'Well-architected cloud backends, modern digital platforms, Infrastructure as Code, and automated DevOps pipelines engineered for enterprise scale and connected devices.',
     overview:
-      'We engineer scalable cloud backends and automated DevOps pipelines purpose-built for both enterprise workloads and embedded/automotive ECUs. From containerized cross-compilation and HIL-in-CI automation to multi-cloud Kubernetes clusters and FinOps governance, we embed quality and compliance directly into every pipeline.',
+      'We engineer scalable multi-cloud backends, resilient digital platforms, and automated DevOps pipelines purpose-built for enterprise workloads, connected IoT fleets, and mission-critical software. From Kubernetes orchestration and GitOps delivery to high-speed web apps, native Android applications, and Compliance-as-Code governance, we deliver software engineered for velocity, reliability, and cost efficiency.',
     metrics: [
       { value: 'AWS · Azure · GCP', label: 'Multi-Cloud Scale' },
-      { value: 'Compliance as Code', label: 'ASPICE / 26262 Evidence' },
-      { value: 'SIL & HIL in CI', label: 'Automated Verification' },
-      { value: 'Zero-Downtime', label: 'Signed OTA & Rollback' },
+      { value: '99.99%', label: 'Platform Uptime' },
+      { value: 'GitOps & IaC', label: 'Terraform · Argo CD' },
+      { value: 'Compliance as Code', label: 'ASPICE / SOC 2 / 26262' },
     ],
     capabilities: [
       {
-        title: 'Embedded CI/CD & Build Infrastructure',
+        title: 'Cloud Architecture & Connected Backends',
         description:
-          'Reproducible, containerized build and test pipelines tailored for Yocto Linux, AUTOSAR, and multi-target ECU cross-compilation.',
+          'Resilient, infrastructure-as-code cloud platforms powering enterprise applications, fleet telemetry, OTA servers, and virtual simulation at scale.',
         bullets: [
-          'Automated Jenkins, GitLab CI, and GitHub Actions pipelines with binary caching',
-          'Containerized toolchains, artifact versioning, and SBOM generation',
-          'Quality gates enforcing static analysis (SonarQube), MISRA checks, and coverage',
+          'AWS, Azure, and GCP landing zones, Terraform IaC, Kubernetes / K3s orchestration, and Argo CD GitOps delivery',
+          'High-throughput MQTT, Kafka, and streaming telemetry ingestion with zero-data-loss failover',
+          'Signed OTA management backends and cloud-hosted virtual ECU (vECU) simulation farms',
         ],
       },
       {
-        title: 'Cloud Architecture & Connected-Vehicle Backends',
+        title: 'Modern Web & Native Digital Products',
         description:
-          'Resilient, infrastructure-as-code cloud platforms powering fleet telemetry, OTA servers, and virtual ECU simulation at scale.',
+          'High-performance web platforms and native mobile applications crafted for speed, observability, and intuitive user experiences.',
         bullets: [
-          'Terraform IaC, Kubernetes / K3s orchestration, and Argo CD GitOps delivery',
-          'High-throughput MQTT/streaming telemetry pipelines and OTA management backends',
-          'Cloud-hosted virtual ECU (vECU) and simulation farms on AWS/Azure/GCP',
+          'Modern React, Vue, and Next.js single-page applications and Progressive Web Apps',
+          'Native Kotlin and Java Android applications built for 60fps fluidity and robust offline synchronization',
+          'Secure REST, GraphQL, and gRPC microservice APIs with OpenAPI contract governance',
+        ],
+      },
+      {
+        title: 'Embedded & Enterprise CI/CD Infrastructure',
+        description:
+          'Reproducible, containerized build and test pipelines tailored for Yocto Linux, AUTOSAR, and multi-target cross-compilation.',
+        bullets: [
+          'Automated Jenkins, GitLab CI, and GitHub Actions pipelines with binary caching and SBOM generation',
+          'Quality gates enforcing static analysis (SonarQube), MISRA checks, and automated coverage reports',
+          'HIL bench scheduling and automated compliance evidence generation for ASPICE and ISO 26262',
         ],
       },
       {
@@ -325,20 +335,34 @@ export const SERVICES_DATA = [
         description:
           'Running production platforms securely, reliably, and cost-efficiently with full compliance traceability.',
         bullets: [
-          'Prometheus, Grafana, and OpenTelemetry metrics, logs, traces, and SLO alerting',
-          'Least-privilege IAM, encryption, policy-as-code, and compliance baselines',
-          'Right-sizing, cost telemetry, and continuous FinOps optimization',
+          'Prometheus, Grafana, and OpenTelemetry metrics, logs, traces, and automated SLO alerting',
+          'Least-privilege IAM, encryption, zero-trust policies, and SOC 2 / ISO 27001 compliance baselines',
+          'Workload right-sizing, cost telemetry, and continuous FinOps optimization across cloud providers',
         ],
       },
     ],
     deliverables: [
-      'Automated Embedded & Cloud CI/CD Pipelines with Quality Gates',
-      'Terraform Infrastructure-as-Code & Kubernetes Deployment Blueprints',
-      'Connected Vehicle / IoT Telemetry & Signed OTA Backends',
-      'Full Observability Stack (Prometheus / Grafana / OpenTelemetry)',
+      'Multi-Cloud Landing Zones & Kubernetes Deployment Blueprints',
+      'Automated Embedded & Enterprise CI/CD Pipelines with Security Gates',
+      'Modern Web Applications, Native Android Apps & API Gateways',
+      'Full Observability Stack (Prometheus / Grafana / OpenTelemetry) & FinOps Dashboards',
     ],
-    tools: ['AWS / Azure / GCP', 'Docker & Kubernetes', 'Terraform', 'Jenkins / GitLab CI / GitHub Actions', 'Argo CD', 'Ansible', 'SonarQube', 'Prometheus & Grafana'],
-    standards: ['Compliance as Code (ASPICE / ISO 26262 / 21434)', 'SOC 2 Best Practices', 'Zero-Trust IAM'],
+    tools: [
+      'AWS / Azure / GCP',
+      'Docker & Kubernetes',
+      'Terraform & Argo CD',
+      'Jenkins / GitHub Actions',
+      'React / Vue / Node.js',
+      'Kotlin / Android SDK',
+      'Prometheus & Grafana',
+      'OpenTelemetry',
+    ],
+    standards: [
+      'SOC 2 & ISO 27001',
+      'Compliance as Code (ASPICE / ISO 26262)',
+      'Zero-Trust IAM',
+      'FinOps Foundation Standards',
+    ],
   },
   {
     slug: 'native-android',
@@ -951,6 +975,92 @@ export const SOLUTIONS_DATA = [
     techStack: ['MQTT / CoAP', 'Wi-Fi / BLE / Zigbee / LoRaWAN', 'AWS IoT / Azure IoT', 'FreeRTOS / Zephyr', 'Docker / K3s', 'Time-Series DBs'],
     standards: ['NIST 8425', 'U.S. Cyber Trust Mark', 'Zero-Trust PKI', 'TLS 1.3'],
   },
+  {
+    slug: 'industrial-automation',
+    title: 'Industrial Automation & Safety Systems',
+    shortTitle: 'Industrial & Automation',
+    badge: 'IEC 61508 SIL 3 · Motion & Factory 4.0',
+    tagline:
+      'Safety-critical dual-channel controllers, precision motion control, deterministic fieldbus networks, and Industry 4.0 smart factory automation.',
+    overview:
+      'We engineer high-integrity embedded control software and hardware integrations for industrial machinery, servo drives, PLC platforms, and automated factory systems. Targeting Category 4 / SIL 3 functional safety, our solutions ensure deterministic fault detection, redundant monitoring, EtherCAT/OPC-UA fieldbus connectivity, and defined safe-state operation.',
+    metrics: [
+      { value: 'Cat 4 / SIL 3', label: 'Safety Design Target' },
+      { value: 'Dual-MCU', label: 'Redundant Monitoring' },
+      { value: 'Sub-ms', label: 'Servo Control Loops' },
+      { value: 'Deterministic', label: 'EtherCAT & OPC-UA' },
+    ],
+    capabilities: [
+      {
+        title: 'Dual-Channel Safety Control Software',
+        description:
+          'Redundant MCU architectures with peer heartbeat supervision, state-coherence checks, cross-channel monitoring, and safe-state logic.',
+        bullets: [
+          'Dual-core lockstep and dual-MCU asymmetrical architectures with cross-channel monitoring',
+          'State-coherence checking and deterministic fault detection within safe reaction time',
+          'Fail-safe state transitions and Category 4 / PL e safety interlock control',
+        ],
+      },
+      {
+        title: 'Precision Motion Control & Hardware I/O Integration',
+        description:
+          'Field-Oriented Control (FOC) for servo/BLDC drives plus safety digital I/O, OSSD, 0–10V / 4–20mA, and RTD board bring-up.',
+        bullets: [
+          'Field-Oriented Control (FOC) algorithms for high-speed servo motors and robotics actuators',
+          'Closed-loop encoder feedback (EnDat, SSI, resolver) and PWM timing generation',
+          'Safety digital I/O, OSSD input decoding, and analog sensor signal conditioning',
+        ],
+      },
+      {
+        title: 'Industrial Fieldbus & Edge Connectivity',
+        description:
+          'Deterministic EtherCAT, PROFINET, OPC-UA, and Modbus integration with edge telemetry for smart manufacturing.',
+        bullets: [
+          'EtherCAT slave/master protocol stack integration with sub-millisecond cycle times',
+          'OPC-UA server implementation for seamless SCADA and factory automation integration',
+          'Edge IIoT anomaly detection and predictive maintenance telemetry to cloud platforms',
+        ],
+      },
+      {
+        title: 'Traceable Verification & Fault Injection',
+        description:
+          'Rigorous requirements-based test suites, HIL fault injection, and compliance documentation for SIL 3 / PL e certification.',
+        bullets: [
+          'Hardware-in-the-Loop (HIL) automated fault injection and safety reaction timing checks',
+          'SPI, CAN, and EtherCAT protocol decoding and bus-load verification',
+          'Comprehensive safety case, FMEA, FMEDA, and IEC 61508 / ISO 13849 evidence generation',
+        ],
+      },
+    ],
+    useCases: [
+      {
+        title: 'Unified Cat 4 / SIL 3 Safety Controller (American OEM)',
+        description:
+          'Dual-channel safety controller software and bench validation serving servo motor control, EVSE charging, and PLC applications.',
+      },
+      {
+        title: 'Predictive Industrial IIoT Telemetry & Factory Automation',
+        description:
+          'Edge anomaly detection and OPC-UA gateway telemetry reducing unplanned downtime across automated manufacturing lines.',
+      },
+    ],
+    techStack: [
+      'IEC 61508 SIL 3',
+      'ISO 13849 Cat 4 / PL e',
+      'EtherCAT',
+      'OPC-UA',
+      'FreeMASTER / XMON',
+      'FOC Motor Control',
+      'ARM Cortex-M Safety MCUs',
+      'RTOS / SafeRTOS',
+    ],
+    standards: [
+      'IEC 61508 (SIL 1–4)',
+      'ISO 13849 (Cat 4 / PL e)',
+      'EtherCAT Standard',
+      'OPC-UA / IEC 62541',
+    ],
+  },
 ];
 
 export const INDUSTRIES_DATA = [
@@ -1057,108 +1167,6 @@ export const INDUSTRIES_DATA = [
     ],
   },
   {
-    slug: 'iot',
-    id: 'iot',
-    label: 'Internet of Things (IoT) & Smart Devices',
-    shortTitle: 'IoT & Smart Devices',
-    badge: 'Edge-to-Cloud IoT',
-    headline: 'Connected device ecosystems, low-power embedded firmware, wireless protocols, and zero-trust IoT security at scale.',
-    overview:
-      'We build end-to-end IoT platforms connecting smart appliances, industrial gateways, and commercial field devices to scalable cloud analytics. Our teams handle embedded device firmware, wireless connectivity, edge processing, cybersecurity compliance, and rapid PoC prototyping to bring connected products to market faster.',
-    metrics: [
-      { value: 'Edge + Cloud', label: 'Unified IoT Stack' },
-      { value: 'NIST 8425', label: 'Cyber Trust Ready' },
-      { value: 'Multi-Radio', label: 'Wi-Fi · BLE · LoRa' },
-      { value: 'Rapid PoC', label: 'Fast Prototyping' },
-    ],
-    pillars: [
-      {
-        num: '01',
-        title: 'Device Firmware & Sensor Integration',
-        desc: 'Efficient RTOS/bare-metal firmware, sensor/actuator abstraction, and edge computing to cut latency and bandwidth.',
-      },
-      {
-        num: '02',
-        title: 'Connectivity, Cloud & Analytics',
-        desc: 'Wi-Fi, Bluetooth, Zigbee, LoRaWAN, and MQTT pipelines feeding predictive ML analytics and real-time visualization dashboards.',
-      },
-      {
-        num: '03',
-        title: 'IoT Security & Rapid PoC',
-        desc: 'Secure boot, encryption, device authentication, NIST 8425 compliance, and rapid functional prototyping.',
-      },
-    ],
-    useCases: [
-      {
-        title: 'Smart Home Appliance Cybersecurity Program',
-        description:
-          'Comprehensive audit gap analysis, threat modeling, SW/HW security controls, and penetration testing toward U.S. Cyber Trust Mark certification.',
-      },
-      {
-        title: 'Connected Edge Gateway & Cloud Fleet Analytics',
-        description:
-          'Scalable telemetry ingestion, remote diagnostics, and zero-downtime OTA management for distributed IoT devices.',
-      },
-    ],
-    standards: ['MQTT & CoAP', 'NIST 8425', 'AWS / Azure IoT', 'Zero-Trust PKI'],
-    relatedOfferings: [
-      { label: 'IoT & Connected Ecosystems', href: '/solutions/iot-ecosystems' },
-      { label: 'Cloud & Industrial DevOps', href: '/services/cloud-devops' },
-      { label: 'Firmware & Embedded Software', href: '/services/firmware-embedded' },
-    ],
-  },
-  {
-    slug: 'industrial',
-    id: 'industrial',
-    label: 'Industrial & Automation',
-    shortTitle: 'Industrial & Automation',
-    badge: 'IEC 61508 SIL 3',
-    headline: 'Safety-critical dual-channel industrial controllers, precision motion control, and deterministic factory automation.',
-    overview:
-      'We engineer high-integrity embedded control software and hardware integrations for industrial machinery, servo drives, PLC platforms, and automated factory systems. Targeting Category 4 / SIL 3 functional safety, our solutions ensure deterministic fault detection, redundant monitoring, and defined safe-state operation.',
-    metrics: [
-      { value: 'Cat 4 / SIL 3', label: 'Safety Design Target' },
-      { value: 'Dual-MCU', label: 'Redundant Monitoring' },
-      { value: 'Sub-ms', label: 'Servo Control Loops' },
-      { value: 'Bench Verified', label: 'Fault Injection Proven' },
-    ],
-    pillars: [
-      {
-        num: '01',
-        title: 'Dual-Channel Safety Control Software',
-        desc: 'Redundant MCU architectures with peer heartbeat supervision, state-coherence checks, cross-channel monitoring, and safe-state logic.',
-      },
-      {
-        num: '02',
-        title: 'Motion Control & Hardware I/O Integration',
-        desc: 'Field-Oriented Control (FOC) for servo/BLDC drives plus safety digital I/O, OSSD, 0–10V / 4–20mA, and RTD board bring-up.',
-      },
-      {
-        num: '03',
-        title: 'Industrial Fieldbus & Traceable Validation',
-        desc: 'Deterministic EtherCAT / OPC-UA integration with requirements-based fault injection, SPI decoding, and timing verification.',
-      },
-    ],
-    useCases: [
-      {
-        title: 'Unified Cat 4 / SIL 3 Safety Controller (American OEM)',
-        description:
-          'Dual-channel safety controller software and bench validation serving servo motor control, EVSE charging, and PLC applications.',
-      },
-      {
-        title: 'Predictive Industrial IIoT Telemetry',
-        description:
-          'Edge anomaly detection and OPC-UA gateway telemetry reducing unplanned downtime across production lines.',
-      },
-    ],
-    standards: ['IEC 61508 SIL 3', 'ISO 13849 Cat 4 / PL e', 'EtherCAT & OPC-UA', 'FreeMASTER / XMON'],
-    relatedOfferings: [
-      { label: 'Functional Safety & Cybersecurity', href: '/solutions/safety-cybersecurity' },
-      { label: 'Firmware & Embedded Software', href: '/services/firmware-embedded' },
-      { label: 'Testing & Validation (XIL)', href: '/services/testing-validation' },
-    ],
-  },
-  {
     slug: 'energy',
     id: 'energy',
     label: 'Energy & EV Infrastructure',
@@ -1209,115 +1217,25 @@ export const INDUSTRIES_DATA = [
       { label: 'System Design & Architecture', href: '/services/system-design' },
     ],
   },
-  {
-    slug: 'ai-platforms',
-    id: 'ai-platforms',
-    label: 'AI & Intelligent Platforms',
-    shortTitle: 'AI & Intelligent Systems',
-    badge: 'Vision AI · Agentic AI',
-    headline: 'Production Vision AI, governed multi-agent workflows, and edge-deployed machine learning across mobility, industry, healthcare, and agri-tech.',
-    overview:
-      'We engineer AI systems that hold up under real-world domain shifts and strict enterprise governance. From federated, domain-generalizing computer vision models compressed for edge hardware to source-grounded Agentic AI platforms that automate regulated engineering and operations, we bridge AI research and production reliability.',
-    metrics: [
-      { value: 'Vision & Agents', label: 'Dual AI Pillars' },
-      { value: 'Privacy-First', label: 'Federated & On-Prem' },
-      { value: 'Sub-10ms', label: 'Edge NPU Inference' },
-      { value: 'Evaluated', label: 'Golden-Set Tested' },
-    ],
-    pillars: [
-      {
-        num: '01',
-        title: 'Domain-Generalizing Vision AI',
-        desc: 'Foundation backbones with lightweight adapters delivering robust detection, segmentation, and tracking across unseen cameras, sites, and weather.',
-      },
-      {
-        num: '02',
-        title: 'Governed Agentic AI Systems',
-        desc: 'Multi-agent RAG workflows with least-privilege tool access, human approval gates, and full audit trails for engineering & compliance.',
-      },
-      {
-        num: '03',
-        title: 'Edge Compression & MLOps',
-        desc: 'INT8/FP8 quantization, ONNX/TensorRT export, drift monitoring, and automated evaluation pipelines across cloud, VPC, on-prem, and vehicle SoCs.',
-      },
-    ],
-    useCases: [
-      {
-        title: 'Agri-Tech Autonomous Weed Detection & Precision Spraying',
-        description:
-          'Edge computer-vision segmentation guiding 0.5mm GPS targeted spraying on autonomous drones at up to 50 mph.',
-      },
-      {
-        title: 'Federated Medical & Industrial Inspection Models',
-        description:
-          'Privacy-preserving foundation models learning across plants and imaging centers without moving raw sensitive data.',
-      },
-    ],
-    standards: ['ISO 21448 (SOTIF)', 'ISO/PAS 8800', 'OpenTelemetry MLOps', 'TISAX® Data Governance'],
-    relatedOfferings: [
-      { label: 'Vision AI & Agentic AI', href: '/solutions/vision-agentic-ai' },
-      { label: 'Consulting & Architecture Review', href: '/services/consulting' },
-      { label: 'Cloud & Industrial DevOps', href: '/services/cloud-devops' },
-    ],
-  },
-  {
-    slug: 'cloud-digital',
-    id: 'cloud-digital',
-    label: 'Cloud & Digital Platforms',
-    shortTitle: 'Cloud & Digital Platforms',
-    badge: 'Cloud · Web · Mobile · DevOps',
-    headline: 'Cloud-native backends, modern web & native Android applications, and automated DevOps platforms built for enterprise scale.',
-    overview:
-      'We build the digital backbone behind connected products and modern enterprises. Combining multi-cloud Kubernetes architectures, React/Vue web platforms, native Kotlin/Java Android apps, and Compliance-as-Code DevOps pipelines, our teams deliver resilient software engineered for speed, observability, and cost efficiency.',
-    metrics: [
-      { value: '99.99%', label: 'Platform Uptime' },
-      { value: 'GitOps & IaC', label: 'Terraform · Argo CD' },
-      { value: 'Web & Mobile', label: 'React · Vue · Android' },
-      { value: 'FinOps', label: 'Cost-Optimized Cloud' },
-    ],
-    pillars: [
-      {
-        num: '01',
-        title: 'Cloud Architecture & Connected Backends',
-        desc: 'AWS, Azure, and GCP landing zones, Kubernetes orchestration, MQTT/Kafka telemetry ingestion, and signed OTA distribution.',
-      },
-      {
-        num: '02',
-        title: 'Modern Web & Native Android Products',
-        desc: 'High-speed React/Vue SPAs, Progressive Web Apps, and 60fps offline-resilient native Android applications.',
-      },
-      {
-        num: '03',
-        title: 'Industrial DevOps & Observability',
-        desc: 'Automated CI/CD with quality gates, virtual ECU cloud farms, Prometheus/Grafana/OpenTelemetry monitoring, and FinOps.',
-      },
-    ],
-    useCases: [
-      {
-        title: 'Global Fleet Telematics & OTA Platform',
-        description:
-          'Edge-to-cloud ingestion pipeline supporting 250,000+ connected devices with real-time dashboards and zero-data-loss failover.',
-      },
-      {
-        title: 'Containerized Embedded CI/CD & Virtual ECU Farm',
-        description:
-          'Automated Yocto/AUTOSAR build pipelines with HIL bench scheduling and ASPICE/ISO 26262 compliance evidence generation.',
-      },
-    ],
-    standards: ['Kubernetes & Terraform', 'OpenTelemetry', 'OWASP Security', 'SOC 2 Best Practices'],
-    relatedOfferings: [
-      { label: 'Cloud & Industrial DevOps', href: '/services/cloud-devops' },
-      { label: 'Digital Transformation & Web', href: '/services/digital-transformation' },
-      { label: 'Native Android Engineering', href: '/services/native-android' },
-    ],
-  },
 ];
 
-/* Helpers for looking up any offering by type + slug */
+/* Helpers for looking up any offering by type + slug (with legacy alias fallbacks) */
 export function getOfferingByTypeAndSlug(type, slug) {
-  if (type === 'service') return SERVICES_DATA.find((item) => item.slug === slug);
-  if (type === 'solution') return SOLUTIONS_DATA.find((item) => item.slug === slug);
-  if (type === 'industry') return INDUSTRIES_DATA.find((item) => item.slug === slug);
+  if (type === 'service') {
+    if (slug === 'cloud-digital-platforms' || slug === 'cloud-devops' || slug === 'cloud-digital') {
+      return SERVICES_DATA.find((item) => item.slug === 'cloud-digital-platforms');
+    }
+    return SERVICES_DATA.find((item) => item.slug === slug);
+  }
+  if (type === 'solution') {
+    if (slug === 'industrial' || slug === 'industrial-automation') {
+      return SOLUTIONS_DATA.find((item) => item.slug === 'industrial-automation');
+    }
+    return SOLUTIONS_DATA.find((item) => item.slug === slug);
+  }
+  if (type === 'industry') {
+    return INDUSTRIES_DATA.find((item) => item.slug === slug);
+  }
   return null;
 }
 

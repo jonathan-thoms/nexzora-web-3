@@ -160,7 +160,7 @@ export default function OfferingDetail({ type = 'service' }) {
               className="mt-8 flex flex-wrap items-center gap-4"
             >
               <Link
-                to="/company#contact"
+                to="/about-us#contact"
                 className="px-6 py-3.5 rounded-lg bg-zenith hover:bg-zenith-500 text-white text-[14px] font-semibold tracking-wide shadow-[0_4px_20px_rgba(217,106,26,0.35)] transition-all duration-300 hover:translate-y-[-1px]"
               >
                 Discuss Your Project
@@ -471,7 +471,7 @@ export default function OfferingDetail({ type = 'service' }) {
         title={meta.ctaTitle}
         subtitle={meta.ctaSubtitle}
         primaryText="Get in Touch"
-        primaryHref="/company#contact"
+        primaryHref="/about-us#contact"
         secondaryText={meta.secondaryCtaText}
         secondaryHref={meta.secondaryCtaHref}
       />

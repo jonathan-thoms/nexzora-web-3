@@ -523,7 +523,7 @@ export default function Quality() {
         title="Ready to Build With Safety-Critical Precision?"
         subtitle="Partner with our certified engineering teams to accelerate your automotive, embedded, and digital platforms."
         primaryText="Get in Touch"
-        primaryHref="/company#contact"
+        primaryHref="/about-us#contact"
         secondaryText="Explore Services"
         secondaryHref="/services"
       />

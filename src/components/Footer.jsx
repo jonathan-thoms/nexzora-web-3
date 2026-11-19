@@ -11,11 +11,11 @@ const FOOTER_LINKS = {
     { label: 'Consulting & Staffing', href: '/services/consulting' },
   ],
   Company: [
-    { label: 'About Us', href: '/company' },
-    { label: 'Leadership', href: '/company#leadership' },
+    { label: 'About Us', href: '/about-us' },
+    { label: 'Leadership', href: '/about-us#leadership' },
     { label: 'Quality & Certifications', href: '/quality' },
     { label: 'Careers', href: '/careers' },
-    { label: 'Contact Us', href: '/company#contact' },
+    { label: 'Contact Us', href: '/about-us#contact' },
   ],
   Resources: [
     { label: 'ADAS & Automated Driving', href: '/solutions/adas' },

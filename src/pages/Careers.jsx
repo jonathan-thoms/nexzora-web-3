@@ -667,8 +667,8 @@ export default function Careers() {
             location: 'Global / Remote',
           })
         }
-        secondaryText="View Company"
-        secondaryHref="/company"
+        secondaryText="About Us"
+        secondaryHref="/about-us"
       />
 
       {/* ── Job Application Modal ── */}
