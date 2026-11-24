@@ -68,7 +68,7 @@ const LEADERSHIP = [
 ];
 
 const LOCATIONS = [
-  { city: 'Dallas', country: 'USA' },
+  { city: 'Irving, TX', country: 'USA' },
   { city: 'Cairo', country: 'Egypt' },
   { city: 'Tokyo', country: 'Japan' },
   { city: 'Thiruvananthapuram', country: 'India' },

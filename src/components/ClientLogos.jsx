@@ -44,7 +44,7 @@ function LogoTile({ client }) {
           src={client.logo}
           alt={client.name}
           onError={() => setHasError(true)}
-          className={`h-8 sm:h-9 md:h-10 max-w-[140px] sm:max-w-[170px] w-auto object-contain opacity-65 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300 filter drop-shadow-sm cursor-pointer ${client.className || ''}`}
+          className={`h-8 sm:h-9 md:h-10 max-w-[140px] sm:max-w-[170px] w-auto object-contain opacity-90 hover:opacity-100 transition-all duration-300 filter drop-shadow-sm cursor-pointer ${client.className || ''}`}
         />
       ) : (
         <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-surface-alt/70 border border-navy-200/40 text-navy-950/50 hover:text-navy-950 hover:border-zenith/40 transition-colors">

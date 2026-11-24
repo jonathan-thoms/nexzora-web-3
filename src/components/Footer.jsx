@@ -45,13 +45,17 @@ export default function Footer() {
             </p>
 
             {/* Quick Contact Info */}
-            <div className="mt-5 space-y-2 text-[13px] text-navy-300">
-              <div className="flex items-center gap-2.5">
-                <svg className="w-4 h-4 text-zenith shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
+            <div className="mt-5 space-y-2.5 text-[13px] text-navy-300">
+              <div className="flex items-start gap-2.5">
+                <svg className="w-4 h-4 text-zenith shrink-0 mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21.5 12.5c0 7-9.5 11-9.5 11s-9.5-4-9.5-11a9.5 9.5 0 1 1 19 0Z" />
                   <circle cx="12" cy="12.5" r="3" />
                 </svg>
-                <span>Dallas, Texas</span>
+                <div className="leading-snug">
+                  <span className="text-white font-medium block">Nexzora LLC</span>
+                  <span className="text-navy-300 block">7301 N Highway 161, #148</span>
+                  <span className="text-navy-300 block">Irving, TX 75039-2803</span>
+                </div>
               </div>
               <div className="flex items-center gap-2.5">
                 <svg className="w-4 h-4 text-zenith shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">

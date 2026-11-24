@@ -1189,7 +1189,9 @@ export default function HomeMockup() {
               </a>
             </div>
             <div>Kochi, Kerala, India</div>
-            <div>Dallas, TX, USA</div>
+            <div>Nexzora LLC</div>
+            <div>7301 N Highway 161, #148</div>
+            <div>Irving, TX 75039-2803</div>
             <div className="pt-2 flex items-center gap-3">
               {/* Social Icons (Non-functional) */}
               {['LinkedIn', 'X', 'GitHub'].map((net) => (

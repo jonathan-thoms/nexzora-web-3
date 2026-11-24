@@ -453,7 +453,7 @@ export const SERVICES_DATA = [
         bullets: [
           'Fully managed cross-functional squads integrated directly into your repos & toolchains',
           'Flexible staff augmentation for AUTOSAR, FuSa, Cybersecurity, ADAS, V&V, and AI roles',
-          'Seamless global collaboration spanning Dallas, Cairo, Tokyo, and Thiruvananthapuram',
+          'Seamless global collaboration spanning Irving (TX), Cairo, Tokyo, and Thiruvananthapuram',
         ],
       },
       {

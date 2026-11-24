@@ -174,15 +174,17 @@ export default function Contact() {
               className="space-y-4 sm:space-y-5"
             >
               <div className="flex items-start gap-3.5 sm:gap-4">
-                <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-navy-800/60 text-zenith shrink-0">
+                <div className="w-10 h-10 flex items-center justify-center rounded-lg bg-navy-800/60 text-zenith shrink-0 mt-0.5">
                   <svg className="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
                     <path d="M21.5 12.5c0 7-9.5 11-9.5 11s-9.5-4-9.5-11a9.5 9.5 0 1 1 19 0Z" />
                     <circle cx="12" cy="12.5" r="3" />
                   </svg>
                 </div>
                 <div>
-                  <p className="text-[12px] sm:text-[13px] font-semibold text-navy-400 uppercase tracking-label mb-0.5 sm:mb-1">Location</p>
-                  <p className="text-[14px] sm:text-[15px] text-navy-200">Dallas, Texas</p>
+                  <p className="text-[12px] sm:text-[13px] font-semibold text-navy-400 uppercase tracking-label mb-0.5 sm:mb-1">Office Address</p>
+                  <p className="text-[14px] sm:text-[15px] text-white font-medium">Nexzora LLC</p>
+                  <p className="text-[13.5px] sm:text-[14.5px] text-navy-200">7301 N Highway 161, #148</p>
+                  <p className="text-[13.5px] sm:text-[14.5px] text-navy-200">Irving, TX 75039-2803</p>
                 </div>
               </div>
 
