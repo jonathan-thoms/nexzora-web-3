@@ -35,9 +35,9 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="sm:col-span-2 lg:col-span-1">
             <img
-              src="/logo.png"
+              src="/logo-dark.png"
               alt="NEXZORA Technologies"
-              className="h-8 w-auto brightness-0 invert mb-4 sm:mb-5"
+              className="h-8 w-auto object-contain mb-4 sm:mb-5"
             />
             <p className="text-[13.5px] sm:text-[14px] leading-relaxed text-navy-300 max-w-[320px] lg:max-w-[280px]">
               The Next Zenith of Innovation — Engineering precision solutions
