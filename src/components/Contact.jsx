@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const fadeUp = {
@@ -456,7 +457,10 @@ export default function Contact() {
                   </button>
 
                   <p className="text-[11.5px] sm:text-[12px] text-navy-400 text-center">
-                    By submitting, you agree to our Privacy Policy.
+                    By submitting, you agree to our{' '}
+                    <Link to="/privacy-policy" className="text-navy-300 underline hover:text-zenith transition-colors">
+                      Privacy Policy
+                    </Link>.
                   </p>
                 </form>
               )}

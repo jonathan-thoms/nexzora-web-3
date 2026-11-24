@@ -15,6 +15,8 @@ import Quality from './pages/Quality';
 import Company from './pages/Company';
 import Careers from './pages/Careers';
 import HomeMockup from './pages/HomeMockup';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 
 /* Scroll to top or hash anchor on route change */
 function ScrollToTopOnNav() {
@@ -77,6 +79,10 @@ export default function App() {
           <Route path="/about-us" element={<Company />} />
           <Route path="/about" element={<Navigate to="/about-us" replace />} />
           <Route path="/careers" element={<Careers />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/privacy" element={<Navigate to="/privacy-policy" replace />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/terms" element={<Navigate to="/terms-of-service" replace />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>

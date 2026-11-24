@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import CookieModal from './CookieModal';
 
 const FOOTER_LINKS = {
   Offerings: [
@@ -27,6 +29,8 @@ const FOOTER_LINKS = {
 };
 
 export default function Footer() {
+  const [cookieModalOpen, setCookieModalOpen] = useState(false);
+
   return (
     <footer className="bg-navy-950 text-white border-t border-navy-800/40" id="footer">
       <div className="mx-auto max-w-[1320px] px-5 sm:px-6 lg:px-10">
@@ -161,19 +165,32 @@ export default function Footer() {
           <p className="text-[12px] sm:text-[12.5px] text-navy-400">
             © {new Date().getFullYear()} NEXZORA Technologies. All rights reserved.
           </p>
-          <div className="flex flex-wrap justify-center gap-4 sm:gap-6">
-            {['Privacy Policy', 'Terms of Service', 'Cookie Settings'].map((item) => (
-              <a
-                key={item}
-                href="#"
-                className="text-[12px] sm:text-[12.5px] text-navy-400 hover:text-zenith transition-colors duration-150 py-1"
-              >
-                {item}
-              </a>
-            ))}
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 items-center">
+            <Link
+              to="/privacy-policy"
+              className="text-[12px] sm:text-[12.5px] text-navy-400 hover:text-zenith transition-colors duration-150 py-1"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              to="/terms-of-service"
+              className="text-[12px] sm:text-[12.5px] text-navy-400 hover:text-zenith transition-colors duration-150 py-1"
+            >
+              Terms of Service
+            </Link>
+            <button
+              type="button"
+              onClick={() => setCookieModalOpen(true)}
+              className="text-[12px] sm:text-[12.5px] text-navy-400 hover:text-zenith transition-colors duration-150 py-1 cursor-pointer bg-transparent border-none"
+            >
+              Cookie Settings
+            </button>
           </div>
         </div>
       </div>
+
+      {/* Interactive Cookie Settings Modal */}
+      <CookieModal isOpen={cookieModalOpen} onClose={() => setCookieModalOpen(false)} />
     </footer>
   );
 }
