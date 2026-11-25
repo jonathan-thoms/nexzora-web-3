@@ -32,33 +32,33 @@ export default function Footer() {
   const [cookieModalOpen, setCookieModalOpen] = useState(false);
 
   return (
-    <footer className="bg-navy-950 text-white border-t border-navy-800/40" id="footer">
+    <footer className="bg-navy-50 text-navy-950 border-t border-navy-200/80" id="footer">
       <div className="mx-auto max-w-[1320px] px-5 sm:px-6 lg:px-10">
         {/* Main Footer */}
         <div className="py-12 sm:py-16 lg:py-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1fr] gap-10 lg:gap-8">
           {/* Brand Column */}
           <div className="sm:col-span-2 lg:col-span-1">
             <img
-              src="/logo-dark.png"
+              src="/logo.png"
               alt="NEXZORA Technologies"
-              className="h-8 w-auto object-contain mb-4 sm:mb-5"
+              className="h-8 sm:h-9 w-auto object-contain mb-4 sm:mb-5"
             />
-            <p className="text-[13.5px] sm:text-[14px] leading-relaxed text-navy-300 max-w-[320px] lg:max-w-[280px]">
+            <p className="text-[13.5px] sm:text-[14px] leading-relaxed text-navy-600 max-w-[320px] lg:max-w-[280px]">
               The Next Zenith of Innovation — Engineering precision solutions
               for the technologies that define tomorrow.
             </p>
 
             {/* Quick Contact Info */}
-            <div className="mt-5 space-y-2.5 text-[13px] text-navy-300">
+            <div className="mt-5 space-y-2.5 text-[13px] text-navy-700">
               <div className="flex items-start gap-2.5">
                 <svg className="w-4 h-4 text-zenith shrink-0 mt-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21.5 12.5c0 7-9.5 11-9.5 11s-9.5-4-9.5-11a9.5 9.5 0 1 1 19 0Z" />
                   <circle cx="12" cy="12.5" r="3" />
                 </svg>
                 <div className="leading-snug">
-                  <span className="text-white font-medium block">Nexzora LLC</span>
-                  <span className="text-navy-300 block">7301 N Highway 161, #148</span>
-                  <span className="text-navy-300 block">Irving, TX 75039-2803</span>
+                  <span className="text-navy-950 font-bold block">Nexzora LLC</span>
+                  <span className="text-navy-600 block">7301 N Highway 161, #148</span>
+                  <span className="text-navy-600 block">Irving, TX 75039-2803</span>
                 </div>
               </div>
               <div className="flex items-center gap-2.5">
@@ -66,15 +66,15 @@ export default function Footer() {
                   <rect x="2" y="4" width="20" height="16" rx="2" />
                   <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                 </svg>
-                <a href="mailto:info@nexzora.com" className="hover:text-zenith transition-colors">info@nexzora.com</a>
+                <a href="mailto:info@nexzora.com" className="text-navy-700 hover:text-zenith font-medium transition-colors">info@nexzora.com</a>
               </div>
               <div className="flex items-center gap-2.5">
                 <svg className="w-4 h-4 text-zenith shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92Z" />
                 </svg>
-                <a href="tel:+14696466162" className="hover:text-zenith transition-colors">+1 469-646-6162</a>
+                <a href="tel:+14696466162" className="text-navy-700 hover:text-zenith font-medium transition-colors">+1 469-646-6162</a>
               </div>
-              <div className="flex items-center gap-2.5 text-navy-400">
+              <div className="flex items-center gap-2.5 text-navy-500">
                 <svg className="w-4 h-4 text-zenith shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round">
                   <circle cx="12" cy="12" r="10" />
                   <polyline points="12 6 12 12 16 14" />
@@ -113,7 +113,7 @@ export default function Footer() {
               ].map(({ name, icon }) => (
                 <span
                   key={name}
-                  className="w-10 h-10 flex items-center justify-center rounded-lg bg-navy-900/80 text-navy-400 hover:text-white hover:bg-navy-800 transition-all duration-200 cursor-default select-none"
+                  className="w-10 h-10 flex items-center justify-center rounded-lg bg-white border border-navy-200/80 text-navy-600 hover:text-zenith hover:border-zenith transition-all duration-200 cursor-default select-none shadow-2xs"
                   aria-label={name}
                   title={`${name} (unlinked)`}
                 >
@@ -126,7 +126,7 @@ export default function Footer() {
           {/* Link Columns */}
           {Object.entries(FOOTER_LINKS).map(([heading, links]) => (
             <div key={heading}>
-              <h4 className="text-[11px] sm:text-[11.5px] font-semibold uppercase tracking-label text-navy-400 mb-3 sm:mb-5">
+              <h4 className="text-[11px] sm:text-[11.5px] font-bold uppercase tracking-label text-navy-900 mb-3 sm:mb-5">
                 {heading}
               </h4>
               <ul className="space-y-2.5 sm:space-y-3">
@@ -140,14 +140,14 @@ export default function Footer() {
                       {isInternal ? (
                         <Link
                           to={href}
-                          className="text-[13.5px] sm:text-[14px] text-navy-300 hover:text-zenith transition-colors duration-150 inline-block py-0.5"
+                          className="text-[13.5px] sm:text-[14px] text-navy-600 hover:text-zenith font-medium transition-colors duration-150 inline-block py-0.5"
                         >
                           {label}
                         </Link>
                       ) : (
                         <a
                           href={href}
-                          className="text-[13.5px] sm:text-[14px] text-navy-300 hover:text-zenith transition-colors duration-150 inline-block py-0.5"
+                          className="text-[13.5px] sm:text-[14px] text-navy-600 hover:text-zenith font-medium transition-colors duration-150 inline-block py-0.5"
                         >
                           {label}
                         </a>
@@ -161,27 +161,27 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="py-6 border-t border-navy-800/60 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left safe-bottom">
-          <p className="text-[12px] sm:text-[12.5px] text-navy-400">
+        <div className="py-6 border-t border-navy-200/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left safe-bottom">
+          <p className="text-[12px] sm:text-[12.5px] text-navy-500 font-medium">
             © {new Date().getFullYear()} NEXZORA Technologies. All rights reserved.
           </p>
           <div className="flex flex-wrap justify-center gap-4 sm:gap-6 items-center">
             <Link
               to="/privacy-policy"
-              className="text-[12px] sm:text-[12.5px] text-navy-400 hover:text-zenith transition-colors duration-150 py-1"
+              className="text-[12px] sm:text-[12.5px] text-navy-600 hover:text-zenith font-medium transition-colors duration-150 py-1"
             >
               Privacy Policy
             </Link>
             <Link
               to="/terms-of-service"
-              className="text-[12px] sm:text-[12.5px] text-navy-400 hover:text-zenith transition-colors duration-150 py-1"
+              className="text-[12px] sm:text-[12.5px] text-navy-600 hover:text-zenith font-medium transition-colors duration-150 py-1"
             >
               Terms of Service
             </Link>
             <button
               type="button"
               onClick={() => setCookieModalOpen(true)}
-              className="text-[12px] sm:text-[12.5px] text-navy-400 hover:text-zenith transition-colors duration-150 py-1 cursor-pointer bg-transparent border-none"
+              className="text-[12px] sm:text-[12.5px] text-navy-600 hover:text-zenith font-medium transition-colors duration-150 py-1 cursor-pointer bg-transparent border-none"
             >
               Cookie Settings
             </button>
