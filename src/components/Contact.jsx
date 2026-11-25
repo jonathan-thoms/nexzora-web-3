@@ -183,7 +183,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-[12px] sm:text-[13px] font-semibold text-navy-400 uppercase tracking-label mb-0.5 sm:mb-1">Office Address</p>
-                  <p className="text-[14px] sm:text-[15px] text-white font-medium">Nexzora LLC</p>
+                  <p className="text-[14px] sm:text-[15px] text-white font-bold uppercase tracking-wide mb-0.5">NEXZORA LLC</p>
                   <p className="text-[13.5px] sm:text-[14.5px] text-navy-200">7301 N Highway 161, #148</p>
                   <p className="text-[13.5px] sm:text-[14.5px] text-navy-200">Irving, TX 75039-2803</p>
                 </div>

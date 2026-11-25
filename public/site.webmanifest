@@ -1,0 +1,23 @@
+{
+  "name": "NEXZORA Technologies",
+  "short_name": "NEXZORA",
+  "description": "The Next Zenith of Innovation — Engineering Precision Solutions",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAFAF8",
+  "theme_color": "#061B2E",
+  "icons": [
+    {
+      "src": "/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

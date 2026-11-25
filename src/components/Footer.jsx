@@ -56,7 +56,7 @@ export default function Footer() {
                   <circle cx="12" cy="12.5" r="3" />
                 </svg>
                 <div className="leading-snug">
-                  <span className="text-navy-950 font-bold block">Nexzora LLC</span>
+                  <span className="text-[14px] sm:text-[14.5px] font-bold uppercase tracking-wide text-navy-950 block mb-0.5">NEXZORA LLC</span>
                   <span className="text-navy-600 block">7301 N Highway 161, #148</span>
                   <span className="text-navy-600 block">Irving, TX 75039-2803</span>
                 </div>
